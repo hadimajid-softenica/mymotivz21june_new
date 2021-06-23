@@ -198,7 +198,7 @@
         </div>
     </div>
     <!--// Main Content \\-->
-    <div class="motivz-main-content">
+    <div class="motivz-main-content" style="padding-top: 0px;">
 
         <!--// Main Section \\-->
         <div class="motivz-main-section">
@@ -208,7 +208,7 @@
                         <div class="mm-motivz-jobdetail-content">
                             @if(session::has('candidate_id'))
                                 @if(!is_null($job_check))
-                                    <h3 class="pull-right"><i class="fa fa-star"></i> Already Applied to this Job</h3>
+                                    <h3 class="pull-right" style="color: green"><i class="fa fa-star"></i> Already Applied to this Job</h3>
                                 @else
                                     <a data-toggle="modal" href="#exampleModal" class="apply-btn">Apply Now</a>
                                 @endif
