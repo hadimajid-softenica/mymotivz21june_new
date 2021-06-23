@@ -409,12 +409,12 @@
                 // Specify validation error messages
                 messages: {
                     full_name: {
-                        required: "Full Name is required.",
+                        required: "Full name is required.",
                         lettersonly: "Only letters are allowed in Full Name.",
                         maxlength: "Full Name must be less than 255 characters."
                     },
                     job_title: {
-                        required: "Job Title is required.",
+                        required: "Job title is required.",
                         lettersonly: "Only letters are allowed in Job Title.",
                         maxlength: "Job Title must be less than 255 characters."
                     },
@@ -459,13 +459,13 @@
                         required: "Industry is required.",
                     },
                     sel_job_type: {
-                        required: "Job Type is required.",
+                        required: "Job type is required.",
                     },
                     resume: {
                         extension: "Only docx and pdf files are allowed for resume.",
                     },
                     prof_summary: {
-                        maxlength: "Professional Summary must be less than 500 characters long.",
+                        maxlength: "Professional summary must be less than 500 characters long.",
                     },
 
                 },

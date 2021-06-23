@@ -89,11 +89,11 @@
 
 
                                     <li class="nav-item "><a
-                                                class="nav-link @if(Route::currentRouteName()=='about.us') active @endif"
-                                                href="{{ route('about.us') }}">About Us</a></li>
+                                            class="nav-link @if(Route::currentRouteName()=='about.us') active @endif"
+                                            href="{{ route('about.us') }}">About Us</a></li>
                                     <li class="nav-item "><a
-                                                class="nav-link @if(Route::currentRouteName()=='contact') active @endif"
-                                                href="{{ route('contact') }}">Contact</a></li>
+                                            class="nav-link @if(Route::currentRouteName()=='contact') active @endif"
+                                            href="{{ route('contact') }}">Contact</a></li>
 
                                     {{--<li><a href="{{ route('user.recruiting.services') }}" class="@if(Route::currentRouteName()=='user.recruiting.services') active @endif">Recruiting Services </a></li>
                                     <li ><a href="{{ route('user.direct.placement') }}" class="@if(Route::currentRouteName()=='user.direct.placement') active @endif">Direct Placement </a></li>
@@ -200,21 +200,25 @@
                                         @endif
                                     </li>
                                     @if(!Session::has('candidate_id') && !Session::has('c_email'))
-                                    <li class="nav-item">
-                                        @if(Session::get('status') == 1)
-                                            <a class="nav-link" href="{{route('change',['slug'=>'Job Seekers'])}}">For
-                                                Job Seekers</a>
-                                        @else
-                                            <a class="nav-link" href="{{route('change',['slug'=>'Employers'])}}">For
-                                                Employers</a>
-                                        @endif
-                                        {{--                                        <a class="nav-link" href="javascript:void(0)">For Job Seekers</a>--}}
-                                    </li>
-                                    @if(Session::has('status'))
-                                    <li><a href="{{route('user.client.job.post')}}" class="header-btn">Post a Job</a>
-                                     @endif
-                                    </li>
-                                        @endif
+                                        <li class="nav-item">
+                                            @if(Session::get('status') == 1)
+                                                <a class="nav-link" href="{{route('change',['slug'=>'Job Seekers'])}}">For
+                                                    Job Seekers</a>
+                                            @else
+                                                <a class="nav-link" href="{{route('change',['slug'=>'Employers'])}}">For
+                                                    Employers</a>
+                                            @endif
+                                            {{--                                        <a class="nav-link" href="javascript:void(0)">For Job Seekers</a>--}}
+                                        </li>
+                                    @endif
+                                    {{--                                        @if(Session::has('status'))--}}
+                                    @if(Session::has('c_email') || (!Session::has('candidate_id') && !Session::has('c_email')))
+                                        <li>
+                                            <a href="{{route('user.client.job.post')}}" class="header-btn">
+                                                Post a Job
+                                            </a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </nav>
@@ -227,7 +231,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3"><a href="{{ route('welcome') }}" class="logo"><img
-                                src="{{ asset('user/images/logo.png') }}" alt=""></a></div>
+                            src="{{ asset('user/images/logo.png') }}" alt=""></a></div>
                 <div class="col-md-9">
                     <div class="mymotivz-nav">
                         <nav class="navbar navbar-expand-lg">
@@ -236,46 +240,55 @@
                                     aria-label="Toggle navigation">
                                 <span class="fa fa-bars"></span>
                             </button>
-                            <div class="collapse navbar-collapse"  id="navbarSupported">
+                            <div class="collapse navbar-collapse" id="navbarSupported">
                                 <ul class="navbar-nav mr-auto">
                                     @if(Session::get('status') == 1 || Session::has('c_email'))
-                                    <li class="nav-item"><a href="{{ route('user.find.jobs') }}"
-                                                            class="nav-link @if(Route::currentRouteName()=='user.find.jobs') active @endif">Find
-                                            Jobs </a></li>
-                                    <li class="nav-item"><a href="{{route('view.career.develop')}}"
-                                                            class="nav-link @if(Route::currentRouteName()=='view.career.develop') active @endif">Career
-                                            Development </a></li>
-                                    <li class="nav-item"><a href="{{route('user.career.resources')}}"
-                                                            class="nav-link @if(Route::currentRouteName()=='user.career.resources') active @endif">Career
-                                            Resources </a></li>
+                                        <li class="nav-item"><a href="{{ route('user.find.jobs') }}"
+                                                                class="nav-link @if(Route::currentRouteName()=='user.find.jobs') active @endif">Find
+                                                Jobs </a></li>
+                                        <li class="nav-item"><a href="{{route('view.career.develop')}}"
+                                                                class="nav-link @if(Route::currentRouteName()=='view.career.develop') active @endif">Career
+                                                Development </a></li>
+                                        <li class="nav-item"><a href="{{route('user.career.resources')}}"
+                                                                class="nav-link @if(Route::currentRouteName()=='user.career.resources') active @endif">Career
+                                                Resources </a></li>
 
-                                    @if(session()->has('email'))
-                                        <li class="nav-item"><a class="nav-link"
-                                                                href="{{route('candidate.dashboard')}}">Resume & Cover
-                                                Letter</a></li>
-                                    @else
-                                        <li class="nav-item"><a class="nav-link" href="{{route('user.signUp')}}">Resume
-                                                & Cover Letter</a></li>
-                                        {{--<li ><a href="{{route('user.signUp')}}" class="@if(Route::currentRouteName()=='user.signUp') active @endif">Create User Profile </a></li>--}}
-                                    @endif
+                                        @if(session()->has('email'))
+                                            <li class="nav-item"><a class="nav-link"
+                                                                    href="{{route('candidate.dashboard')}}">Resume &
+                                                    Cover
+                                                    Letter</a></li>
+                                        @else
+                                            <li class="nav-item"><a class="nav-link" href="{{route('user.signUp')}}">Resume
+                                                    & Cover Letter</a></li>
+                                            {{--<li ><a href="{{route('user.signUp')}}" class="@if(Route::currentRouteName()=='user.signUp') active @endif">Create User Profile </a></li>--}}
+                                        @endif
                                     @elseif(!Session::has('status') || Session::has('candidate_id'))
-                                        <li class="nav-item"><a href="{{ route('user.recruiting.services') }}" class="nav-link @if(Route::currentRouteName()=='user.recruiting.services') active @endif">Recruiting Services </a></li>
-                                        <li class="nav-item"><a href="{{ route('user.direct.placement') }}" class="nav-link @if(Route::currentRouteName()=='user.direct.placement') active @endif">Direct Placement </a></li>
-                                        <li class="nav-item"><a href="{{ route('user.temporary.staffing') }}" class="nav-link @if(Route::currentRouteName()=='user.temporary.staffing') active @endif">Temporary Staffing </a></li>
-                                        <li class="nav-item"><a href="{{ route('user.industry.insights') }}" class="nav-link @if(Route::currentRouteName()=='user.industry.insights') active @endif">Industry Insights </a></li>
+                                        <li class="nav-item"><a href="{{ route('user.recruiting.services') }}"
+                                                                class="nav-link @if(Route::currentRouteName()=='user.recruiting.services') active @endif">Recruiting
+                                                Services </a></li>
+                                        <li class="nav-item"><a href="{{ route('user.direct.placement') }}"
+                                                                class="nav-link @if(Route::currentRouteName()=='user.direct.placement') active @endif">Direct
+                                                Placement </a></li>
+                                        <li class="nav-item"><a href="{{ route('user.temporary.staffing') }}"
+                                                                class="nav-link @if(Route::currentRouteName()=='user.temporary.staffing') active @endif">Temporary
+                                                Staffing </a></li>
+                                        <li class="nav-item"><a href="{{ route('user.industry.insights') }}"
+                                                                class="nav-link @if(Route::currentRouteName()=='user.industry.insights') active @endif">Industry
+                                                Insights </a></li>
                                         @if(session()->has('c_email'))
                                         @else
-                                            <li class="nav-item"><a href="{{route('user.signUp.company')}}" class="nav-link @if(Route::currentRouteName()=='user.signUp.company') active @endif">Create Company Profile </a></li>
+                                            <li class="nav-item"><a href="{{route('user.signUp.company')}}"
+                                                                    class="nav-link @if(Route::currentRouteName()=='user.signUp.company') active @endif">Create
+                                                    Company Profile </a></li>
                                         @endif
                                     @endif
                                     <li class="nav-item "><a
-                                                class="nav-link @if(Route::currentRouteName()=='about.us') active @endif"
-                                                href="{{ route('about.us') }}">About Us</a></li>
+                                            class="nav-link @if(Route::currentRouteName()=='about.us') active @endif"
+                                            href="{{ route('about.us') }}">About Us</a></li>
                                     <li class="nav-item "><a
-                                                class="nav-link @if(Route::currentRouteName()=='contact') active @endif"
-                                                href="{{ route('contact') }}">Contact</a></li>
-
-
+                                            class="nav-link @if(Route::currentRouteName()=='contact') active @endif"
+                                            href="{{ route('contact') }}">Contact</a></li>
 
 
                                     @if( session()->has('email') || session()->has('c_email') )
@@ -360,24 +373,25 @@
                                         @endif
                                     </li>
                                     @if(!Session::has('candidate_id') && !Session::has('c_email'))
-                                    <li class="nav-item">
+                                        <li class="nav-item">
 
-                                        @if(Session::get('status') == 1)
-                                            <a class="nav-link" href="{{route('change',['slug'=>'Job Seekers'])}}">For
-                                                Job Seekers</a>
+                                            @if(Session::get('status') == 1)
+                                                <a class="nav-link" href="{{route('change',['slug'=>'Job Seekers'])}}">For
+                                                    Job Seekers</a>
 
-                                        @else
-                                            <a class="nav-link" href="{{route('change',['slug'=>'Employers'])}}">For
-                                                Employers</a>
+                                            @else
+                                                <a class="nav-link" href="{{route('change',['slug'=>'Employers'])}}">For
+                                                    Employers</a>
 
+                                            @endif
+                                        </li>
+                                        @if(Session::has('status'))
+                                            <li><a href="{{route('user.client.job.post')}}" class="header-btn">Post a
+                                                    Job</a>
+                                                @endif
+
+                                            </li>
                                         @endif
-                                    </li>
-                                    @if(Session::has('status'))
-                                    <li><a href="{{route('user.client.job.post')}}" class="header-btn">Post a Job</a>
-                                        @endif
-
-                                    </li>
-                                    @endif
                                 </ul>
                             </div>
                         </nav>
@@ -409,7 +423,7 @@
                             <li>
                                 <label>Full Name</label>
                                 <input type="text" name="full_name_notify" id="full_name_notify" class="form-control"
-                                       placeholder="" value="">
+                                       placeholder="Full Name" value="">
                                 @error('full_name_notify')
                                 <label class="error">{{$message}}</label>
                                 @enderror
@@ -417,7 +431,7 @@
                             <li>
                                 <label>Email</label>
                                 <input type="text" name="email_notify" id="email_notify" class="form-control"
-                                       placeholder="" value="">
+                                       placeholder="Email" value="">
                                 <label class="error" id="err-email" style="display: none;"></label>
                                 @error('email_notify')
                                 <label class="error">{{$message}}</label>
@@ -435,7 +449,8 @@
                             <li>
                                 <label>Desired Job (s)</label>
                                 <input type="text" id="desired_job_notify" name="desired_job_notify"
-                                       data-role="tagsinput" class="tags_1 tags form-control" placeholder="" value="">
+                                       data-role="tagsinput" class="tags_1 tags form-control"
+                                       placeholder="" value="">
                                 @error('desired_job_notify')
                                 <label class="text-danger">{{$message}}</label>
                                 @enderror
@@ -445,7 +460,7 @@
                             <li>
                                 <label>Desired Location</label>
                                 <input type="text" id="desired_location_notify" name="desired_location_notify"
-                                       class="tags_1 tags form-control" placeholder="" value="">
+                                       class="tags_1 tags form-control" placeholder="Desired Location" value="">
                                 @error('desired_location_notify')
                                 <label class="text-danger">{{$message}}</label>
                                 @enderror
@@ -538,9 +553,9 @@
                             <div class="col-md-6">
                                 <div class="widget widget-links">
                                     <a class="left-icn" href="https://www.apple.com/app-store/" target="_blank"><img
-                                                src="{{ asset('user/images/apps.jpg') }}" alt=""></a>
+                                            src="{{ asset('user/images/apps.jpg') }}" alt=""></a>
                                     <a class="right-icn" href="https://play.google.com/store/apps" target="_blank"><img
-                                                src="{{ asset('user/images/googlestore.jpg') }}" alt=""></a>
+                                            src="{{ asset('user/images/googlestore.jpg') }}" alt=""></a>
                                     <div class="social-x">
                                         <a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook"></a>
                                         <a href="https://www.instagram.com/" target="_blank"
@@ -599,23 +614,15 @@
         })
     </script>
 @endif
+@include('partials.additional_validator')
 <script>
-    jQuery.validator.addMethod("alpha_space", function (value, element) {
-        return this.optional(element) || /^[a-zA-Z ]*$/.test(value);
-    }, "Letters only.");
-    jQuery.validator.addMethod("currency", function (value, element) {
-        return this.optional(element) || /^[$£€]*$/.test(value);
-    }, "Letters only.");
-    jQuery.validator.addMethod("greaterThanToday", function (value, element) {
-        return this.optional(element) || new Date(value) > new Date();
-    }, "Selected date should be greater than today.");
+
 
     $(function () {
         $('#desired_job_notify').tagsInput({
             width: 'auto',
             defaultText: 'Use comma or enter to separate jobs',
         });
-
     });
 
     /* function initialize() {
@@ -711,12 +718,7 @@
         }
 
     });
-    jQuery.validator.addMethod("locationvalidation", function (value, element) {
-        return this.optional(element) || /^[a-zA-Z, ]+$/i.test(value);
-    });
-    jQuery.validator.addMethod("namevalidation", function (value, element) {
-        return this.optional(element) || /^[a-zA-Z ]+$/i.test(value);
-    });
+
     $("#form-notify").validate({
         ignore: "",
         rules: {
@@ -739,7 +741,7 @@
             },
             desired_location_notify: {
                 required: true,
-                // locationvalidation: true,
+                locationvalidation: true,
                 maxlength: 255
             },
         },
@@ -750,7 +752,7 @@
                 email: "Email must be in valid format.",
             },
             full_name_notify: {
-                required: "Full Name is required.",
+                required: "Full name is required.",
                 namevalidation: "Only letters are allowed in Full Name.",
                 maxlength: "Full Name must be less than 255 characters."
             },
@@ -762,10 +764,10 @@
                 maxlength: "Jobs Title must be less than 500 characters long."
             },
             desired_location_notify: {
-                required: "Job Location is required.",
-                // locationvalidation: "Job Location must be in valid format.",
-                minlength: "Job Location must be at least 2 characters long.",
-                maxlength: "Job Location must be less than 255 characters long."
+                required: "Job location is required.",
+                locationvalidation: "Job location must be in valid format.",
+                minlength: "Job location must be at least 2 characters long.",
+                maxlength: "Job location must be less than 255 characters long."
             },
 
         },
@@ -775,6 +777,12 @@
             form.submit();
         }
 
+    });
+
+    $('#exampleModal-notify').on('hidden.bs.modal', function () {
+        $('#form-notify')[0].reset();
+        $("#form-notify").validate().resetForm();
+        $('.tag').remove();
     });
 
     $(document).ready(function () {
@@ -811,15 +819,15 @@
 
         google.maps.event.addDomListener(window, 'load', initialization);
 
-        $("#desired_location_notify").on('keydown', function (event) {
-            if (event.keyCode == 13) {
+        $("#desired_location_notify").on('keydown keypress keyup', function (event) {
+            if (event.keyCode === 13) {
                 event.preventDefault();
                 return false;
             }
         })
 
 
-        $("#location").on('keydown', function (event) {
+        $("#location").on('keydown keyup keypress', function (event) {
 
             if (event.keyCode == 13) {
                 event.preventDefault();

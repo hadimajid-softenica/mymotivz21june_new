@@ -89,8 +89,8 @@ $(document).ready(function() {
 
             job_title:{
                 required: "Job title is required.",
-                minlength: "Job Title is required",
-                maxlength : "Job Title must be less than 255 characters long.",
+                minlength: "Job title is required",
+                maxlength : "Job title must be less than 255 characters long.",
             },
 
             phone:{

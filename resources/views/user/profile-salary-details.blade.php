@@ -51,7 +51,7 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text currecny_sign" id="inputGroup-sizing-default">@if(!empty($Candidate->salary_sign)){{$Candidate->salary_sign}}@else $ @endif</span>
                                                         </div>
-                                                        <input name="package" id="package" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="" value="{{$Candidate->salary}}" >
+                                                        <input name="package" id="package" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="From" value="{{$Candidate->salary}}" >
                                                     </div>
                                                 </div>
                                                 @error('package')
@@ -154,7 +154,7 @@
     $(document).ready(function () {
         /*Bcz in textarea space did'nt working */
             $("#form_profile").validate({
-                ignore:[],
+                // ignore:[],
                 rules: {
 
                     package: {
@@ -183,8 +183,8 @@
                     } ,
                     package_to:{
                         currencyvalidation: "Salary should be in valid format.",
-                        // greaterThan: "Maximum Salary range must be greater than minimum salary.",
-                        greaterThanPackage: "Maximum Salary range must be greater than minimum salary.",
+                        // greaterThan: "Maximum salary range must be greater than minimum salary.",
+                        greaterThanPackage: "Maximum salary range must be greater than minimum salary.",
                         maxlength: "Salary must be less than 20 characters long."
                         // positivedigit:"Salary must be positive.",
                     } ,

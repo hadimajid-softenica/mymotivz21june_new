@@ -117,7 +117,7 @@ Route::group(['prefix' => 'candidate', 'middleware' => ['CustomAuth', 'Candidate
     Route::get('/applied-jobs', 'User\HomeController@viewAppliedJobs')->name('view.applied.jobs');
     Route::post('/password-changed', 'User\HomeController@changePassword')->name('candidate.change.password');
     Route::get('/change-password', 'User\HomeController@viewChangePassword')->name('view.change.password');
-    Route::get('/edit-profile', 'User\HomeController@editCandProfile')->name('temp.candidate.dashboard');
+    Route::get('/edit-profile', [HomeController::class,'editCandProfile'])->name('temp.candidate.dashboard');
     Route::post('/delete-img', 'User\HomeController@delCandidateImg')->name('candidate.delete.image');
 
 });
@@ -155,7 +155,7 @@ Route::group(['prefix' => 'company', 'middleware' => 'CustomAuthCompany'], funct
     Route::post('/logo', 'User\HomeController@companyLogoUpload')->name('user.client.logo.ajax');
 //    Route::get('post/job', 'User\HomeController@postJob')->name('user.client.job.post') ;
 //    Route::get('create/recruitment-service', 'User\HomeController@createJob')->name('user.client.job.create') ;
-    Route::post('created/job', 'User\HomeController@submitJob')->name('user.client.job.created');
+//    Route::post('created/job', 'User\HomeController@submitJob')->name('user.client.job.created');
 //    Route::get('active/jobs', 'User\HomeController@viewactiveJobs')->name('user.client.view.job.active') ;
     Route::post('view/active/jobs', 'User\HomeController@activeJobs')->name('user.client.job.active');
     Route::get('active/jobs/view-details/{id}', [HomeController::class, 'jobViewDetails'])->name('user.job.details');

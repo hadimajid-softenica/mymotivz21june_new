@@ -24,7 +24,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Job Title</label>
-                                            <input name="jobtitle" type="text" class="form-control" placeholder="" value="{{old('jobtitle')}}">
+                                            <input name="jobtitle" type="text" class="form-control" placeholder="Title" value="{{old('jobtitle')}}">
                                         </div>
                                         @error('jobtitle')
                                         <label id="jobtitle-error" class="error" for="jobtitle">{{$message}}</label>
@@ -57,7 +57,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Website Address <small>(http://www.example.com)</small></label>
-                                            <input name="web_url" type="text" class="form-control" placeholder="" value="{{old('web_url')}}">
+                                            <input name="web_url" type="text" class="form-control" placeholder="Website Address" value="{{old('web_url')}}">
                                             @error('web_url')
                                             <label id="web_url-error" class="error" for="web_url">{{$message}}</label>
                                             @enderror
@@ -102,7 +102,7 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text currecny_sign" id="inputGroup-sizing-default">$</span>
                                                         </div>
-                                                        <input name="package" id="package" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="" value="" >
+                                                        <input name="package" id="package" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="From" value="" >
                                                         @error('package')
                                                         <label id="package-error" class="error" for="package">{{$message}}</label>
                                                         @enderror
@@ -280,7 +280,7 @@
                     } ,*/
                     location:{
                         required: true,
-                        // locationvalidation: true,
+                        locationvalidation: true,
                         // minlength: 2,
                         maxlength:255
                     } ,
@@ -306,12 +306,10 @@
                         required: true,
                     },
                     industry:{
-
                         required: true,
                     } ,
                     service:{
                         required: true,
-
                     },
                     job_discription:{
                         required: true,
@@ -334,10 +332,10 @@
                         required: "Education is required.",
                     } ,
                     location:{
-                        required: "Job Location is required.",
-                        // locationvalidation: "Job Location must be in valid format.",
+                        required: "Job location is required.",
+                        locationvalidation: "Job location must be in valid format.",
                         // minlength: "Job Location must be at least 2 characters long.",
-                        maxlength: "Job Location must be less than 255 characters long."
+                        maxlength: "Job location must be less than 255 characters long."
                     } ,
                     /*city:{
                         required: "City is required.",
@@ -362,13 +360,13 @@
                     } ,
                     package_to:{
                         currencyvalidation: "Salary should be in valid format.",
-                        // greaterThan: "Maximum Salary range must be greater than minimum salary.",
-                        greaterThanPackage: "Maximum Salary range must be greater than minimum salary.",
+                        // greaterThan: "Maximum salary range must be greater than minimum salary.",
+                        greaterThanPackage: "Maximum salary range must be greater than minimum salary.",
                         maxlength: "Salary must be less than 20 characters long."
                         // positivedigit:"Salary must be positive.",
                     } ,
                     salary_duration:{
-                        required: "Salary Duration is required",
+                        required: "Salary duration is required",
                     },
                     industry:{
                         required: "Type of industry is required.",
@@ -381,7 +379,7 @@
                         maxlength: "Job description must be less than 255 characters long."
                     } ,
                     document: {
-                        extension: "Only doc, docx and pdf files are allowed for document.",
+                        extension: "Only pdf, doc and docx files are allowed.",
                     }
                 },
                 submitHandler: function(form) {
@@ -389,23 +387,23 @@
                 }
             });
 
-            jQuery.validator.addMethod("greaterThanPackage",
-                function (value, element, params) {
-
-                    if (value === "" || (parseFloat(value) > parseFloat($(params).val()))) {
-                        return true;
-                    }
-                    return false;
-                });
-            jQuery.validator.addMethod("alpha_space", function(value, element) {
-                return this.optional(element) || /^[a-zA-Z\s]+$/i.test(value);
-            });
-            jQuery.validator.addMethod("currencyvalidation", function(value, element) {
-                return this.optional(element) || /^[,.?0-9]+$/i.test(value);
-            });
-            jQuery.validator.addMethod("locationvalidation", function(value, element) {
-                return this.optional(element) || /^[a-zA-Z, ]+$/i.test(value);
-            });
+            // jQuery.validator.addMethod("greaterThanPackage",
+            //     function (value, element, params) {
+            //
+            //         if (value === "" || (parseFloat(value) > parseFloat($(params).val()))) {
+            //             return true;
+            //         }
+            //         return false;
+            //     });
+            // jQuery.validator.addMethod("alpha_space", function(value, element) {
+            //     return this.optional(element) || /^[a-zA-Z\s]+$/i.test(value);
+            // });
+            // jQuery.validator.addMethod("currencyvalidation", function(value, element) {
+            //     return this.optional(element) || /^[,.?0-9]+$/i.test(value);
+            // });
+            // jQuery.validator.addMethod("locationvalidation", function(value, element) {
+            //     return this.optional(element) || /^[a-zA-Z, ]+$/i.test(value);
+            // });
 
             // jQuery.validator.addMethod("greaterThan", function (value, element) {
             //     var salary_to = value;

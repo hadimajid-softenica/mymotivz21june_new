@@ -574,7 +574,7 @@ $("#candidate-validation").validate({
         skills: "required",
         resume: "required",
         "resume[]":{
-            
+
             extension:"doc|docx|pdf",
 
         },
@@ -673,7 +673,7 @@ $("#editCandidateValidation").validate({
             required: "Please enter a skills",
         },
         "resume[]":{
-            extension: "Only PDF, DOC and Docx files are allowed",
+            extension: "Only pdf, doc and docx files are allowed.",
         },
 
     }

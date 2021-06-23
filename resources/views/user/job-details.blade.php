@@ -141,7 +141,8 @@
                                 <label class="text-danger">{{$message}}</label>
                                 @enderror--}}
                                 <label>Location</label>
-                                <input type="text" name="location" id="location" class="form-control" placeholder=""
+                                <input type="text" name="location" id="location" class="form-control"
+                                       placeholder="Location"
                                        value="@if(session::has('candidate_id')){{$candidate->location}}@endif">
                                 @error('location')
                                 <label class="text-danger">{{$message}}</label>
@@ -258,12 +259,14 @@
                             </div>
                             <div class="mm-motivz-content-title"><h2>Job Description</h2></div>
                             <div class="mm-motivz-description">
-                                {{--                                @if($job['job_description'] == "")--}}
-                                <p>{!! $job['job_description'] !!}</p>
-{{--                                <p> {{strlen($job['job_description'])}} </p>--}}
-                                {{--                                @else--}}
-                                {{--                                    <p> N/A </p>--}}
-                                {{--                                @endif--}}
+{{--                                <p>{!! $job['job_description'] !!}</p>--}}
+                                @if(htmlentities($job->job_description) == '&lt;p&gt;&amp;nbsp;&lt;/p&gt;' ||
+                                    htmlentities($job->job_description) == '&lt;p&gt; &lt;/p&gt;' ||
+                                    htmlentities($job->job_description) == '&lt;p&gt; &lt;/p&gt;&lt;p&gt; &lt;/p&gt;&lt;p&gt; &lt;/p&gt;')
+                                    <p> N/A </p>
+                                @else
+                                    <p>{!! $job->job_description !!}</p>
+                                @endif
                             </div>
                             {{--<div class="mm-motivz-content-title"><h2>What You Will Do</h2></div>
                             <div class="mm-motivz-description">
@@ -380,7 +383,7 @@
                     location: {
                         required: true,
                         locationvalidation: true,
-                        minlength: 2,
+                        // minlength: 2,
                         maxlength: 255
                     },
                     password: {
@@ -407,12 +410,12 @@
                     },
                     resume: {
                         required: true,
-                        extension: 'docx|pdf',
+                        extension : 'docx|doc|pdf',
                     }
                 },
                 messages: {
                     full_name: {
-                        required: "Full Name is required.",
+                        required: "Full name is required.",
                         lettersonly: "Only letters are allowed in Full Name.",
                         maxlength: "Full Name must be less than 255 characters."
                     },
@@ -423,10 +426,10 @@
                         maxlength: "City Name must be less than 30 characters long."
                     },*/
                     location: {
-                        required: "Job Location is required.",
-                        locationvalidation: "Job Location must be in valid format.",
-                        minlength: "Job Location must be at least 2 characters long.",
-                        maxlength: "Job Location must be less than 255 characters long."
+                        required: "Job location is required.",
+                        locationvalidation: "Job location must be in valid format.",
+                        // minlength: "Job location must be at least 2 characters long.",
+                        maxlength: "Job location must be less than 255 characters long."
                     },
                     password: {
                         required: "Please Enter Password.",
@@ -453,7 +456,7 @@
                     },
                     resume: {
                         required: "Resume is Required.",
-                        extension: "Resume must be in valid format.",
+                        extension : 'Only pdf, doc and docx files are allowed.',
                     }
                 },
                 submitHandler: function (form) {
@@ -461,6 +464,13 @@
                 }
 
             });
+
+            $('#exampleModal').on('hidden.bs.modal', function () {
+                $('#form-job-apply')[0].reset();
+                $("#form-job-apply").validate().resetForm();
+                // $('.tag').remove();
+            });
+
             var value = $("#password").val();
             $.validator.addMethod("checkSpecialchar", function (value) {
                 return /[^\w\s]/gi.test(value);
@@ -471,15 +481,15 @@
             $.validator.addMethod("checkdigit", function (value) {
                 return /[0-9]/.test(value);
             });
-            jQuery.validator.addMethod("lettersonly", function (value, element) {
-                return this.optional(element) || /^[a-zA-Z ]+$/i.test(value);
-            });
-            jQuery.validator.addMethod("phonenumber", function (value, element) {
-                return this.optional(element) || /^[0-9\-\(\)\s]+$/i.test(value);
-            });
-            jQuery.validator.addMethod("locationvalidation", function (value, element) {
-                return this.optional(element) || /^[a-zA-Z, ]+$/i.test(value);
-            });
+            // jQuery.validator.addMethod("lettersonly", function (value, element) {
+            //     return this.optional(element) || /^[a-zA-Z ]+$/i.test(value);
+            // });
+            // jQuery.validator.addMethod("phonenumber", function (value, element) {
+            //     return this.optional(element) || /^[0-9\-\(\)\s]+$/i.test(value);
+            // });
+            // jQuery.validator.addMethod("locationvalidation", function (value, element) {
+            //     return this.optional(element) || /^[a-zA-Z, ]+$/i.test(value);
+            // });
         });
     </script>
 @endsection

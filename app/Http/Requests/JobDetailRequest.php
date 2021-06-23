@@ -23,11 +23,12 @@ class JobDetailRequest extends FormRequest
      */
     public function rules()
     {
+//        dd('request');
         return [
 //            'jobtitle' => 'required|regex:/^[a-zA-Z\s]*$/|min:2|max:255',
             'jobtitle' => 'required|min:2|max:255',
             'education' => 'required',
-            'location' => 'required|regex:/^[a-zA-Z,.\s]*$/|max:255',
+            'location' => 'required',
             'web_url' => ['required','regex:/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/'],
             'package' => 'required|regex:/^[,.?0-9]+$/|min:1|max:20',
             'package_to' => 'nullable|regex:/^[,.?0-9]+$/|max:20',
@@ -49,15 +50,15 @@ class JobDetailRequest extends FormRequest
     public function messages()
     {
         return [
-            'jobtitle.required' => 'Job Title is required',
-            'jobtitle.regex' => 'Only Characters are required',
+            'jobtitle.required' => 'Job title is required',
+            'jobtitle.regex' => 'Only characters are required',
             'jobtitle.min' => 'Job Title must be greater than 2 characters',
             'jobtitle.max' => 'Job Title must be less than 255 characters',
             'education.required' => 'Education is required',
-            'location.required' => 'Job Location is required',
-            'location.regex' => 'Only Characters are required for Job Location',
-            'location.min' => 'Job Location must be greater than 2 characters',
-            'location.max' => 'Job Location must be less than 255 characters',
+            'location.required' => 'Job location is required',
+            'location.regex' => 'Only characters are required for job location',
+            'location.min' => 'Job location must be greater than 2 characters',
+            'location.max' => 'Job location must be less than 255 characters',
             'web_url.required' => 'Web URL is required',
             'web_url.url' => 'URL must be valid',
             'package.required' => 'Salary is required',

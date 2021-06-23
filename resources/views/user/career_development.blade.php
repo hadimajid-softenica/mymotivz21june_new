@@ -40,8 +40,8 @@
                     </div>
                     <div class="col-md-6">
                         <figure class="career-development-img"><img
-                                    src="{{asset('user/images/career-development-img1.jpg')}}" alt=""><img
-                                    class="secnd-img" src="{{asset('user/images/career-development-img.jpg')}}" alt="">
+                                src="{{asset('user/images/career-development-img1.jpg')}}" alt=""><img
+                                class="secnd-img" src="{{asset('user/images/career-development-img.jpg')}}" alt="">
                         </figure>
                     </div>
                 </div>
@@ -55,8 +55,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <figure class="career-development-img career-development-scnd"><img
-                                    src="{{asset('user/images/career-development-img1.jpg')}}" alt=""><img
-                                    class="secnd-img" src="{{asset('user/images/career-development-img2.jpg')}}" alt="">
+                                src="{{asset('user/images/career-development-img1.jpg')}}" alt=""><img
+                                class="secnd-img" src="{{asset('user/images/career-development-img2.jpg')}}" alt="">
                         </figure>
                     </div>
                     <div class="col-md-6">
@@ -73,7 +73,7 @@
                                 {{--                                <span id="resumename"></span>--}}
                                 {{--                                <label><i class="fa fa-upload"></i>Upload Resume<input id="resume" name="resume" type="file" onchange="this.form.submit()"></label>--}}
                                 <a href="{{route('candidate.dashboard')}}"><label style="cursor: pointer;"><i
-                                                class="fa fa-upload"></i>Upload
+                                            class="fa fa-upload"></i>Upload
                                         Resume{{--<input id="resume" name="resume" type="submit" >--}}</label></a>
                                 @error('resume')
                                 <label class="error">{{$message}}</label>
@@ -101,14 +101,16 @@
                             <p>Our team will connect you to different employers in areas of your choice. Submit your
                                 requirements below and we will notify you of any future job openings that meet your
                                 criteria.</p>
-                            <a href="#submitjobModal" id="job-modal" data-toggle="modal" class="lazy-btn" style="font-weight:bold;">Submit
-                                Job Requirements </a>
+                            <a href="#submitjobModal" id="job-modal" data-toggle="modal" class="lazy-btn"
+                               style="font-weight:bold;">
+                                Submit Job Requirements
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <figure class="career-development-img actively-looking-img"><img
-                                    src="{{asset('user/images/career-development-img4.jpg')}}" alt=""><img
-                                    class="secnd-img" src="{{asset('user/images/career-development-img3.jpg')}}" alt="">
+                                src="{{asset('user/images/career-development-img4.jpg')}}" alt=""><img
+                                class="secnd-img" src="{{asset('user/images/career-development-img3.jpg')}}" alt="">
                         </figure>
                     </div>
                 </div>
@@ -157,7 +159,7 @@
                             <li>
                                 <input type="text" class="tags_1 tags form-control" name="location" id="location"
                                        value="" placeholder="Desired Location">
-                                <label id="location-error" class="error" for="location" style="display: none"></label>
+{{--                                <label id="location-error" class="error" for="location" style="display: none"></label>--}}
                                 @error('location')
                                 <label class="error">{{$message}}</label>
                                 @enderror
@@ -175,7 +177,8 @@
                             </li>
                             <li>
                                 <input type="text" data-role="tagsinput" class="tags_1 tags form-control"
-                                       name="job_title" id="job_title_tags" value="">
+                                       name="job_title" id="job_title_tags" placeholder=""
+                                       value="">
                                 <label id="job_title_tags-error" class="error" for="job_title_tags"
                                        style="display: none"></label>
                                 @error('job_title')
@@ -318,7 +321,6 @@
     @endif
     <script>
 
-
         $(document).ready(function () {
             function initialize() {
                 var input = document.getElementById('location');
@@ -415,7 +417,7 @@
                     form.submit();
                 }
             });
-            var validator = $("#job_notify_form").validate({
+            $("#job_notify_form").validate({
                 ignore: "",
                 rules: {
 
@@ -441,7 +443,7 @@
                     },
                     location: {
                         required: true,
-                        // locationvalidation: false,
+                        locationvalidation: true,
                         // minlength: 2,
                         maxlength: 255
                     },
@@ -479,13 +481,13 @@
                 // Specify validation error messages
                 messages: {
                     full_name: {
-                        required: "Full Name is required.",
-                        lettersonly: "Only Alphabets are allowed in Full Name.",
-                        maxlength: "Full Name must be less than 255 characters long."
+                        required: "Full name is required.",
+                        lettersonly: "Only alphabets are allowed in full name.",
+                        maxlength: "Full name must be less than 255 characters long."
                     },
                     job_title: {
-                        required: "Job Title is required.",
-                        maxlength: "Job Title must be less than 255 characters long."
+                        required: "Job title is required.",
+                        maxlength: "Job title must be less than 255 characters long."
                     },
                     phone_no: {
                         required: "Phone number is required.",
@@ -499,10 +501,10 @@
                         maxlength: "Email must be less than 255 characters long."
                     },
                     location: {
-                        required: "Job Location is required.",
-                        // locationvalidation: "Job Location must be in valid format.",
+                        required: "Job location is required.",
+                        locationvalidation: "Job location must be in valid format.",
                         // minlength: "Job Location must be at least 2 characters long.",
-                        maxlength: "Job Location must be less than 255 characters long."
+                        maxlength: "Job location must be less than 255 characters long."
                     },
                     package: {
                         required: "Salary is required.",
@@ -513,13 +515,13 @@
                     },
                     package_to: {
                         currencyvalidation: "Salary should be in valid format.",
-                        // greaterThan: "Maximum Salary range must be greater than minimum salary.",
-                        greaterThanPackage: "Maximum Salary range must be greater than minimum salary.",
+                        // greaterThan: "Maximum salary range must be greater than minimum salary.",
+                        greaterThanPackage: "Maximum salary range must be greater than minimum salary.",
                         maxlength: "Salary must be less than 20 characters long."
                         // positivedigit:"Salary must be positive.",
                     },
                     salary_duration: {
-                        required: "Salary Duration is required",
+                        required: "Salary duration is required",
                     },
                     sel_education: {
                         required: "Education is required.",
@@ -528,7 +530,7 @@
                         required: "Industry is required.",
                     },
                     sel_job_type: {
-                        required: "Job Type is required.",
+                        required: "Job type is required.",
                     },
                     description: {
                         required: "Description is required.",
@@ -543,52 +545,18 @@
 
             });
 
-            $('#job-modal').on('click', function (e) {
-                e.preventDefault();
+            $('#submitjobModal').on('hidden.bs.modal', function () {
                 $('#job_notify_form')[0].reset();
+                $("#job_notify_form").validate().resetForm();
                 $('.tag').remove();
-                validator.resetForm();
             });
 
-            jQuery.validator.addMethod("greaterThanPackage",
-                function (value, element, params) {
-
-                    if (value === "" || (parseFloat(value) > parseFloat($(params).val()))) {
-                        return true;
-                    }
-                    return false;
-                });
-            jQuery.validator.addMethod("lettersonly", function (value, element) {
-                return this.optional(element) || /^[a-zA-Z ]+$/i.test(value);
-            });
-            jQuery.validator.addMethod("currencyvalidation", function (value, element) {
-                return this.optional(element) || /^[,.?0-9]+$/i.test(value);
-            });
-            jQuery.validator.addMethod("phonevalidation", function (value, element) {
-                return this.optional(element) || /^[0-9\-\(\)\s]+$/i.test(value);
-            });
-            jQuery.validator.addMethod("locationvalidation", function (value, element) {
-                return this.optional(element) || /^[a-zA-Z, ]+$/i.test(value);
-            });
-            jQuery.validator.addMethod("greaterThan", function (value, element) {
-                var salary_to = value;
-                var salary_from = $("#package").val();
-
-                if (value.indexOf(',') > -1) {
-                    salary_to = value.replace(',', '');
-                }
-                if (salary_from.indexOf(',') > -1) {
-                    salary_from = salary_from.replace(',', '');
-                }
-                salary_from = parseInt(salary_from);
-                salary_to = parseInt(salary_to);
-                if (salary_from >= salary_to) {
-                    return false;
-                } else {
-                    return true;
-                }
-            });
-
+            // $('#job-modal').on('click', function (e) {
+            //     e.preventDefault();
+            //     $('#job_notify_form')[0].reset();
+            //     $('.tag').remove();
+            //     validator.resetForm();
+            // });
 
             $('#job_notify_form').on('keyup keypress', function (e) {
                 var keyCode = e.keyCode || e.which;
@@ -597,6 +565,47 @@
                     return false;
                 }
             });
+
+            // jQuery.validator.addMethod("greaterThanPackage",
+            //     function (value, element, params) {
+            //
+            //         if (value === "" || (parseFloat(value) > parseFloat($(params).val()))) {
+            //             return true;
+            //         }
+            //         return false;
+            //     });
+            // jQuery.validator.addMethod("lettersonly", function (value, element) {
+            //     return this.optional(element) || /^[a-zA-Z ]+$/i.test(value);
+            // });
+            // jQuery.validator.addMethod("currencyvalidation", function (value, element) {
+            //     return this.optional(element) || /^[,.?0-9]+$/i.test(value);
+            // });
+            // jQuery.validator.addMethod("phonevalidation", function (value, element) {
+            //     return this.optional(element) || /^[0-9\-\(\)\s]+$/i.test(value);
+            // });
+            // jQuery.validator.addMethod("locationvalidation", function (value, element) {
+            //     return this.optional(element) || /^[a-zA-Z, ]+$/i.test(value);
+            // });
+            // jQuery.validator.addMethod("greaterThan", function (value, element) {
+            //     var salary_to = value;
+            //     var salary_from = $("#package").val();
+            //
+            //     if (value.indexOf(',') > -1) {
+            //         salary_to = value.replace(',', '');
+            //     }
+            //     if (salary_from.indexOf(',') > -1) {
+            //         salary_from = salary_from.replace(',', '');
+            //     }
+            //     salary_from = parseInt(salary_from);
+            //     salary_to = parseInt(salary_to);
+            //     if (salary_from >= salary_to) {
+            //         return false;
+            //     } else {
+            //         return true;
+            //     }
+            // });
+
+
         });
 
     </script>

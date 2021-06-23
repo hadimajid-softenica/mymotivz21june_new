@@ -90,22 +90,22 @@ $(document).ready(function () {
         messages: {
             name: {
                 required: "Name is required.",
-                lettersonly : "Only Alphabets are allowed in Name.",
+                lettersonly : "Only alphabets are allowed in name.",
                 maxlength: "Name must be less than 255 characters long.",
             },
             title: {
                 required: "Title is required.",
-                lettersonly : "Only Alphabets are allowed in Title.",
+                lettersonly : "Only alphabets are allowed in title.",
                 maxlength: "Title must be less than 255 characters.",
             },
             company: {
                 required: "Company is required.",
-                lettersonly : "Only Alphabets are allowed in Company.",
+                lettersonly : "Only alphabets are allowed in company.",
                 maxlength: "Company must be less than 255 characters long.",
             },
             industry: {
                 required: "Industry is required.",
-                lettersonly : "Only Alphabets are allowed in Industry.",
+                lettersonly : "Only Alphabets are allowed in industry.",
                 maxlength: "Industry must be less than 255 characters long.",
             },
             email: {
@@ -130,7 +130,7 @@ $(document).ready(function () {
                 maxlength: "Position must be less than 255 characters long.",
             },
             job_desc:{
-                required: "Job Description is required.",
+                required: "Job description is required.",
                 maxlength: "Job description must be less than 500 characters long.",
             },
             sel_service:{

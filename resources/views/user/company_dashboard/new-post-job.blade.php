@@ -9,23 +9,23 @@
         @endif
         <div class="card-header-tab card-header">
             <div class="card-header-title font-size-lg font-weight-normal" style="text-transform: none"><i
-                        class="pe-7s-next-2 mr-3 text-muted opacity-6"
-                        style="font-size: 35px; color: #4d9a10 !important;"> </i>Post a Job
+                    class="pe-7s-next-2 mr-3 text-muted opacity-6"
+                    style="font-size: 35px; color: #4d9a10 !important;"> </i>Post a Job
             </div>
         </div>
         <div class="tabs-animation">
             <div class="row">
                 <div class="col-md-12">
                     <div class="main-card mb-3 card">
-{{--                        @if ($errors->any())--}}
-{{--                            <div class="alert alert-danger">--}}
-{{--                                <ul>--}}
-{{--                                    @foreach ($errors->all() as $error)--}}
-{{--                                        <li>{{ $error }}</li>--}}
-{{--                                    @endforeach--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
+                        {{--                        @if ($errors->any())--}}
+                        {{--                            <div class="alert alert-danger">--}}
+                        {{--                                <ul>--}}
+                        {{--                                    @foreach ($errors->all() as $error)--}}
+                        {{--                                        <li>{{ $error }}</li>--}}
+                        {{--                                    @endforeach--}}
+                        {{--                                </ul>--}}
+                        {{--                            </div>--}}
+                        {{--                        @endif--}}
                         <div class="card-body">
                             <form id="user-create-job-form" action="{{ route('user.client.job.created') }}"
                                   method="post" enctype="multipart/form-data">
@@ -35,7 +35,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Job Title</label>
-                                            <input name="jobtitle" type="text" class="form-control" placeholder=""
+                                            <input name="jobtitle" type="text" class="form-control" placeholder="Title"
                                                    value="{{old('jobtitle')}}">
                                         </div>
                                         @error('jobtitle')
@@ -60,17 +60,17 @@
                                         <div class="form-group">
                                             <label>Job Location</label>
                                             <input name="location" id="location" value="{{old('location')}}" type="text"
-                                                   class="form-control" placeholder="">
+                                                   class="form-control" placeholder="Location">
                                         </div>
-                                        {{--                                        @error('location')--}}
-                                        {{--                                        <label id="location-error" class="error" for="location">{{$message}}</label>--}}
-                                        {{--                                        @enderror--}}
+                                        @error('location')
+                                        <label id="location-error" class="error" for="location">{{$message}}</label>
+                                        @enderror
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Website Address <small>(http://www.example.com)</small></label>
                                             <input name="web_url" value="{{old('web_url')}}" type="text"
-                                                   class="form-control" placeholder="">
+                                                   class="form-control" placeholder="Website Address">
                                         </div>
                                         @error('web_url')
                                         <label id="web_url-error" class="error" for="web_url">{{$message}}</label>
@@ -206,7 +206,7 @@
                                                         <input name="package" id="package" type="text"
                                                                class="form-control" aria-label="Default"
                                                                aria-describedby="inputGroup-sizing-default"
-                                                               placeholder="" value="{{old('package')}}">
+                                                               placeholder="From" value="{{old('package')}}">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -312,7 +312,8 @@
                                         <div class="form-group">
                                             <label>Job Description</label>
                                             {{--                                            <div id="job_discription"></div>--}}
-                                            <textarea name="job_discription" id="job_discription" class="form-control tinymce"
+                                            <textarea name="job_discription" id="job_discription"
+                                                      class="form-control tinymce"
                                                       placeholder="Briefly summarize this position..."></textarea>
                                         </div>
                                         <label id="job_discription-error" class="error" for="job_discription"
@@ -334,48 +335,10 @@
     </div>
 @endsection
 @section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.8.1/tinymce.min.js" integrity="sha512-DzR2RH5M2HEOaMkPDKIYIrSXhKtKncXM0rtO3Dlu7p9qUY1T8+lrTPPw+efglohND+HNb9PJJmxlqy/5l2bz5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.8.1/tinymce.min.js"
+            integrity="sha512-DzR2RH5M2HEOaMkPDKIYIrSXhKtKncXM0rtO3Dlu7p9qUY1T8+lrTPPw+efglohND+HNb9PJJmxlqy/5l2bz5w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-
-        {{--var editor_config = {--}}
-        {{--    path_absolute: "/",--}}
-        {{--    selector: "textarea.tinymce",--}}
-        {{--    height: 500,--}}
-        {{--    plugins: [--}}
-        {{--        "advlist autolink lists link image charmap print preview hr anchor pagebreak",--}}
-        {{--        "searchreplace wordcount visualblocls code fullscreen",--}}
-        {{--        "insertdatetime media nonbreaking save table",--}}
-        {{--        "textcolor colorpicker"--}}
-        {{--    ],--}}
-        {{--    toolbar: "insertfile undo redo | stylesheet | bold italic | alignleft aligncenter alignright alignjustify",--}}
-        {{--    relative_urls: false,--}}
-        {{--    images_upload_handler: function(blobinfo, success, faliure){--}}
-        {{--        var xhr, formData;--}}
-        {{--        xhr = new XMLHttpRequest();--}}
-        {{--        xhr.withCredentials = false;--}}
-        {{--        xhr.open('POST', '{{route('ckeditor.upload')}}');--}}
-        {{--        var token = '{{csrf_token()}}'--}}
-        {{--        xhr.setRequestHeader("X-CSRF-Token", token);--}}
-        {{--        xhr.onload = function () {--}}
-        {{--            var json;--}}
-        {{--            if(xhr.status != 200){--}}
-        {{--                faliure('HTTP Error: '+xhr.status);--}}
-        {{--                return;--}}
-        {{--            }--}}
-        {{--            json = JSON.parse(xhr.responseText);--}}
-        {{--            if(!json || typeof json.location != 'string'){--}}
-        {{--                faliure('Invalid JSON: '+xhr.responseText);--}}
-        {{--                return;--}}
-        {{--            }--}}
-        {{--            success(json.location);--}}
-        {{--        }--}}
-        {{--        formData = new FormData();--}}
-        {{--        formData.append('file', blobinfo.blob(), blobinfo.filename());--}}
-        {{--        xhr.send(formData);--}}
-        {{--    }--}}
-        {{--}--}}
-        {{--tinymce.init(editor_config);--}}
-
 
         var editor = null;
         ClassicEditor.create(document.querySelector("#job_discription"), {
@@ -519,7 +482,7 @@
                     },
                     location: {
                         required: true,
-                        // locationvalidation: true,
+                        locationvalidation: true,
                         // minlength: 2,
                         maxlength: 255
                     },
@@ -604,10 +567,10 @@
                         required: "Education is required.",
                     },
                     location: {
-                        required: "Job Location is required.",
-                        // locationvalidation: "Job Location must be in valid format.",
-                        minlength: "Job Location must be at least 2 characters long.",
-                        maxlength: "Job Location must be less than 255 characters long."
+                        required: "Job location is required.",
+                        locationvalidation: "Job location must be in valid format.",
+                        // minlength: "Job location must be at least 2 characters long.",
+                        maxlength: "Job location must be less than 255 characters long."
                     },
                     web_url: {
                         required: "Website url is required.",
@@ -618,18 +581,18 @@
                         currencyvalidation: "Salary should be in valid format.",
                         minlength: "Salary must be at least 1 characters long.",
                         maxlength: "Salary must be less than 20 characters long.",
-                        // lessThanPackageTo: 'Maximum Salary range must be greater than minimum salary.'
+                        // lessThanPackageTo: 'Maximum salary range must be greater than minimum salary.'
                         // positivedigit:"Salary must be positive.",
                     },
                     package_to: {
                         currencyvalidation: "Salary should be in valid format.",
-                        // greaterThan: "Maximum Salary range must be greater than minimum salary updated.",
-                        greaterThanPackage: "Maximum Salary range must be greater than minimum salary.",
+                        // greaterThan: "Maximum salary range must be greater than minimum salary updated.",
+                        greaterThanPackage: "Maximum salary range must be greater than minimum salary.",
                         maxlength: "Salary must be less than 20 characters long."
                         // positivedigit:"Salary must be positive.",
                     },
                     salary_duration: {
-                        required: "Salary Duration is required",
+                        required: "Salary duration is required",
                     },
                     industry: {
                         required: "Type of industry is required.",
@@ -679,14 +642,14 @@
                 }
             });
 
-            jQuery.validator.addMethod("greaterThanPackage",
-                function (value, element, params) {
-
-                    if (value === "" || (parseFloat(value) > parseFloat($(params).val()))) {
-                        return true;
-                    }
-                    return false;
-                });
+            // jQuery.validator.addMethod("greaterThanPackage",
+            //     function (value, element, params) {
+            //
+            //         if (value === "" || (parseFloat(value) > parseFloat($(params).val()))) {
+            //             return true;
+            //         }
+            //         return false;
+            //     });
 
             // jQuery.validator.addMethod("lessThanPackageTo",
             //     function (value, element, params) {

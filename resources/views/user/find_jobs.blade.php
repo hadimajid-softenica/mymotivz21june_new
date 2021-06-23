@@ -153,21 +153,21 @@
                         <ul>
                             <li>
                                 <label>Full Name</label>
-                                <input type="text" name="full_name" id="full_name" class="form-control" placeholder="" value="@if(session::has('candidate_id')){{$candidate->name}}@endif" >
+                                <input type="text" name="full_name" id="full_name" class="form-control" placeholder="Full Name" value="@if(session::has('candidate_id')){{$candidate->name}}@endif" >
                                 @error('full_name')
                                 <label class="error">{{$message}}</label>
                                 @enderror
                             </li>
                             <li>
                                 <label>Phone Number</label>
-                                <input type="text" name="phone_no" id="phone_no" class="form-control" placeholder="" value="@if(session::has('candidate_id')){{$candidate->phone}}@endif" >
+                                <input type="text" name="phone_no" id="phone_no" class="form-control" placeholder="Phone Number" value="@if(session::has('candidate_id')){{$candidate->phone}}@endif" >
                                 @error('phone_no')
                                 <label class="error">{{$message}}</label>
                                 @enderror
                             </li>
                             <li>
                                 <label>Email</label>
-                                <input type="text" name="email" id="email" class="form-control" placeholder="" @if(session::has('candidate_id'))  value="{{$candidate->email}}" readonly @endif>
+                                <input type="text" name="email" id="email" class="form-control" placeholder="Email" @if(session::has('candidate_id'))  value="{{$candidate->email}}" readonly @endif>
                                 <label class="error" id="err-email" style="display: none;"></label>
                                 @error('email')
                                 <label class="error">{{$message}}</label>
@@ -175,7 +175,7 @@
                             </li>
                             <li>
                                 <label>Location</label>
-                                <input type="text" name="location" id="location" class="form-control" placeholder="" value="@if(session::has('candidate_id')){{$candidate->location}}@endif">
+                                <input type="text" name="location" id="location" class="form-control" placeholder="Location" value="@if(session::has('candidate_id')){{$candidate->location}}@endif">
                                 @error('location')
                                 <label class="text-danger">{{$message}}</label>
                                 @enderror
@@ -397,6 +397,7 @@
     $(document).ready(function () {
 
         $("#form-job-apply").validate({
+            // focusCleanup: true,
             rules: {
                 full_name: {
                     required: true,
@@ -415,7 +416,7 @@
                 },
                 location:{
                     required: true,
-                    // locationvalidation: true,
+                    locationvalidation: true,
                     // minlength: 2,
                     maxlength:255
                 } ,
@@ -427,8 +428,9 @@
             },
             messages: {
                 full_name: {
-                    required: "Full Name is required.",
-                    maxlength: "Full Name must be less than 255 characters."
+                    required: "Full name is required.",
+                    alpha_space: "Only alphabets are allowed in full name.",
+                    maxlength: "Full name must be less than 255 characters."
                 },
                 phone_no: {
                     required: "Phone number is required.",
@@ -441,14 +443,14 @@
                     email: "Email must be in valid format.",
                 },
                 location:{
-                    required: "Job Location is required.",
-                    // locationvalidation: "Job Location must be in valid format.",
+                    required: "Job location is required.",
+                    locationvalidation: "Job location must be in valid format.",
                     // minlength: "Job Location must be at least 2 characters long.",
-                    maxlength: "Job Location must be less than 255 characters long."
+                    maxlength: "Job location must be less than 255 characters long."
                 } ,
                 resume: {
-                    required: "Resume is Required.",
-                    extension : 'Only pdf, doc and docx files are allowed',
+                    required: "Resume is required.",
+                    extension : 'Only pdf, doc and docx files are allowed.',
                 }
             },
             submitHandler: function(form) {
@@ -499,6 +501,11 @@
             }
         });
 
+        $('#exampleModal').on('hidden.bs.modal', function () {
+            $('#form-job-apply')[0].reset();
+            $("#form-job-apply").validate().resetForm()
+        });
+
         var value = $("#password").val();
         $.validator.addMethod("checkSpecialchar", function(value) {
             return /[^\w\s]/gi.test(value);
@@ -509,15 +516,15 @@
         $.validator.addMethod("checkdigit", function(value) {
             return /[0-9]/.test(value);
         });
-        jQuery.validator.addMethod("lettersonly", function(value, element) {
-            return this.optional(element) || /^[a-zA-Z ]+$/i.test(value);
-        });
-        jQuery.validator.addMethod("phonenumber", function(value, element) {
-            return this.optional(element) || /^[0-9\-\(\)\s]+$/i.test(value);
-        });
-        jQuery.validator.addMethod("locationvalidation", function(value, element) {
-            return this.optional(element) || /^[a-zA-Z, ]+$/i.test(value);
-        });
+        // jQuery.validator.addMethod("lettersonly", function(value, element) {
+        //     return this.optional(element) || /^[a-zA-Z ]+$/i.test(value);
+        // });
+        // jQuery.validator.addMethod("phonenumber", function(value, element) {
+        //     return this.optional(element) || /^[0-9\-\(\)\s]+$/i.test(value);
+        // });
+        // jQuery.validator.addMethod("locationvalidation", function(value, element) {
+        //     return this.optional(element) || /^[a-zA-Z, ]+$/i.test(value);
+        // });
         $("#file-upload-demo").fileinput({
             'theme': 'explorer',
             'uploadUrl': '#',
@@ -558,7 +565,7 @@
                     maxlength: "Location must be at less than 255 characters long",
                 },
                 job_title: {
-                    required: "Job Title is required",
+                    required: "Job title is required",
                     lettersonly: "Only letters are allowed in Job Title",
                     minlength: "Job Title must be at least 5 characters long",
                     maxlength: "Job Title must be less than 255 characters",
@@ -572,11 +579,14 @@
             }
 
         });
-        jQuery.validator.addMethod("lettersonly", function(value, element) {
-            return this.optional(element) || /^[a-zA-Z]+$/i.test(value);
-        });
+        // jQuery.validator.addMethod("lettersonly", function(value, element) {
+        //     return this.optional(element) || /^[a-zA-Z]+$/i.test(value);
+        // });
 
     });
+
+
+
 
     $('#form_job_alert').on('keyup keypress', function(e) {
         var keyCode = e.keyCode || e.which;
@@ -588,6 +598,7 @@
 
 
     $(document).ready(function () {
+        $('#form-job-apply')[0].reset();
         $('.industry').click(function () {
             $(this).siblings('input:checkbox').prop('checked','false');
         });
@@ -1091,6 +1102,7 @@
             },
         });
     }
+
     function submitJobApplyForm()
     {
         if($('#terms_policy_checkbox').is(':checked')==false)

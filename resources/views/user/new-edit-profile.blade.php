@@ -630,7 +630,7 @@
                     },
                     location:{
                         required: true,
-                        // locationvalidation: true,
+                        locationvalidation: true,
                         // minlength: 2,
                         maxlength:255
                     } ,
@@ -654,14 +654,14 @@
                     salary_duration:{
                         required: true,
                     },
-                    // skills: {
-                    //     required: true,
-                    //     maxlength: 500,
-                    // },
-                    // required_certification: {
-                    //     required: true,
-                    //     maxlength: 500,
-                    // },
+                    skills: {
+                        // required: true,
+                        maxlength: 500,
+                    },
+                    required_certification: {
+                        // required: true,
+                        maxlength: 500,
+                    },
                     interest: {
                         /* required: true,*/
                         maxlength: 255,
@@ -694,12 +694,12 @@
                 // Specify validation error messages
                 messages: {
                     full_name: {
-                        required: "Full Name is required.",
+                        required: "Full name is required.",
                         lettersonly: "Only letters are allowed in Full Name.",
                         maxlength: "Full Name must be less than 255 characters."
                     },
                     job_title: {
-                        required: "Job Title is required.",
+                        required: "Job title is required.",
                         lettersonly: "Only letters are allowed in Job Title.",
                         maxlength: "Job Title must be less than 255 characters."
                     },
@@ -710,10 +710,10 @@
                         maxlength: "Phone number must be equal to 14 characters.",
                     },
                     location:{
-                        required: "Job Location is required.",
-                        locationvalidation: "Job Location must be in valid format.",
-                        minlength: "Job Location must be at least 2 characters long.",
-                        maxlength: "Job Location must be less than 255 characters long."
+                        required: "Job location is required.",
+                        locationvalidation: "Job location must be in valid format.",
+                        minlength: "Job location must be at least 2 characters long.",
+                        maxlength: "Job location must be less than 255 characters long."
                     } ,
                     linkedin_url:{
                         url: "LinkedIn url is invalid."
@@ -727,22 +727,22 @@
                     } ,
                     package_to:{
                         currencyvalidation: "Salary should be in valid format.",
-                        greaterThanPackage: "Maximum Salary range must be greater than minimum salary.",
-                        // greaterThan: "Maximum Salary range must be greater than minimum salary.",
+                        greaterThanPackage: "Maximum salary range must be greater than minimum salary.",
+                        // greaterThan: "Maximum salary range must be greater than minimum salary.",
                         maxlength: "Salary must be less than 20 characters long."
                         // positivedigit:"Salary must be positive.",
                     } ,
                     salary_duration:{
-                        required: "Salary Duration is required",
+                        required: "Salary duration is required",
                     },
-                    // skills: {
-                    //     required: "Skills are required.",
-                    //     maxlength: "Skills must be less than 500 characters long."
-                    // },
-                    // required_certification: {
-                    //     required: "Certification are required.",
-                    //     maxlength: "Certification must be less than 500 characters long."
-                    // },
+                    skills: {
+                        // required: "Skills are required.",
+                        maxlength: "Skills must be less than 500 characters long."
+                    },
+                    required_certification: {
+                        // required: "Certification are required.",
+                        maxlength: "Certification must be less than 500 characters long."
+                    },
                     interest: {
                         /*required: "Interest is required.",*/
                         maxlength: "Interest must be at least 255 characters long.",
@@ -757,21 +757,20 @@
                         required: "Industry is required.",
                     },
                     sel_job_type: {
-                        required: "Job Type is required.",
+                        required: "Job type is required.",
                     },
                     resume: {
-                        extension: "Only doc, docx and pdf files are allowed for resume.",
+                        extension: "Only pdf, doc and docx files are allowed.",
                     },
                     pro_img: {
                         extension: "Only png, jpg and jpeg files are allowed for profile picture.",
                     },
                     prof_summary: {
-                        maxlength: "Professional Summary must be less than 500 characters long.",
+                        maxlength: "Professional summary must be less than 500 characters long.",
                     },
                     auth_status: {
                         required: "Authorization status is required",
                     }
-
                 },
 
                 submitHandler: function(form) {
@@ -779,27 +778,11 @@
                 }
 
             });
-            jQuery.validator.addMethod("lettersonly", function(value, element) {
-                return this.optional(element) || /^[a-zA-Z ]+$/i.test(value);
-            });
-            jQuery.validator.addMethod("currencyvalidation", function(value, element) {
-                return this.optional(element) || /^[,.?0-9]+$/i.test(value);
-            });
-            jQuery.validator.addMethod("phonenumber", function(value, element) {
-                return this.optional(element) || /^[0-9\-\(\)\s]+$/i.test(value);
-            });
-            jQuery.validator.addMethod("locationvalidation", function(value, element) {
-                return this.optional(element) || /^[a-zA-Z, ]+$/i.test(value);
-            });
 
-            jQuery.validator.addMethod("greaterThanPackage",
-                function (value, element, params) {
 
-                    if (value === "" || (parseFloat(value) > parseFloat($(params).val()))) {
-                        return true;
-                    }
-                    return false;
-                });
+
+
+
 
             // jQuery.validator.addMethod("greaterThan", function (value, element) {
             //     var salary_to = value;

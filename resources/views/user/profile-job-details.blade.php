@@ -163,7 +163,7 @@
             overwriteInitial: false,
         });
             $("#form_profile").validate({
-                ignore:[],
+                // ignore:[],
                 rules: {
                     sel_job_type: {
                         required: true,
@@ -171,15 +171,9 @@
                     industry: {
                         required: true,
                     },
-                    // location:{
-                    //     required: true,
-                    //     locationvalidation: true,
-                    //     minlength: 2,
-                    //     maxlength:255
-                    // } ,
                     job_title: {
                         required: true,
-                        lettersonly: true,
+                        // lettersonly: true,
                         maxlength: 255,
                     },
                     sel_experience: {
@@ -189,21 +183,16 @@
                 // Specify validation error messages
                 messages: {
                     sel_job_type: {
-                        required: "Job Type is required.",
+                        required: "Job type is required.",
                     },
                     industry: {
                         required: "Industry is required.",
                     },
-                    // location:{
-                    //     required: "Job Location is required.",
-                    //     locationvalidation: "Job Location must be in valid format.",
-                    //     minlength: "Job Location must be at least 2 characters long.",
-                    //     maxlength: "Job Location must be less than 255 characters long."
-                    // } ,
                     job_title: {
-                        required: "Job Title is required.",
-                        lettersonly: "Job Title format is invalid.",
-                        maxlength: "Job Title must be less than 255 characters."
+                        required: "Job title is required.",
+                        // lettersonly: "Job title format is invalid.",
+                        // lettersonly: "Letters only.",
+                        maxlength: "Job title must be less than 255 characters."
                     },
                     sel_experience: {
                         required: "Experience is required.",

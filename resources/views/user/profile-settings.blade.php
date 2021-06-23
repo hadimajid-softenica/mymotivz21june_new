@@ -599,12 +599,12 @@
             // Specify validation error messages
             messages: {
                 full_name: {
-                    required: "Full Name is required.",
+                    required: "Full name is required.",
                     lettersonly: "Only letters are allowed in Full Name.",
                     maxlength: "Full Name must be less than 255 characters."
                 },
                 job_title: {
-                    required: "Job Title is required.",
+                    required: "Job title is required.",
                     lettersonly: "Only letters are allowed in Job Title.",
                     maxlength: "Job Title must be less than 255 characters."
                 },
@@ -615,10 +615,10 @@
                     maxlength: "Phone number must be equal to 14 characters.",
                 },
                 location:{
-                    required: "Job Location is required.",
-                    locationvalidation: "Job Location must be in valid format.",
-                    minlength: "Job Location must be at least 2 characters long.",
-                    maxlength: "Job Location must be less than 255 characters long."
+                    required: "Job location is required.",
+                    locationvalidation: "Job location must be in valid format.",
+                    minlength: "Job location must be at least 2 characters long.",
+                    maxlength: "Job location must be less than 255 characters long."
                 } ,
                 linkedin_url:{
                     url: "LinkedIn url is invalid."
@@ -632,12 +632,12 @@
                 } ,
                 package_to:{
                     currencyvalidation: "Salary should be in valid format.",
-                    greaterThan: "Maximum Salary range must be greater than minimum salary.",
+                    greaterThan: "Maximum salary range must be greater than minimum salary.",
                     maxlength: "Salary must be less than 20 characters long."
                     // positivedigit:"Salary must be positive.",
                 } ,
                 salary_duration:{
-                    required: "Salary Duration is required",
+                    required: "Salary duration is required",
                 },
                 skills: {
                     required: "Skills are required.",
@@ -661,13 +661,13 @@
                     required: "Industry is required.",
                 },
                 sel_job_type: {
-                    required: "Job Type is required.",
+                    required: "Job type is required.",
                 },
                 resume: {
-                    extension: "Only doc, docx and pdf files are allowed for resume.",
+                    extension: "Only pdf, doc and docx files are allowed.",
                 },
                 prof_summary: {
-                    maxlength: "Professional Summary must be less than 500 characters long.",
+                    maxlength: "Professional summary must be less than 500 characters long.",
                 },
                 auth_status: {
                     required: "Authorization status is required",

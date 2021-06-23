@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="text" name="full_name" class="form-control" placeholder="Full Name" value="@if(!is_null($Candidate['name'])){{$Candidate->name}}@else{{old('full_name')}}@endif">
+                                            <input type="text" name="full_name" class="form-control" placeholder="Full Name" value="@if(!empty($Candidate['name'])){{$Candidate['name']}}@else{{old('full_name')}}@endif">
                                             @error('full_name')
                                             <label class="error">{{$message}}</label>
                                             @enderror
@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="text" name="phone_no" id="phone_no" class="form-control" placeholder="Phone Number" value="@if(!is_null($Candidate['phone'])){{$Candidate->phone}}@else{{old('phone_no')}}@endif">
+                                            <input type="text" name="phone_no" id="phone_no" class="form-control" placeholder="Phone Number" value="@if(!empty($Candidate['phone'])){{$Candidate->phone}}@else{{old('phone_no')}}@endif">
                                             @error('phone_no')
                                             <label class="error">{{$message}}</label>
                                             @enderror
@@ -69,13 +69,13 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control" placeholder="Email" value="@if(!is_null($Candidate['email'])){{$Candidate->email}}@else{{old('email')}}@endif" readonly>
+                                            <input type="email" name="email" class="form-control" placeholder="Email" value="@if(!empty($Candidate['email'])){{$Candidate->email}}@else{{old('email')}}@endif" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Enter your location</label>
-                                            <input type="text" name="location" id="location" data-role="tagsinput" class="tags_1 tags form-control" placeholder="" value="@if(!is_null($Candidate['location'])){{$Candidate->location}}@else{{old('location')}}@endif">
+                                            <input type="text" name="location" id="location" data-role="tagsinput" class="tags_1 tags form-control" placeholder="Location" value="@if(!empty($Candidate['location'])){{$Candidate->location}}@else{{old('location')}}@endif">
                                             <label id="location-error" class="error" for="location" style="display: none"></label>
                                             @error('location')
                                             <label class="error">{{$message}}</label>
@@ -84,7 +84,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="text" name="linkedin_url" class="form-control" placeholder="Add Linkedin Profile (optional)" value="@if(!is_null($Candidate['linkedin_url'])){{$Candidate->linkedin_url}}@else{{old('linkedin_url')}}@endif">
+                                            <input type="text" name="linkedin_url" class="form-control" placeholder="Add Linkedin Profile (optional)" value="@if(!empty($Candidate['linkedin_url'])){{$Candidate->linkedin_url}}@else{{old('linkedin_url')}}@endif">
                                             @error('linkedin_url')
                                             <label class="error">{{$message}}</label>
                                             @enderror
@@ -183,12 +183,12 @@
         $( document ).ready(function() {
 
             $("#form_profile").validate({
-                ignore:[],
+                // ignore:[],
                 rules: {
 
                     full_name: {
                         required: true,
-                        lettersonly: true,
+                        alpha_space: true,
                         maxlength: 255,
                     },
                     phone_no: {
@@ -200,6 +200,12 @@
                     email: {
                         required: true,
                         email: true,
+                    },
+                    location: {
+                        required: true,
+                        locationvalidation: true,
+                        // minlength: 2,
+                        maxlength: 255
                     },
                     linkedin_url: {
                         validUrl: true
@@ -214,8 +220,8 @@
                 // Specify validation error messages
                 messages: {
                     full_name: {
-                        required: "Full Name is required.",
-                        lettersonly: "Only letters are allowed in Full Name.",
+                        required: "Full name is required.",
+                        alpha_space: "Only letters are allowed in Full Name.",
                         maxlength: "Full Name must be less than 255 characters."
                     },
                     phone_no: {
@@ -228,11 +234,17 @@
                         required: "Email is required",
                         email: "Email must be in valid format",
                     },
+                    location: {
+                        required: "Job location is required.",
+                        locationvalidation: "Job location must be in valid format.",
+                        // minlength: "Job Location must be at least 2 characters long.",
+                        maxlength: "Job location must be less than 255 characters long."
+                    },
                     linkedin_url:{
                         url: "LinkedIn url is invalid."
                     },
                     resume: {
-                        extension: "Only doc, docx and pdf files are allowed for resume.",
+                        extension: "Only pdf, doc and docx files are allowed.",
                     },
                     auth_status: {
                         required: "Authorization status is required.",
@@ -241,19 +253,13 @@
                 },
 
                 submitHandler: function(form) {
-                    form.submit();
+                    form.submit()
                 }
 
             });
-            jQuery.validator.addMethod("lettersonly", function(value, element) {
-                return this.optional(element) || /^[a-zA-Z ]+$/i.test(value);
-            });
-            jQuery.validator.addMethod("currencyvalidation", function(value, element) {
-                return this.optional(element) || /^[,?0-9$€£]+$/i.test(value);
-            });
-            jQuery.validator.addMethod("phonenumber", function(value, element) {
-                return this.optional(element) || /^[0-9\-\(\)\s]+$/i.test(value);
-            });
+
+
+
 
 
 

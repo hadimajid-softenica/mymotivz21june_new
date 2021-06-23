@@ -22,6 +22,8 @@ use App\Http\Requests\PasswordRequest;
 use App\Job;
 use App\Education;
 use App\Resume;
+use App\Rules\ValidLocation;
+use App\Rules\ValidUrl;
 use App\user_job;
 use App\Find_Talent;
 use App\Country;
@@ -29,6 +31,7 @@ use App\State;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Session;
 use Illuminate\Support\Carbon;
@@ -51,16 +54,14 @@ class HomeController extends Controller
     {
         return view('user.welcome');
     }
+
     public function change($slug)
     {
 //        dd($slug);
 
-        if ($slug=='Employers')
-        {
+        if ($slug == 'Employers') {
             session(['status' => 1]);
-        }
-        elseif ($slug=='Job Seekers')
-        {
+        } elseif ($slug == 'Job Seekers') {
             Session::forget('status');
 
         }
@@ -91,14 +92,14 @@ class HomeController extends Controller
             'name.required' => 'FullName is required',
             'name.regex' => 'FullName only contain alphabets',
             'name.max' => 'FullName must be less than 255 characters',
-            'title.required' => 'Job Title is required',
+            'title.required' => 'Job title is required',
             'title.regex' => 'Title only contain alphabets',
             'title.max' => 'Title must be less than 255 characters long',
             'company.required' => 'Company is required',
             'company.max' => 'Company must be less than 255 characters',
             'industry.required' => 'Industry is required',
             'industry.max' => 'Industry must be less than 255 characters',
-            'email.required' => 'Email is Required',
+            'email.required' => 'Email is required',
             'email.email' => 'Email should be valid',
             'phone_ext.required' => 'Phone extension is required',
             'phone_ext.regex' => 'Phone extension must be valid',
@@ -209,6 +210,7 @@ class HomeController extends Controller
 
     public function editCandProfile()
     {
+//        dd('edit profile');
         $Education = Education::all();
         $industries = Industry::all();
         $Candidate = NewCandidate::where('id', session()->get('candidate_id'))->first();
@@ -222,17 +224,17 @@ class HomeController extends Controller
     public function saveProfile(Request $request)
     {
 
-//        dd($request->all());
         $request->validate(
             [
                 'full_name' => 'required|regex:/^[a-zA-Z ]+$/u|max:20',
                 'job_title' => 'required|max:255',
                 'phone_no' => 'required|regex:/^[0-9\-\(\)\s]+$/|min:14|max:14',
+                'linkedin_url' => [new ValidUrl()],
 //               'location' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
                 'location' => 'required',
                 'package' => 'required|regex:/^[,.?0-9]+$/|min:1|max:20',
                 'package_to' => 'nullable|regex:/^[,.?0-9]+$/|max:20',
-//                'skills' => 'required|max:500',
+                'skills' => 'nullable|max:500',
                 'interest' => 'nullable|max:255',
                 'sel_experience' => 'required|not_in:0',
                 'sel_education' => 'required|not_in:0',
@@ -240,23 +242,23 @@ class HomeController extends Controller
                 'sel_job_type' => 'required|not_in:0',
                 'resume' => 'mimes:doc,docx,pdf',
                 'prof_summary' => 'max:500',
-//                'required_certification' => 'required|max:500',
+                'required_certification' => 'nullable|max:500',
                 'auth_status' => 'required',
             ],
             [
                 'full_name.required' => 'FullName is required',
                 'full_name.regex' => 'FullName only contain alphabets',
                 'full_name.max' => 'FullName must be less than 20 characters',
-                'job_title.required' => 'Job Title is required',
+                'job_title.required' => 'Job title is required',
                 'job_title.regex' => 'Job Title only contain alphabets',
-                'job_title.max' => 'JOb title must be less than 255 characters long',
+                'job_title.max' => 'Job title must be less than 255 characters long',
                 'phone_no.required' => 'Phone No is required',
                 'phone_no.regex' => 'Phone number must be in digits form',
                 'phone_no.min' => 'Phone number must be equal to 14 digits',
                 'phone_no.max' => 'Phone number must be equal to 14 digits',
 //                'skills.required' => 'Skills are required',
                 'skills.max' => 'Skills must be less than 500 characters long',
-                'interest.required' => 'Interests are required',
+//                'interest.required' => 'Interests are required',
                 'interest.max' => 'Interest must be less than 255 characters',
                 'sel_experience.required' => 'Education is Required',
                 'sel_experience.not-in' => 'Select Education Type',
@@ -265,8 +267,9 @@ class HomeController extends Controller
                 'industry.required' => 'Industry is required',
                 'sel_job_type.required' => 'Job type is required',
                 'sel_job_type.not-in' => 'Kindly select Job Type',
-                'resume.mimes' => 'Only doc, docx and pdf file types are allowed for Resume',
-                'prof_summary.max' => 'Professional summary must be less than 500 characters'
+                'resume.mimes' => 'Only pdf, doc and docx files are allowed.',
+                'prof_summary.max' => 'Professional summary must be less than 500 characters',
+                'required_certification' => 'Certification must be less than 500 characters long'
 
             ]);
 
@@ -980,9 +983,9 @@ class HomeController extends Controller
                 'full_name.required' => 'FullName is required',
                 'full_name.regex' => 'FullName only contain alphabets',
                 'full_name.max' => 'FullName must be less than 255 characters',
-                'job_title.required' => 'Job Title is required',
+                'job_title.required' => 'Job title is required',
                 'job_title.regex' => 'Job Title only contain alphabets',
-                'job_title.max' => 'JOb title must be less than 255 characters long',
+                'job_title.max' => 'Job title must be less than 255 characters long',
                 'phone_no.required' => 'Phone No is required',
                 'phone_no.regex' => 'Phone number must be in digits form',
                 'phone_no.min' => 'Phone number must be equal to 14 digits',
@@ -1055,6 +1058,7 @@ class HomeController extends Controller
 //    Changes in company backend
     public function companyeditDashboard()
     {
+//        dd('company edit');
         $client = NewClient::where('id', session('c_email.id'))->first();
         $industries = Industry::all();
         $countries = Country::all();
@@ -1104,31 +1108,30 @@ class HomeController extends Controller
     {
 //        dd($request->all());
 
-        $regex = '/^(https:\/\/www\.|http:\/\/www\.|www\.)[a-zA-Z0-9\-_$]+\.[a-zA-Z]{2,5}$/';
         $request->validate([
             'company_name' => 'required|regex:/^[a-zA-Z ]*$/|min:1|max:255',
             'name' => 'required|regex:/^[a-zA-Z ]*$/|min:1|max:255',
-            'address' => 'required|min:2|max:255',
+            'address' => 'required|max:255',
 //            'country' => 'required',
 //            'city' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
 //           'state' => 'required',
+//            'complete_address' => [new ValidLocation()],
             'zip_code' => 'required|regex:/^[0-9]*$/|min:2|max:255',
             'job_title' => 'required|regex:/^[a-zA-Z ]*$/|min:1|max:255',
             'phone' => 'required|regex:/^[0-9\-\(\)\s]+$/|min:14|max:14',
-//            'web_url' => 'required|url',
-            'web_url' => ['required', 'regex:' . $regex],
+            'web_url' => ['required', new ValidUrl()],
             'industry' => 'required',
             'job_discription' => 'required|max:500',
         ], [
             'company_name.required' => 'Company Name is required',
-            'company_name.regex' => 'Only Alphabets are allowed in Company Name',
+            'company_name.regex' => 'Only alphabets are allowed in company name',
             'company_name.min' => 'Company Name must be greater than 1 characters',
             'company_name.max' => 'Company name must be less than 255 characters',
             'name.required' => ' Name is required',
             'name.regex' => 'Only Alphabets are allowed in  Name',
             'name.min' => ' Name must be greater than 1 characters',
             'name.max' => ' Name must be less than 255 characters',
-            'job_title.required' => 'Job Title is required',
+            'job_title.required' => 'Job title is required',
             'job_title.regex' => 'Only Alphabets are allowed in Job Title',
             'job_title.min' => 'Job Title must be greater than 1 characters',
             'job_title.max' => 'Job Title must be less than 255 characters',
@@ -1235,6 +1238,7 @@ class HomeController extends Controller
 
     public function createJob()
     {
+//        dd('services');
         $industries = Industry::all();
         $Education = Education::all();
 //        return view('user.company_dashboard.create_recruitment')->with(compact('industries','Education'));
@@ -1252,9 +1256,9 @@ class HomeController extends Controller
 
     public function submitJob(JobDetailRequest $request)
     {
-        $regex = '/^(https:\/\/www\.|http:\/\/www\.|www\.)[a-zA-Z0-9\-_$]+\.[a-zA-Z]{2,5}$/';
+
         $request->validate([
-            'web_url' => ['required', 'regex:' . $regex],
+            'web_url' => ['required', new ValidUrl()],
         ]);
 
         $description = $this->clean($request->job_discription);
@@ -1288,14 +1292,13 @@ class HomeController extends Controller
 
     public function submitRecruitmentService(Request $request)
     {
-        $regex = '/^(https:\/\/www\.|http:\/\/www\.|www\.)[a-zA-Z0-9\-_$]+\.[a-zA-Z]{2,5}$/';
         $request->validate([
             'jobtitle' => 'required|regex:/^[a-zA-Z\s]*$/|min:2|max:255',
             'education' => 'required',
 //            'location' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
             'location' => 'required',
 //            'web_url' => 'required|url',
-            'web_url' => ['required', 'regex:' . $regex],
+            'web_url' => ['required', new ValidUrl()],
             'package' => 'required|regex:/^[,.?0-9]+$/|min:1|max:20',
             'package_to' => 'nullable|regex:/^[,.?0-9]+$/|max:20',
             'salary_duration' => 'required',
@@ -1540,6 +1543,7 @@ class HomeController extends Controller
         $Education = Education::all();
         $industries = Industry::all();
         $Candidate = NewCandidate::where('id', session()->get('candidate_id'))->first();
+//        dd($Candidate->toArray());
         $candidate_resume = candidate_resume::where('candidate_id', session()->get('candidate_id'))->get();
         return view('user.profile-details')->with(compact('Education', 'Candidate', 'candidate_resume', 'industries'));
     }
@@ -1548,13 +1552,13 @@ class HomeController extends Controller
     {
 //        dd($request->all());
 
-        $regex = '/^(https:\/\/www\.|http:\/\/www\.|www\.)[a-zA-Z0-9\-_$]+\.[a-zA-Z]{2,5}$/';
         $request->validate(
             [
                 'full_name' => 'required|regex:/^[a-zA-Z ]+$/u|max:20',
                 'phone_no' => 'required|regex:/^[0-9\-\(\)\s]+$/|min:14|max:14',
                 'email' => 'required',
-                'linkedin_url' => ['regex:' . $regex],
+                'linkedin_url' => [new ValidUrl()],
+                'location' => 'required',
                 'auth_status' => 'required',
                 'resume' => 'mimes:doc,docx,pdf',
             ]);
@@ -1576,22 +1580,27 @@ class HomeController extends Controller
                 $resume->candidate_id = session()->get('candidate_id');
                 $resume->save();
             } else {
-                return back()->with('resume_err', 'Only one Resume is allowed.');
+                return back()->with('resume_err', 'Only one resume is allowed.');
             }
         }
 
         $candidate = NewCandidate::where('id', session()->get('candidate_id'))->first();
         $candidate->name = $request->full_name;
         $candidate->phone = $request->phone_no;
+        $candidate->location = $request->location;
         $candidate->linkedin_url = $request->linkedin_url;
         $candidate->auth_status = $request->auth_status;
         $candidate->save();
+
+//        dd($candidate);
 
         return redirect()->route('candidate.view.personal.job.details');
     }
 
     public function viewPersonalJobDetails()
     {
+//        dd('view personal job details');
+//        dd('title');
         $Education = Education::all();
         $industries = Industry::all();
         $Candidate = NewCandidate::where('id', session()->get('candidate_id'))->first();
@@ -1601,19 +1610,21 @@ class HomeController extends Controller
 
     public function savePersonalJobDetails(Request $request)
     {
+//        dd($request->all());
         $request->validate(
             [
                 'sel_job_type' => 'required',
                 'industry' => 'required',
 //                'location' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
 //                'location' => 'required',
-                'job_title' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
+                'job_title' => 'required|max:255',
+//                'job_title' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
                 'sel_experience' => 'required',
             ]);
         $candidate = NewCandidate::where('id', session()->get('candidate_id'))->first();
         $candidate->job_type = $request->sel_job_type;
         $candidate->industry_id = $request->industry;
-        $candidate->location = $request->location;
+//        $candidate->location = $request->location;
         $candidate->job_title = $request->job_title;
         $candidate->experience = $request->sel_experience;
         $candidate->save();
@@ -1631,6 +1642,7 @@ class HomeController extends Controller
 
     public function saveSkillsDetails(Request $request)
     {
+//        dd($request->all());
         $request->validate(
             [
                 'skills' => 'required|max:500',

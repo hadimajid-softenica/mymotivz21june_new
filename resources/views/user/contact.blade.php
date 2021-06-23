@@ -402,7 +402,7 @@
                     required: "Subject is required.",
                 },
                 message: {
-                    required: "Message is Required.",
+                    required: "Message is required.",
                     maxlength: "Message must be less than 500 characters long.",
                 },
 

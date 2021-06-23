@@ -323,10 +323,10 @@
                         required: "Education is required.",
                     } ,
                     location:{
-                        required: "Job Location is required.",
-                        locationvalidation: "Job Location must be in valid format.",
-                        minlength: "Job Location must be at least 2 characters long.",
-                        maxlength: "Job Location must be less than 255 characters long."
+                        required: "Job location is required.",
+                        locationvalidation: "Job location must be in valid format.",
+                        minlength: "Job location must be at least 2 characters long.",
+                        maxlength: "Job location must be less than 255 characters long."
                     } ,
                     /*city:{
                         required: "City is required.",
@@ -351,12 +351,12 @@
                     } ,
                     package_to:{
                         currencyvalidation: "Salary should be in valid format.",
-                        greaterThan: "Maximum Salary range must be greater than minimum salary.",
+                        greaterThan: "Maximum salary range must be greater than minimum salary.",
                         maxlength: "Salary must be less than 20 characters long."
                         // positivedigit:"Salary must be positive.",
                     } ,
                     salary_duration:{
-                        required: "Salary Duration is required",
+                        required: "Salary duration is required",
                     },
                     industry:{
                         required: "Type of industry is required.",
