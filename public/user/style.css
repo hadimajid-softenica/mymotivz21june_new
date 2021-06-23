@@ -2779,7 +2779,7 @@ ul>li:hover .apply { color: #4d9a10; }
     margin-right: 5px;
     color: #999999;
 }
-.motivz-typo-wrapfull { margin: -165px 0px 0px; }
+.motivz-typo-wrapfull { margin: -165px 0px 30px; }
 .modal { z-index: 9999; }
 .modal-form ul { margin: 0px -10px; }
 .modal-form li {
