@@ -454,9 +454,9 @@
                                 @error('desired_job_notify')
                                 <label class="text-danger">{{$message}}</label>
                                 @enderror
-                            </li>
-                            <label id="desired_job_notify-error" class="error" for="desired_job_notify"
+                                <label id="desired_job_notify-error" class="error" for="desired_job_notify"
                                    style="display: none;"></label>
+                            </li>
                             <li>
                                 <label>Desired Location</label>
                                 <input type="text" id="desired_location_notify" name="desired_location_notify"
@@ -464,9 +464,9 @@
                                 @error('desired_location_notify')
                                 <label class="text-danger">{{$message}}</label>
                                 @enderror
-                            </li>
-                            <label id="desired_location_notify-error" class="error" for="desired_location_notify"
+                                <label id="desired_location_notify-error" class="error" for="desired_location_notify"
                                    style="display: none;"></label>
+                            </li>
                         </ul>
                     </div>
                     <div class="modal-footer">

@@ -2796,7 +2796,8 @@ ul>li:hover .apply { color: #4d9a10; }
     font-weight: bold;
     color: #000;
 }
-.modal-form li input { height: 40px !important; }
+.modal-form li .form-control { height: 40px !important; }
+.modal-form li .tagsinput { padding: 2px 0px 2px 10px; }
 /* Sidebar Search Filter */
 .motivz-checkbox,.motivz-checkbox li,
 .motivz-search-filter-wrap,.motivz-search-filter,
