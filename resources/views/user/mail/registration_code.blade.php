@@ -357,7 +357,7 @@
                                 <td height="20"></td>
                             </tr>
                             <tr>
-                                <td align="center" width="100%" style="padding: 0px 15px;"><a target="_blank" href="http://www.mymotivz2.development-env.com/"><img width="250px" src="http://www.mymotivz2.development-env.com/user/images/logo.png" alt="" /></a></td>
+                                <td align="center" width="100%" style="padding: 0px 15px;"><a target="_blank" href="http://www.mymotivz2.development-env.com/"><img width="250px" src="{{asset('user/images/logo.png')}}" alt="" /></a></td>
                             </tr>
                             <tr>
                                 <td height="20"></td>
@@ -400,7 +400,7 @@
                                 <td height="20"></td>
                             </tr>
                             <tr>
-                                <td align="center"><a href="https://www.apple.com/app-store/"><img width="120px" src="http://www.mymotivz2.development-env.com/user/images/apps.jpg"></a> <a href="https://play.google.com/store/apps"><img width="120px" src="http://www.mymotivz2.development-env.com/user/images/googlestore.jpg"></a></td>
+                                <td align="center"><a href="https://www.apple.com/app-store/"><img width="120px" src="{{ asset('user/images/apps.jpg') }}"></a> <a href="https://play.google.com/store/apps"><img width="120px" src="{{ asset('user/images/googlestore.jpg') }}"></a></td>
                             </tr>
                             <tr>
                                 <td align="center" style="font-family:'Segoe UI', sans-serif, Arial, Helvetica, Lato;"><a href="http://www.mymotivz2.development-env.com/contact/privacy-policy" target="_blank">Privacy Policy</a> | <a href="http://www.mymotivz2.development-env.com/contact/terms-of-use" target="_blank">Terms</a> | <a href="#" {{--style="color:#000;text-decoration: none;cursor: text;"--}}>Unsubscribe</a></td>
