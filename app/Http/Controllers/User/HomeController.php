@@ -1558,7 +1558,7 @@ class HomeController extends Controller
                 'full_name' => 'required|regex:/^[a-zA-Z ]+$/u|max:20',
                 'phone_no' => 'required|regex:/^[0-9\-\(\)\s]+$/|min:14|max:14',
                 'email' => 'required',
-                'linkedin_url' => [new ValidUrl()],
+                'linkedin_url' => ['nullable',new ValidUrl()],
                 'location' => 'required',
                 'auth_status' => 'required',
                 'resume' => 'mimes:doc,docx,pdf',
