@@ -536,23 +536,26 @@ class HomeController extends Controller
         } else {
             $start = ($request->current - 1) * $request->length;
         }
-
-        if (is_null($request->job_title) && is_null($request->place)) {
-            $find_applied_jobs = Applied_Jobs::with('Job', 'Job.Client', 'Job.industry')->orderBy('created_at', 'DESC')->where('candidate_id', session()->get('candidate_id'))->offset($start)->limit($request->length)->get()->toArray();
-        } elseif (!is_null($request->job_title) && is_null($request->place)) {
-            $where = [['job_title', 'LIKE', '%' . $request->job_title . '%']];
-        } elseif (!is_null($request->place) && is_null($request->job_title)) {
-            $where = [['city', 'LIKE', '%' . $request->place . '%']];
-        } else {
-            $where = [['job_title', 'LIKE', '%' . $request->job_title . '%'],
-                ['city', 'LIKE', '%' . $request->place . '%']];
-        }
-
-        if (!is_null($request->job_title) || !is_null($request->place)) {
-            $find_applied_jobs = Applied_Jobs::with('Job', 'Job.Client', 'Job.industry')->where('candidate_id', session()->get('candidate_id'))->whereHas('Job', function ($query) use ($where) {
-                $query->where($where);
-            })->orderBy('created_at', 'DESC')->offset($start)->limit($request->length)->get()->toArray();
-        }
+        $find_applied_jobs_query=Applied_Jobs::with('Job', 'Job.Client', 'Job.industry')
+            ->where('candidate_id', session()->get('candidate_id'))
+            ->where(function ($query) use ($request){
+                            if(!empty($request->job_title)){
+                                $query->whereHas('job',function ($query) use ($request){
+                                    $query->where('job_title', 'LIKE', '%' . $request->job_title . '%');
+                                });
+                            }
+                            if(!empty($request->place)){
+                                $query->whereHas('job',function ($query) use ($request){
+                                    $query->where('location', 'LIKE', '%' . $request->place . '%');
+                                });
+                            }
+        });
+        $find_applied_jobs=$find_applied_jobs_query
+            ->orderBy('created_at', 'DESC')
+            ->offset($start)
+            ->limit($request->length)
+            ->get()
+            ->toArray();
         $saved_jobs = favourite_job::select('job_id')->where('candidate_id', session()->get('candidate_id'))->get()->toArray();
         $arrayName = array('0' => '', '1' => $find_applied_jobs, '2' => $saved_jobs);
         return json_encode($arrayName);
