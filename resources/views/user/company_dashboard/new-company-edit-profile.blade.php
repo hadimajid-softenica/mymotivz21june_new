@@ -413,7 +413,7 @@
                         required: true,
                     },
                     job_discription: {
-                        required: true,
+                        // required: true,
                         maxlength: 500,
                     },
                     //     required: true,
@@ -447,7 +447,7 @@
                     // },
 
                     job_title: {
-                        required: "Job title is required.",
+                        // required: "Job title is required.",
                         minlength: "Job title is required",
                         maxlength: "Job title must be less than 255 characters long.",
                         alpha_space: "Letters only."

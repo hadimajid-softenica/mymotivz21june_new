@@ -1121,7 +1121,8 @@ class HomeController extends Controller
             'phone' => 'required|regex:/^[0-9\-\(\)\s]+$/|min:14|max:14',
             'web_url' => ['required', new ValidUrl()],
             'industry' => 'required',
-            'job_discription' => 'required|max:500',
+            'job_discription' => 'max:500',
+//            'job_discription' => 'required|max:500',
         ], [
             'company_name.required' => 'Company Name is required',
             'company_name.regex' => 'Only alphabets are allowed in company name',
@@ -1142,7 +1143,7 @@ class HomeController extends Controller
             'web_url.required' => 'Web URL is required',
 //            'web_url.url' => 'URL must be valid',
             'industry.required' => 'Industry is required',
-            'job_discription.required' => 'Job Description is required',
+//            'job_discription.required' => 'Job Description is required',
             'job_discription.max' => 'Job Description must be less than 500 characters',
         ]);
 
