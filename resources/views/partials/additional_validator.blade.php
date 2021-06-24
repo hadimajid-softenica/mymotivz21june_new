@@ -13,7 +13,7 @@
     }, "Please enter valid url.");
     jQuery.validator.addMethod("alpha_space", function (value, element) {
         return this.optional(element) || /^[a-zA-Z\s]+$/i.test(value);
-    });
+    },"Only letters are allowed.");
     jQuery.validator.addMethod("currencyvalidation", function (value, element) {
         return this.optional(element) || /^[,.?0-9]+$/i.test(value);
     });

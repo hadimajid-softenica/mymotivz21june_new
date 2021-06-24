@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidUrl;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EditClientRequest extends FormRequest
@@ -31,7 +32,7 @@ class EditClientRequest extends FormRequest
             'email' => 'required|email',
             'city' => 'required',
             'state' => 'required',
-            'web_url' => 'nullable|url',
+            'web_url' => ['nullable', new ValidUrl()],
         ];
     }
 

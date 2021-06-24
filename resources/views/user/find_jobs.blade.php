@@ -429,7 +429,7 @@
             messages: {
                 full_name: {
                     required: "Full name is required.",
-                    alpha_space: "Only alphabets are allowed in full name.",
+                    // alpha_space: "Only alphabets are allowed in full name.",
                     maxlength: "Full name must be less than 255 characters."
                 },
                 phone_no: {

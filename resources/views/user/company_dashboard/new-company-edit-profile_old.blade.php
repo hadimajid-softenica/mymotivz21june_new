@@ -400,7 +400,7 @@
                         required: "Company Name is required.",
                         minlength: "Company Name is required",
                         maxlength : "Company Name must be less than 255 characters long.",
-                        alpha_space: "Letters only."
+                        // alpha_space: "Letters only."
                     },
 
                     complete_address:{
@@ -411,14 +411,14 @@
                         required: "Full name is required.",
                         minlength: "Name is required",
                         maxlength : "Name must be less than 255 characters long.",
-                        alpha_space: "Letters only."
+                        // alpha_space: "Letters only."
                     },
 
                     job_title:{
                         required: "Job title is required.",
                         minlength: "Job title is required",
                         maxlength : "Job title must be less than 255 characters long.",
-                        alpha_space:"Letters only."
+                        // alpha_space:"Letters only."
                     },
 
                     phone:{

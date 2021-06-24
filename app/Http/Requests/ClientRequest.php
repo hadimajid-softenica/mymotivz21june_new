@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidUrl;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ClientRequest extends FormRequest
@@ -23,7 +24,7 @@ class ClientRequest extends FormRequest
      */
     public function rules()
     {
-        $regex = '/^(https:\/\/www\.|http:\/\/www\.|www\.)[a-zA-Z0-9\-_$]+\.[a-zA-Z]{2,5}$/';
+//        $regex = '/^(https:\/\/www\.|http:\/\/www\.|www\.)[a-zA-Z0-9\-_$]+\.[a-zA-Z]{2,5}$/';
         return [
             'company_name' => 'required|unique:clients',
             'name' => 'required',
@@ -33,7 +34,7 @@ class ClientRequest extends FormRequest
             'city' => 'required',
             'state' => 'required',
 //            'web_url' => 'nullable|url',
-            'web_url' => ['nullable', 'regex:' . $regex],
+            'web_url' => ['nullable', new ValidUrl()],
             'industry' => 'required',
 
         ];

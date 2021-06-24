@@ -469,23 +469,197 @@
 
         $(document).ready(function () {
 
+            // $("#user-create-job-form").validate({
+            //     ignore: [],
+            //     rules: {
+            //         jobtitle: {
+            //             required: true,
+            //             minlength: 2,
+            //             maxlength: 255
+            //         },
+            //         education: {
+            //             required: true,
+            //         },
+            //         location: {
+            //             required: true,
+            //             locationvalidation: true,
+            //             // minlength: 2,
+            //             maxlength: 255
+            //         },
+            //         /*state:{
+            //             required: true,
+            //             alpha_space: true,
+            //             minlength: 2,
+            //             maxlength:255
+            //         } ,*/
+            //         web_url: {
+            //             required: true,
+            //             validUrl: true
+            //         },
+            //         package: {
+            //             required: true,
+            //             currencyvalidation: true,
+            //             minlength: 1,
+            //             maxlength: 20
+            //             // positivedigit:true,
+            //         },
+            //         package_to: {
+            //             currencyvalidation: true,
+            //             // greaterThan:true,
+            //             greaterThanPackage: '#package',
+            //             maxlength: 20
+            //             // positivedigit:true,
+            //         },
+            //         salary_duration: {
+            //             required: true,
+            //         },
+            //         industry: {
+            //             required: true,
+            //         },
+            //         service: {
+            //             required: true,
+            //
+            //         },
+            //         job_discription: {
+            //             ckrequired: false,
+            //             // maxlength:1000
+            //         },
+            //         job_benefits: {
+            //             required: false,
+            //             minlength: 2,
+            //             maxlength: 1000
+            //         },
+            //         required_skills: {
+            //             // required: true,
+            //             minlength: 2,
+            //             maxlength: 1000
+            //         },
+            //         required_certification: {
+            //             // required: true,
+            //             minlength: 2,
+            //             maxlength: 1000
+            //         },
+            //         required_experience: {
+            //             required: true,
+            //         },
+            //         num_hires: {
+            //             required: true,
+            //         },
+            //         applied_before: {
+            //             required: true,
+            //             date: true,
+            //             greaterThanToday: true
+            //         },
+            //         currency: {
+            //             required: true,
+            //             currency: true
+            //         },
+            //
+            //     },
+            //     messages: {
+            //
+            //         jobtitle: {
+            //             required: "Job title is required.",
+            //             minlength: "Job title  must be at least 2 characters long.",
+            //             maxlength: "Job title  must be less than 255 characters long.",
+            //         },
+            //         education: {
+            //             required: "Education is required.",
+            //         },
+            //         location: {
+            //             required: "Job location is required.",
+            //             locationvalidation: "Job location must be in valid format.",
+            //             // minlength: "Job location must be at least 2 characters long.",
+            //             maxlength: "Job location must be less than 255 characters long."
+            //         },
+            //         web_url: {
+            //             required: "Website url is required.",
+            //             url: "Please enter valid url."
+            //         },
+            //         package: {
+            //             required: "Salary is required.",
+            //             currencyvalidation: "Salary should be in valid format.",
+            //             minlength: "Salary must be at least 1 characters long.",
+            //             maxlength: "Salary must be less than 20 characters long.",
+            //             // lessThanPackageTo: 'Maximum salary range must be greater than minimum salary.'
+            //             // positivedigit:"Salary must be positive.",
+            //         },
+            //         package_to: {
+            //             currencyvalidation: "Salary should be in valid format.",
+            //             // greaterThan: "Maximum salary range must be greater than minimum salary updated.",
+            //             greaterThanPackage: "Maximum salary range must be greater than minimum salary.",
+            //             maxlength: "Salary must be less than 20 characters long."
+            //             // positivedigit:"Salary must be positive.",
+            //         },
+            //         salary_duration: {
+            //             required: "Salary duration is required",
+            //         },
+            //         industry: {
+            //             required: "Type of industry is required.",
+            //
+            //         },
+            //         service: {
+            //             required: "Please select service from dropdown."
+            //         },
+            //         job_discription: {
+            //             ckrequired: "Job description is required.",
+            //             // maxlength: "Job description must be less than 1000 characters long."
+            //         },
+            //         job_benefits: {
+            //             // required: "Job benefits are required.",
+            //             minlength: "Job benefits must be at least 2 characters long.",
+            //             maxlength: "Job benefits must be less than 1000 characters long."
+            //         },
+            //         required_skills: {
+            //             // required: "Skills are required.",
+            //             minlength: "Skills must be at least 2 characters long.",
+            //             maxlength: "Skills must be less than 1000 characters long."
+            //         },
+            //         required_certification: {
+            //             // required: "Licensure/Certification are required.",
+            //             minlength: "Licensure/Certification must be at least 2 characters long.",
+            //             maxlength: "Licensure/Certification must be less than 1000 characters long."
+            //         },
+            //         required_experience: {
+            //             required: "Select the required experience.",
+            //         },
+            //         num_hires: {
+            //             required: "Select the Number of Hires.",
+            //         },
+            //         applied_before: {
+            //             required: "Select the Apply Before date.",
+            //             date: "Select valid date.",
+            //             greaterThanToday: "Apply before date should must be a date after today."
+            //         },
+            //         currency: {
+            //             required: "Currency is required.",
+            //             currency: "A valid currency sign is required."
+            //         },
+            //     },
+            //     submitHandler: function (form) {
+            //         // event.preventDefault();
+            //         form.submit();
+            //     }
+            // });
+
             $("#user-create-job-form").validate({
                 ignore: [],
                 rules: {
                     jobtitle: {
                         required: true,
+                        alpha_space: true,
                         minlength: 2,
-                        maxlength: 255
-                    },
-                    education: {
+                        maxlength:255
+                    } ,
+                    education:{
                         required: true,
-                    },
-                    location: {
+                    } ,
+                    location:{
                         required: true,
                         locationvalidation: true,
                         // minlength: 2,
-                        maxlength: 255
-                    },
+                        maxlength:255
+                    } ,
                     /*state:{
                         required: true,
                         alpha_space: true,
@@ -496,136 +670,135 @@
                         required: true,
                         validUrl: true
                     },
-                    package: {
+                    package:{
                         required: true,
                         currencyvalidation: true,
                         minlength: 1,
                         maxlength: 20
                         // positivedigit:true,
-                    },
-                    package_to: {
+                    } ,
+                    package_to:{
                         currencyvalidation: true,
                         // greaterThan:true,
                         greaterThanPackage: '#package',
                         maxlength: 20
                         // positivedigit:true,
-                    },
-                    salary_duration: {
+                    } ,
+                    salary_duration:{
                         required: true,
                     },
-                    industry: {
+                    industry:{
                         required: true,
-                    },
-                    service: {
+                    } ,
+                    service:{
                         required: true,
 
                     },
-                    job_discription: {
+                    job_discription:{
                         ckrequired: false,
                         // maxlength:1000
-                    },
+                    } ,
                     job_benefits: {
-                        required: false,
+                        // required: true,
                         minlength: 2,
-                        maxlength: 1000
-                    },
+                        maxlength:1000
+                    } ,
                     required_skills: {
                         // required: true,
                         minlength: 2,
-                        maxlength: 1000
-                    },
+                        maxlength:1000
+                    } ,
                     required_certification: {
                         // required: true,
                         minlength: 2,
-                        maxlength: 1000
+                        maxlength:1000
                     },
                     required_experience: {
                         required: true,
-                    },
+                    } ,
                     num_hires: {
                         required: true,
-                    },
+                    } ,
                     applied_before: {
                         required: true,
                         date: true,
-                        greaterThanToday: true
+                        greaterThanToday:  "#apply_before"
                     },
                     currency: {
                         required: true,
                         currency: true
-                    },
+                    } ,
 
                 },
                 messages: {
-
                     jobtitle: {
                         required: "Job title is required.",
                         minlength: "Job title  must be at least 2 characters long.",
                         maxlength: "Job title  must be less than 255 characters long.",
-                    },
-                    education: {
+                        // alpha_space:"Letters only."
+                    } ,
+                    education:{
                         required: "Education is required.",
-                    },
-                    location: {
+                    } ,
+                    location:{
                         required: "Job location is required.",
                         locationvalidation: "Job location must be in valid format.",
                         // minlength: "Job location must be at least 2 characters long.",
                         maxlength: "Job location must be less than 255 characters long."
-                    },
+                    } ,
                     web_url: {
                         required: "Website url is required.",
                         url: "Please enter valid url."
                     },
-                    package: {
+                    package:{
                         required: "Salary is required.",
                         currencyvalidation: "Salary should be in valid format.",
                         minlength: "Salary must be at least 1 characters long.",
-                        maxlength: "Salary must be less than 20 characters long.",
-                        // lessThanPackageTo: 'Maximum salary range must be greater than minimum salary.'
+                        maxlength: "Salary must be less than 20 characters long."
                         // positivedigit:"Salary must be positive.",
-                    },
-                    package_to: {
+                    } ,
+                    package_to:{
                         currencyvalidation: "Salary should be in valid format.",
-                        // greaterThan: "Maximum salary range must be greater than minimum salary updated.",
+                        // greaterThan: "Maximum salary range must be greater than minimum salary.",
                         greaterThanPackage: "Maximum salary range must be greater than minimum salary.",
                         maxlength: "Salary must be less than 20 characters long."
                         // positivedigit:"Salary must be positive.",
-                    },
-                    salary_duration: {
+                    } ,
+                    salary_duration:{
                         required: "Salary duration is required",
                     },
-                    industry: {
+                    industry:{
                         required: "Type of industry is required.",
 
-                    },
-                    service: {
+                    } ,
+                    service:{
                         required: "Please select service from dropdown."
                     },
-                    job_discription: {
+                    job_discription:{
                         ckrequired: "Job description is required.",
                         // maxlength: "Job description must be less than 1000 characters long."
-                    },
+                    } ,
                     job_benefits: {
                         // required: "Job benefits are required.",
                         minlength: "Job benefits must be at least 2 characters long.",
                         maxlength: "Job benefits must be less than 1000 characters long."
-                    },
+                    } ,
                     required_skills: {
                         // required: "Skills are required.",
                         minlength: "Skills must be at least 2 characters long.",
                         maxlength: "Skills must be less than 1000 characters long."
-                    },
+                    } ,
                     required_certification: {
                         // required: "Licensure/Certification are required.",
                         minlength: "Licensure/Certification must be at least 2 characters long.",
                         maxlength: "Licensure/Certification must be less than 1000 characters long."
-                    },
+                    } ,
                     required_experience: {
                         required: "Select the required experience.",
-                    },
+                    } ,
                     num_hires: {
                         required: "Select the Number of Hires.",
-                    },
+                    } ,
                     applied_before: {
                         required: "Select the Apply Before date.",
                         date: "Select valid date.",
@@ -634,10 +807,9 @@
                     currency: {
                         required: "Currency is required.",
                         currency: "A valid currency sign is required."
-                    },
+                    } ,
                 },
-                submitHandler: function (form) {
-                    // event.preventDefault();
+                submitHandler: function(form) {
                     form.submit();
                 }
             });

@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AlphaSpace;
+use App\Rules\CurrencyValidation;
+use App\Rules\ValidUrl;
 use Illuminate\Foundation\Http\FormRequest;
 
 class JobDetailRequest extends FormRequest
@@ -26,12 +29,12 @@ class JobDetailRequest extends FormRequest
 //        dd('request');
         return [
 //            'jobtitle' => 'required|regex:/^[a-zA-Z\s]*$/|min:2|max:255',
-            'jobtitle' => 'required|min:2|max:255',
+            'jobtitle' => ['required','min:2','max:255', new AlphaSpace()],
             'education' => 'required',
             'location' => 'required',
-            'web_url' => ['required','regex:/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/'],
-            'package' => 'required|regex:/^[,.?0-9]+$/|min:1|max:20',
-            'package_to' => 'nullable|regex:/^[,.?0-9]+$/|max:20',
+            'web_url' => ['required', new ValidUrl()],
+            'package' => ['required','min:1','max:20', new CurrencyValidation()],
+            'package_to' => ['nullable','min:1','max:20', new CurrencyValidation()],
             'salary_duration' => 'required',
             'industry' => 'required',
             'service' => 'required',

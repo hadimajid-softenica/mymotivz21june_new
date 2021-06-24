@@ -1134,7 +1134,7 @@ class HomeController extends Controller
 //            'country' => 'required',
 //            'city' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
 //           'state' => 'required',
-//            'complete_address' => [new ValidLocation()],
+            'complete_address' => [new ValidLocation()],
             'zip_code' => 'required|regex:/^[0-9]*$/|min:2|max:255',
             'job_title' => 'required|regex:/^[a-zA-Z ]*$/|min:1|max:255',
             'phone' => 'required|regex:/^[0-9\-\(\)\s]+$/|min:14|max:14',
@@ -1277,9 +1277,9 @@ class HomeController extends Controller
     public function submitJob(JobDetailRequest $request)
     {
 
-        $request->validate([
-            'web_url' => ['required', new ValidUrl()],
-        ]);
+//        $request->validate([
+//            'web_url' => ['required', new ValidUrl()],
+//        ]);
 
         $description = $this->clean($request->job_discription);
 

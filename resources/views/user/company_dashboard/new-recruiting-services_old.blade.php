@@ -317,7 +317,7 @@
                         required: "Job title is required.",
                         minlength: "Job title  must be at least 2 characters long.",
                         maxlength: "Job title  must be less than 255 characters long.",
-                        alpha_space:"Letters only."
+                        // alpha_space:"Letters only."
                     } ,
                     education:{
                         required: "Education is required.",

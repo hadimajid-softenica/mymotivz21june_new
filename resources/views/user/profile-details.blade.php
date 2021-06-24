@@ -222,7 +222,7 @@
                 messages: {
                     full_name: {
                         required: "Full name is required.",
-                        alpha_space: "Only letters are allowed in Full Name.",
+                        // alpha_space: "Only letters are allowed in Full Name.",
                         maxlength: "Full Name must be less than 255 characters."
                     },
                     phone_no: {
