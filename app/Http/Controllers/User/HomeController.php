@@ -22,6 +22,7 @@ use App\Http\Requests\PasswordRequest;
 use App\Job;
 use App\Education;
 use App\Resume;
+use App\Rules\AlphaNumericSpace;
 use App\Rules\AlphaSpace;
 use App\Rules\CurrencyValidation;
 use App\Rules\PhoneNumber;
@@ -230,13 +231,13 @@ class HomeController extends Controller
         $request->validate(
             [
                 'full_name' => 'required|regex:/^[a-zA-Z ]+$/u|max:20',
-                'job_title' => 'required|max:255',
-                'phone_no' => 'required|regex:/^[0-9\-\(\)\s]+$/|min:14|max:14',
+                'job_title' => ['required','min:2','max:255', new AlphaNumericSpace()],
+                'phone_no' => ['required','min:14','max:14',new PhoneNumber()],
                 'linkedin_url' => ['nullable',new ValidUrl()],
 //               'location' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
                 'location' => 'required',
-                'package' => 'required|regex:/^[,.?0-9]+$/|min:1|max:20',
-                'package_to' => 'nullable|regex:/^[,.?0-9]+$/|max:20',
+                'package' => ['required','min:1','max:20', new CurrencyValidation()],
+                'package_to' => ['nullable','min:1','max:20', new CurrencyValidation()],
                 'skills' => 'nullable|max:500',
                 'interest' => 'nullable|max:255',
                 'sel_experience' => 'required|not_in:0',
@@ -986,13 +987,13 @@ class HomeController extends Controller
         $request->validate(
             [
                 'full_name' => 'required|regex:/^[a-zA-Z ]+$/u|max:255',
-                'job_title' => 'required|max:255',
+                'job_title' => ['required','min:2','max:255', new AlphaNumericSpace()],
                 'phone_no' => 'required|regex:/^[0-9\-\(\)\s]+$/|min:14|max:14',
                 'email' => 'required|email|max:255',
 //                'location' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
                 'location' => 'required',
-                'package' => 'required|regex:/^[,.?0-9]+$/|min:1|max:20',
-                'package_to' => 'nullable|regex:/^[,.?0-9]+$/|max:20',
+                'package' => ['required','min:1','max:20', new CurrencyValidation()],
+                'package_to' => ['nullable','min:1','max:20', new CurrencyValidation()],
                 'sel_education' => 'required|not_in:0',
                 'industry' => 'required',
                 'sel_job_type' => 'required|not_in:0',
@@ -1136,8 +1137,8 @@ class HomeController extends Controller
 //           'state' => 'required',
             'complete_address' => [new ValidLocation()],
             'zip_code' => 'required|regex:/^[0-9]*$/|min:2|max:255',
-            'job_title' => 'required|regex:/^[a-zA-Z ]*$/|min:1|max:255',
-            'phone' => 'required|regex:/^[0-9\-\(\)\s]+$/|min:14|max:14',
+            'job_title' => ['required','min:2','max:255', new AlphaNumericSpace()],
+            'phone' => ['required','min:14','max:14',new PhoneNumber()],
             'web_url' => ['required', new ValidUrl()],
             'industry' => 'required',
             'job_discription' => 'max:500',
@@ -1313,14 +1314,14 @@ class HomeController extends Controller
     public function submitRecruitmentService(Request $request)
     {
         $request->validate([
-            'jobtitle' => 'required|regex:/^[a-zA-Z\s]*$/|min:2|max:255',
+            'jobtitle' => ['required','min:2','max:255',new AlphaNumericSpace()],
             'education' => 'required',
 //            'location' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
             'location' => 'required',
 //            'web_url' => 'required|url',
             'web_url' => ['required', new ValidUrl()],
-            'package' => 'required|regex:/^[,.?0-9]+$/|min:1|max:20',
-            'package_to' => 'nullable|regex:/^[,.?0-9]+$/|max:20',
+            'package' => ['required','min:1','max:20', new CurrencyValidation()],
+            'package_to' => ['nullable','min:1','max:20', new CurrencyValidation()],
             'salary_duration' => 'required',
             'industry' => 'required',
             'service' => 'required',
@@ -1631,7 +1632,7 @@ class HomeController extends Controller
             [
                 'sel_job_type' => 'required',
                 'industry' => 'required|exists:industries,id',
-                'job_title' => 'required|max:255',
+                'job_title' =>['required','min:2','max:255', new AlphaNumericSpace()],
                 'sel_experience' => 'required',
             ]);
         $candidate = NewCandidate::where('id', session()->get('candidate_id'))->first();
