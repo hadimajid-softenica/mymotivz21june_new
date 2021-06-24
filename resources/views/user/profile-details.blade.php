@@ -235,10 +235,10 @@
                         email: "Email must be in valid format",
                     },
                     location: {
-                        required: "Job location is required.",
-                        locationvalidation: "Job location must be in valid format.",
+                        required: "Location is required.",
+                        locationvalidation: "Location must be in valid format.",
                         // minlength: "Job Location must be at least 2 characters long.",
-                        maxlength: "Job location must be less than 255 characters long."
+                        maxlength: "Location must be less than 255 characters long."
                     },
                     linkedin_url:{
                         url: "LinkedIn url is invalid."

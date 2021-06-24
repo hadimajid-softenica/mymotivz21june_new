@@ -23,6 +23,7 @@ class RegisterController extends Controller
 
     //Candidate Registration
     public function register( UserCandidateRegisterationRequest $request ) {
+//        dd($request->all());
             /* deleted=0 for candidates those account are active.
              * deleted=1 for candidates those account is deleted.
              * deleted=2 for candidates that Apply for job without creating account & didn't create account yet.

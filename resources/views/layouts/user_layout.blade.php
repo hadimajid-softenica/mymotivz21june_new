@@ -786,55 +786,34 @@
     });
 
     $(document).ready(function () {
-        // $(window).keydown(function(event){
-        //     if(event.keyCode == 13) {
-        //         event.preventDefault();
-        //         return false;
-        //     }
-        // });
-
         function initialize() {
             var input = document.getElementById('location');
             var options = {
                 types: ['(regions)'] //this should work !
             };
-
             var autocomplete = new google.maps.places.Autocomplete(input, options);
-            // autocomplete.setComponentRestrictions(
-            //     {'country': ['us']});
         }
-
         google.maps.event.addDomListener(window, 'load', initialize);
-
         function initialization() {
             var input = document.getElementById('desired_location_notify');
             var options = {
                 types: ['(regions)'] //this should work !
             };
-
             var autocomplete = new google.maps.places.Autocomplete(input, options);
-            // autocomplete.setComponentRestrictions(
-            //     {'country': ['us']});
         }
-
         google.maps.event.addDomListener(window, 'load', initialization);
-
         $("#desired_location_notify").on('keydown keypress keyup', function (event) {
             if (event.keyCode === 13) {
                 event.preventDefault();
                 return false;
             }
         })
-
-
         $("#location").on('keydown keyup keypress', function (event) {
-
             if (event.keyCode == 13) {
                 event.preventDefault();
                 return false;
             }
         })
-
     })
 </script>
 @yield('script')

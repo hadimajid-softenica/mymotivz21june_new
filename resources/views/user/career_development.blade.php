@@ -486,7 +486,7 @@
                         maxlength: "Full name must be less than 255 characters long."
                     },
                     job_title: {
-                        required: "Job title is required.",
+                        required: "Job title is not required.",
                         maxlength: "Job title must be less than 255 characters long."
                     },
                     phone_no: {
