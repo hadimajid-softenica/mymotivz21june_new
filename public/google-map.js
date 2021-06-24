@@ -15,6 +15,7 @@ $(document).ready(function () {
     }
 
     if(input!=null){
+        console.log("input")
         google.maps.event.addDomListener(window, 'load', initialize);
 
     }
@@ -28,6 +29,7 @@ $(document).ready(function () {
         // autocomplete.setComponentRestrictions({'country': ['us']});
     }
     if(input1!=null) {
+        console.log("input1")
 
         google.maps.event.addDomListener(window, 'load', initialize2);
     }
@@ -40,6 +42,8 @@ $(document).ready(function () {
         var autocomplete3 = new google.maps.places.Autocomplete(input2, options);
     }
     if(input2!=null) {
+        console.log("input2")
+
         google.maps.event.addDomListener(window, 'load', initialization);
     }
 
