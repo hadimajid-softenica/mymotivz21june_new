@@ -331,18 +331,19 @@
                 overwriteInitial: false,
             });
 
-            function initialize() {
-                var input = document.getElementById('location');
-                var options = {
-                    types: ['(regions)'] //this should work !
-                };
+            // function initialize() {
+            //     var input = document.getElementById('location');
+            //     var options = {
+            //         types: ['(regions)'] //this should work !
+            //     };
+            //
+            //     var autocomplete = new google.maps.places.Autocomplete(input, options);
+            //     autocomplete.setComponentRestrictions(
+            //         {'country': ['us']});
+            // }
+            //
+            // google.maps.event.addDomListener(window, 'load', initialize);
 
-                var autocomplete = new google.maps.places.Autocomplete(input, options);
-                autocomplete.setComponentRestrictions(
-                    {'country': ['us']});
-            }
-
-            google.maps.event.addDomListener(window, 'load', initialize);
             $("#phone_no").each(function () {
                 $(this).on("change keyup paste", function (e) {
                     var output,
