@@ -28,9 +28,10 @@ $(document).ready(function () {
     function initialization() {
         var input = document.getElementById('desired_location_notify');
         var options = {
-            types: ['(regions)'] //this should work !
+            // types: ['(regions)']
+            //this should work !
         };
-        var autocomplete = new google.maps.places.Autocomplete(input, options);
+        var autocomplete3 = new google.maps.places.Autocomplete(input, options);
     }
     google.maps.event.addDomListener(window, 'load', initialization);
 });
