@@ -75,7 +75,7 @@ class RegisterController extends Controller
 
         }catch (\Exception $exception){
             DB::rollBack();
-            session()->flash('verifyFailed', 'Please verify your account by clicking on the link sent to your email.');
+            session()->flash('verifyFailed', 'Some error has occurred while creating your account please try again later.');
 
         }
 
@@ -144,10 +144,14 @@ class RegisterController extends Controller
 
     public function companyRegister( companyRegistrationRequest $request ) {
 
-            $code['code'] = Str::random(5) ;
-            $code['stringRand'] = Str::random(20) ;
+        try {
+
+            DB::beginTransaction();
+
+            $code['code'] = Str::random(5);
+            $code['stringRand'] = Str::random(20);
             $code['user'] = "as an Employer";
-            $password = Hash::make($request->password) ;
+            $password = Hash::make($request->password);
 
             NewClient::create([
                 'email' => $request->email,
@@ -157,13 +161,20 @@ class RegisterController extends Controller
                 'random_code' => $code['stringRand']
             ]);
 
-            $email = new SendRegistrationCode( $code );
+            $email = new SendRegistrationCode($code);
             Mail::to($request->email)->send($email);
 
-            session(['company'=>"register"]) ;
+            session(['company' => "register"]);
 
             session()->flash('verifyCompnay', 'Please verify your account by clicking on link sent to this email');
+            DB::commit();
 
+        }catch (\Exception $exception){
+            DB::rollBack();
+
+            session()->flash('verifyFailed', 'Some error has occurred while creating your account please try again later.');
+
+        }
             return redirect()->route('user.signUp.company') ;
 
     }
