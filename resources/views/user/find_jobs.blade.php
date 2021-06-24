@@ -347,17 +347,17 @@
         else return false;
     });
 
-    function initialize() {
-        var input = document.getElementById('search_place');
-        var options = {
-            types: ['(regions)'] //this should work !
-        };
-
-        var autocomplete = new google.maps.places.Autocomplete(input, options);
-        // autocomplete.setComponentRestrictions(
-        //     {'country': ['us']});
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
+    // function initialize() {
+    //     var input = document.getElementById('search_place');
+    //     var options = {
+    //         types: ['(regions)'] //this should work !
+    //     };
+    //
+    //     var autocomplete = new google.maps.places.Autocomplete(input, options);
+    //     // autocomplete.setComponentRestrictions(
+    //     //     {'country': ['us']});
+    // }
+    // google.maps.event.addDomListener(window, 'load', initialize);
 
     function initialize1() {
         var input = document.getElementById('location');
