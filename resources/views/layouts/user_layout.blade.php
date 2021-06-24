@@ -606,6 +606,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaifbsayz8l_Lfs1ZdE3MywHPzy046cIA&libraries=places"></script>
 
 
+<script src="{{asset('google-map.js')}}"></script>
 
 @if( session()->has('success_notify') )
     <script type="text/javascript">
@@ -788,22 +789,22 @@
     });
 
     $(document).ready(function () {
-        function initialize() {
-            var input = document.getElementById('location');
-            var options = {
-                types: ['(regions)'] //this should work !
-            };
-            var autocomplete = new google.maps.places.Autocomplete(input, options);
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
-        function initialization() {
-            var input = document.getElementById('desired_location_notify');
-            var options = {
-                types: ['(regions)'] //this should work !
-            };
-            var autocomplete = new google.maps.places.Autocomplete(input, options);
-        }
-        google.maps.event.addDomListener(window, 'load', initialization);
+        // function initialize() {
+        //     var input = document.getElementById('location');
+        //     var options = {
+        //         types: ['(regions)'] //this should work !
+        //     };
+        //     var autocomplete = new google.maps.places.Autocomplete(input, options);
+        // }
+        // google.maps.event.addDomListener(window, 'load', initialize);
+        // function initialization() {
+        //     var input = document.getElementById('desired_location_notify');
+        //     var options = {
+        //         types: ['(regions)'] //this should work !
+        //     };
+        //     var autocomplete = new google.maps.places.Autocomplete(input, options);
+        // }
+        // google.maps.event.addDomListener(window, 'load', initialization);
         $("#desired_location_notify").on('keydown keypress keyup', function (event) {
             if (event.keyCode === 13) {
                 event.preventDefault();

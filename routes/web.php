@@ -111,10 +111,10 @@ Route::group(['prefix' => 'candidate', 'middleware' => ['CustomAuth', 'Candidate
     Route::post('/save/interest-details', [HomeController::class,'saveInterestDetails'])->name('candidate.save.interest.details');
 
     /* New pages */
-    Route::get('/dashboard', 'User\HomeController@candidateDashboard')->name('new.candidate.dashboard');
+    Route::get('/dashboard', [HomeController::class,'candidateDashboard'])->name('new.candidate.dashboard');
     Route::get('/profile', 'User\HomeController@candidateProfile')->name('candidate.dashboard');
     Route::get('/saved-jobs', 'User\HomeController@savedJobs')->name('saved.jobs');
-    Route::get('/applied-jobs', 'User\HomeController@viewAppliedJobs')->name('view.applied.jobs');
+    Route::get('/applied-jobs', [HomeController::class,'viewAppliedJobs'])->name('view.applied.jobs');
     Route::post('/password-changed', 'User\HomeController@changePassword')->name('candidate.change.password');
     Route::get('/change-password', 'User\HomeController@viewChangePassword')->name('view.change.password');
     Route::get('/edit-profile', [HomeController::class,'editCandProfile'])->name('temp.candidate.dashboard');
@@ -177,9 +177,9 @@ Route::group(['prefix' => 'company', 'middleware' => 'CustomAuthCompany'], funct
     // new pages
     Route::get('/dashboard', 'User\HomeController@companyDashboard')->name('company.dashboard');
     Route::get('/profile', 'User\HomeController@companyProfile')->name('user.client.dashboard');
-    Route::get('/edit-dashboard', 'User\HomeController@companyeditDashboard')->name('user.company.edit.dashboard');
+    Route::get('/edit-dashboard', [HomeController::class,'companyeditDashboard'])->name('user.company.edit.dashboard');
     Route::get('post/job', [HomeController::class, 'postJob'])->name('user.client.job.post');
-    Route::get('create/recruitment-service', 'User\HomeController@createJob')->name('user.client.job.create');
+    Route::get('create/recruitment-service', [HomeController::class,'createJob'])->name('user.client.job.create');
     Route::get('/recruitment', 'User\HomeController@companytempRecruitment')->name('company.recruitment');
     Route::get('/recruitment-details/{id}', 'User\HomeController@companytempRecruitmentDetail')->name('company.recruitment.detail');
     Route::get('active/jobs', [HomeController::class, 'viewactiveJobs'])->name('user.client.view.job.active');
