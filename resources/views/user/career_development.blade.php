@@ -435,11 +435,11 @@
                         minlength: 3,
                         maxlength: 255,
                     },
-                    job_title: "checkTags",
-                    // job_title: {
-                    //     required: true,
-                    //     maxlength: 255,
-                    // },
+                    // job_title: "checkTags",
+                    job_title: {
+                        required: true,
+                        maxlength: 255,
+                    },
                     phone_no: {
                         required: true,
                         phonevalidation: true,
