@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AlphaNumericSpace;
 use App\Rules\AlphaSpace;
 use App\Rules\CurrencyValidation;
 use App\Rules\ValidUrl;
@@ -29,7 +30,7 @@ class JobDetailRequest extends FormRequest
 //        dd('request');
         return [
 //            'jobtitle' => 'required|regex:/^[a-zA-Z\s]*$/|min:2|max:255',
-            'jobtitle' => ['required','min:2','max:255', new AlphaSpace()],
+            'jobtitle' => ['required','min:2','max:255', new AlphaNumericSpace()],
             'education' => 'required',
             'location' => 'required',
             'web_url' => ['required', new ValidUrl()],

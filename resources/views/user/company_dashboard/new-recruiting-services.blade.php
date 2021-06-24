@@ -259,7 +259,7 @@
                 rules: {
                     jobtitle: {
                         required: true,
-                        alpha_space: true,
+                        alphanumericspace: true,
                         minlength: 2,
                         maxlength:255
                     } ,

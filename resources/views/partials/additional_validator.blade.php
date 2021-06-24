@@ -28,9 +28,13 @@
         }
     });
     jQuery.validator.addMethod("lettersonly", function (value, element) {
-        console.log(this.optional(element) || /^[a-zA-Z ]+$/i.test(value));
+        // console.log(this.optional(element) || /^[a-zA-Z ]+$/i.test(value));
         return this.optional(element) || /^[a-zA-Z ]+$/i.test(value);
     },"Only letters are allowed.");
+    jQuery.validator.addMethod("alphanumericspace", function (value, element) {
+        // console.log(this.optional(element) || /^[a-zA-Z ]+$/i.test(value));
+        return this.optional(element) || /^[a-zA-Z0-9 ]+$/i.test(value);
+    },"Special character are not allowed.");
     jQuery.validator.addMethod("currency", function (value, element) {
         return this.optional(element) || /^[$£€]*$/.test(value);
     }, "Letters only.");

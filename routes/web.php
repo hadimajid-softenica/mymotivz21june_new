@@ -149,7 +149,7 @@ Route::group(['prefix' => 'company', 'middleware' => 'CustomAuthCompany'], funct
 //    Route::get('/recruitment', 'User\HomeController@companytempRecruitment')->name('company.recruitment') ;
 //    Route::get('/edit-dashboard', 'User\HomeController@companyeditDashboard')->name('user.company.edit.dashboard') ;
     Route::post('created/job', [HomeController::class, 'submitJob'])->name('user.client.job.created');
-    Route::post('created/recruitment-service', 'User\HomeController@submitRecruitmentService')->name('user.client.recruitment.created');
+    Route::post('created/recruitment-service', [HomeController::class,'submitRecruitmentService'])->name('user.client.recruitment.created');
 //    Route::get('/profile', 'User\HomeController@companyProfile')->name('user.client.dashboard') ;
     Route::post('/submit/profile', 'User\HomeController@submitCompnayProfile')->name('user.client.profile.submit');
     Route::post('/logo', 'User\HomeController@companyLogoUpload')->name('user.client.logo.ajax');
