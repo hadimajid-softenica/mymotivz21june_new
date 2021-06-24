@@ -19,7 +19,8 @@ class CandidateProfileAuth
         $candidate = NewCandidate::where('id',session()->get('candidate_id'))->first();
         if(is_null($candidate->name) || empty($candidate->name))
         {
-            if(Route::currentRouteName()=='candidate.view.personal.details' || Route::currentRouteName()=='candidate.save.personal.details'
+            if(Route::currentRouteName()=='candidate.view.personal.details'
+                || Route::currentRouteName()=='candidate.save.personal.details'
                 || Route::currentRouteName()=='delete.candidate.account')
             {
                 return $next($request);
@@ -32,8 +33,10 @@ class CandidateProfileAuth
         }
         elseif(is_null($candidate->job_title))
         {
-            if(Route::currentRouteName()=='candidate.view.personal.job.details' || Route::currentRouteName()=='candidate.save.personal.job.details'
-                || Route::currentRouteName()=='candidate.view.personal.details' || Route::currentRouteName()=='candidate.save.personal.details'
+            if(Route::currentRouteName()=='candidate.view.personal.job.details'
+                || Route::currentRouteName()=='candidate.save.personal.job.details'
+                || Route::currentRouteName()=='candidate.view.personal.details'
+                || Route::currentRouteName()=='candidate.save.personal.details'
                 || Route::currentRouteName()=='delete.candidate.account')
             {
                 return $next($request);
@@ -45,8 +48,14 @@ class CandidateProfileAuth
         }
         elseif(is_null($candidate->education_id))
         {
-            if(Route::currentRouteName()=='candidate.view.skills.details' || Route::currentRouteName()=='candidate.save.skills.details' || Route::currentRouteName()=='candidate.view.personal.job.details'
-                || Route::currentRouteName()=='candidate.save.personal.job.details' || Route::currentRouteName()=='delete.candidate.account')
+            if(Route::currentRouteName()=='candidate.view.skills.details'
+                || Route::currentRouteName()=='candidate.save.skills.details'
+                || Route::currentRouteName()=='candidate.view.personal.job.details'
+                || Route::currentRouteName()=='candidate.save.personal.job.details'
+                || Route::currentRouteName()=='candidate.view.personal.details'
+                || Route::currentRouteName()=='candidate.save.personal.details'
+                || Route::currentRouteName()=='delete.candidate.account'
+            )
             {
                 return $next($request);
             }
@@ -57,8 +66,15 @@ class CandidateProfileAuth
         }
         elseif(is_null($candidate->salary))
         {
-            if(Route::currentRouteName()=='candidate.view.salary.details' || Route::currentRouteName()=='candidate.save.salary.details' || Route::currentRouteName()=='candidate.view.skills.details'
-                || Route::currentRouteName()=='candidate.save.skills.details' || Route::currentRouteName()=='delete.candidate.account')
+            if(Route::currentRouteName()=='candidate.view.salary.details'
+                || Route::currentRouteName()=='candidate.save.salary.details'
+                || Route::currentRouteName()=='candidate.view.skills.details'
+                || Route::currentRouteName()=='candidate.save.skills.details'
+                || Route::currentRouteName()=='candidate.view.personal.job.details'
+                || Route::currentRouteName()=='candidate.save.personal.job.details'
+                || Route::currentRouteName()=='candidate.view.personal.details'
+                || Route::currentRouteName()=='candidate.save.personal.details'
+                || Route::currentRouteName()=='delete.candidate.account')
             {
 
                 return $next($request);

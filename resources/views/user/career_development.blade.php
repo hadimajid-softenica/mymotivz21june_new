@@ -492,7 +492,7 @@
                 messages: {
                     full_name: {
                         required: "Full name is required.",
-                        lettersonly: "Only alphabets are allowed in full name.",
+                        // lettersonly: "Only alphabets are allowed in full name.",
                         minlength: "Full name must be greater than 3 characters long.",
                         maxlength: "Full name must be less than 255 characters long."
                     },

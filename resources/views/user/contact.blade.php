@@ -384,7 +384,7 @@
             messages: {
                 name: {
                     required: "Name is required.",
-                    lettersonly: "Only letters are allowed in Name.",
+                    // lettersonly: "Only letters are allowed in Name.",
                     maxlength: "Name must be less than 255 characters."
                 },
                 email: {
@@ -413,12 +413,12 @@
             }
 
         });
-        jQuery.validator.addMethod("lettersonly", function(value, element) {
-            return this.optional(element) || /^[a-zA-Z ]+$/i.test(value);
-        });
-        jQuery.validator.addMethod("phonenumber", function(value, element) {
-            return this.optional(element) || /^[0-9\-\(\)\s]+$/i.test(value);
-        });
+        // jQuery.validator.addMethod("lettersonly", function(value, element) {
+        //     return this.optional(element) || /^[a-zA-Z ]+$/i.test(value);
+        // });
+        // jQuery.validator.addMethod("phonenumber", function(value, element) {
+        //     return this.optional(element) || /^[0-9\-\(\)\s]+$/i.test(value);
+        // });
 
         var segments = window.location.href.split( '/' );
         var segment = segments[4];

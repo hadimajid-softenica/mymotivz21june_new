@@ -410,12 +410,12 @@
                 messages: {
                     full_name: {
                         required: "Full name is required.",
-                        lettersonly: "Only letters are allowed in Full Name.",
+                        // lettersonly: "Only letters are allowed in Full Name.",
                         maxlength: "Full Name must be less than 255 characters."
                     },
                     job_title: {
                         required: "Job title is required.",
-                        lettersonly: "Only letters are allowed in Job Title.",
+                        // lettersonly: "Only letters are allowed in Job Title.",
                         maxlength: "Job Title must be less than 255 characters."
                     },
                     phone_no: {
@@ -426,12 +426,12 @@
                     },
                     city: {
                         required: "City is required.",
-                        lettersonly: "City must contains letters only.",
+                        // lettersonly: "City must contains letters only.",
                         maxlength: "City must be less than 255 characters long."
                     },
                     state: {
                         required: "State is required.",
-                        lettersonly:"State must contain letters only.",
+                        // lettersonly:"State must contain letters only.",
                         maxlength: "State must be less than 255 characters long."
                     },
                     salary_req: {

@@ -416,7 +416,7 @@
                 messages: {
                     full_name: {
                         required: "Full name is required.",
-                        lettersonly: "Only letters are allowed in Full Name.",
+                        // lettersonly: "Only letters are allowed in Full Name.",
                         maxlength: "Full Name must be less than 255 characters."
                     },
                     /*city: {

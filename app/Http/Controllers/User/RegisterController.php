@@ -13,6 +13,7 @@ use App\candidate_resume;
 use App\Applied_Jobs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -28,39 +29,35 @@ class RegisterController extends Controller
              * deleted=1 for candidates those account is deleted.
              * deleted=2 for candidates that Apply for job without creating account & didn't create account yet.
             */
-            $candidate = NewCandidate::where(['email'=>$request->email/*,'deleted'=>2*/])->whereIn('deleted',[1,2])->first();
-            $candidate_chk = NewCandidate::where(['email'=>$request->email])->whereIn('deleted',[0])->first();
-            if($candidate_chk)
-            {
-                return redirect()->back()->with('email_already_exists','Email already exists.');
+        try {
+
+        DB::beginTransaction();
+            $candidate = NewCandidate::where(['email' => $request->email/*,'deleted'=>2*/])->whereIn('deleted', [1, 2])->first();
+            $candidate_chk = NewCandidate::where(['email' => $request->email])->whereIn('deleted', [0])->first();
+            if ($candidate_chk) {
+                return redirect()->back()->with('email_already_exists', 'Email already exists.');
             }
-            $code['code'] = Str::random(5) ;
+            $code['code'] = Str::random(5);
             $code['stringRand'] = Str::random(20);
             $code['user'] = "as a Job Seeker";
             $password = Hash::make($request->password);
-            if($candidate){
-                if($candidate->deleted==2 || $candidate->deleted==1)
-                {
-                   $cand_resume = candidate_resume::where('candidate_id',$candidate->id)->orderby('id','DESC')->first();
+            if ($candidate) {
+                if ($candidate->deleted == 2 || $candidate->deleted == 1) {
+                    $cand_resume = candidate_resume::where('candidate_id', $candidate->id)->orderby('id', 'DESC')->first();
 
-                   if(!is_null($cand_resume))
-                   {
-                       $cand_applied_jobs = Applied_Jobs::where('candidate_id',$candidate->id)->update(['resume_id'=>$cand_resume->id]);
-                       $resumes = candidate_resume::where('candidate_id',$candidate->id)->whereNotIn('id',[$cand_resume->id])->get();
-                       if(count($resumes)>0)
-                       {
-                           foreach($resumes as $resume)
-                           {
-                               $resume_path = public_path('/files/' . $resume->resume);
-                               unlink($resume_path);
-                               $resume->delete();
-                           }
-                       }
-                   }
+                    if (!is_null($cand_resume)) {
+                        $cand_applied_jobs = Applied_Jobs::where('candidate_id', $candidate->id)->update(['resume_id' => $cand_resume->id]);
+                        $resumes = candidate_resume::where('candidate_id', $candidate->id)->whereNotIn('id', [$cand_resume->id])->get();
+                        if (count($resumes) > 0) {
+                            foreach ($resumes as $resume) {
+                                $resume_path = public_path('/files/' . $resume->resume);
+                                unlink($resume_path);
+                                $resume->delete();
+                            }
+                        }
+                    }
                 }
-            }
-            else
-            {
+            } else {
                 $candidate = new NewCandidate();
                 $candidate->email = $request->email;
             }
@@ -71,10 +68,16 @@ class RegisterController extends Controller
             $candidate->deleted = 0;
             $candidate->save();
 
-            $email = new SendRegistrationCode( $code );
+            $email = new SendRegistrationCode($code);
             Mail::to($request->email)->send($email);
-
+            DB::commit();
             session()->flash('verify', 'Please verify your account by clicking on the link sent to your email.');
+
+        }catch (\Exception $exception){
+            DB::rollBack();
+            session()->flash('verifyFailed', 'Please verify your account by clicking on the link sent to your email.');
+
+        }
 
             return redirect()->route('user.register');
 

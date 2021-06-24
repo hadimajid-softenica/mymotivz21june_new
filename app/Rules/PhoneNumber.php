@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class ValidLocation implements Rule
+class PhoneNumber implements Rule
 {
     /**
      * Create a new rule instance.
@@ -25,7 +25,8 @@ class ValidLocation implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/^[A-Za-z\p{L}0-9,\/\\\# -]+$/i',$value);
+        return preg_match('/^[0-9\-\(\)\s]+$/i',$value);
+
     }
 
     /**
@@ -35,6 +36,6 @@ class ValidLocation implements Rule
      */
     public function message()
     {
-        return 'Please enter valid location server side.';
+        return 'Phone number must be in valid format.';
     }
 }

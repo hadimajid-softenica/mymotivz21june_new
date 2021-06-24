@@ -22,6 +22,9 @@ use App\Http\Requests\PasswordRequest;
 use App\Job;
 use App\Education;
 use App\Resume;
+use App\Rules\AlphaSpace;
+use App\Rules\CurrencyValidation;
+use App\Rules\PhoneNumber;
 use App\Rules\ValidLocation;
 use App\Rules\ValidUrl;
 use App\user_job;
@@ -229,7 +232,7 @@ class HomeController extends Controller
                 'full_name' => 'required|regex:/^[a-zA-Z ]+$/u|max:20',
                 'job_title' => 'required|max:255',
                 'phone_no' => 'required|regex:/^[0-9\-\(\)\s]+$/|min:14|max:14',
-                'linkedin_url' => [new ValidUrl()],
+                'linkedin_url' => ['nullable',new ValidUrl()],
 //               'location' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
                 'location' => 'required',
                 'package' => 'required|regex:/^[,.?0-9]+$/|min:1|max:20',
@@ -449,24 +452,32 @@ class HomeController extends Controller
             $start = ($request->current - 1) * $request->length;
         }
 
-        if (is_null($request->job_title) && is_null($request->place)) {
-            $find_saved_jobs = favourite_job::with('Job', 'Job.Client')->orderBy('created_at', 'DESC')->where('candidate_id', session()->get('candidate_id'))->offset($start)->limit($request->length)->get()->toArray();
-        } elseif (!is_null($request->job_title) && is_null($request->place)) {
-            $where = [['job_title', 'LIKE', '%' . $request->job_title . '%']];
-        } elseif (!is_null($request->place) && is_null($request->job_title)) {
-            $where = [['city', 'LIKE', '%' . $request->place . '%']];
-        } else {
-            $where = [['job_title', 'LIKE', '%' . $request->job_title . '%'],
-                ['city', 'LIKE', '%' . $request->place . '%']];
-        }
 
-        if (!is_null($request->job_title) || !is_null($request->place)) {
-            $find_saved_jobs = favourite_job::with('Job', 'Job.Client')->where('candidate_id', session()->get('candidate_id'))->whereHas('Job', function ($query) use ($where) {
-                $query->where($where);
-            })->orderBy('created_at', 'DESC')->offset($start)->limit($request->length)->get()->toArray();
-        }
+        $find_saved_jobs=favourite_job::where(function ($query) use ($request){
+                $query->where('candidate_id', session()->get('candidate_id'));
 
-        $arrayName = array('0' => '', '1' => $find_saved_jobs);
+                    $query->whereHas('job',function ($query) use ($request){
+                        if (!is_null($request->place)) {
+                            $place=$request->place;
+                            $query->where('location','like',"%$place%");
+                        }
+                        if (!is_null($request->job_title)) {
+                            $job_title=$request->job_title;
+                            $query->where('job_title','like',"%$job_title%");
+
+                        }
+                    });
+
+            })
+            ->orderBy('created_at', 'DESC')
+            ->offset($start)
+            ->limit($request->length)
+            ->get();
+        $f=$find_saved_jobs;
+        if($find_saved_jobs) {
+            $f = $find_saved_jobs->load(['job', 'job.client']);
+        }
+        $arrayName = array('0' => '', '1' => $f->toArray());
         return json_encode($arrayName);
     }
 
@@ -486,7 +497,6 @@ class HomeController extends Controller
 
 
         $job_skills = explode(",", $candidate->skills);
-
         if (!is_null($job_skills)) {
             for ($i = 0; $i < count($job_skills); $i++) {
                 $where_filter .= ' OR job_title LIKE "%' . $job_skills[$i] . '%"';
@@ -503,8 +513,14 @@ class HomeController extends Controller
         }
         $where_filter .= ')';
 
-//        dd($where_filter);
-        $find_relevant_jobs = user_job::with('Client', 'Industry')->where(['job_approved' => 1])->whereRaw($where_filter)->whereDate('applied_before', '>', Carbon::now())->orderBy('created_at', 'DESC')->offset($start)->limit($request->length)->get()->toArray();
+        $find_relevant_jobs = user_job::
+        with('Client', 'Industry')
+            ->where(['job_approved' => 1])
+            ->whereRaw($where_filter)
+            ->whereDate('applied_before', '>', Carbon::now())->orderBy('created_at', 'DESC')
+            ->offset($start)->limit($request->length)
+            ->get()
+            ->toArray();
 
         $arrayName = array('0' => '', '1' => $find_relevant_jobs);
         return json_encode($arrayName);
@@ -1554,22 +1570,20 @@ class HomeController extends Controller
 
     public function savePersonalDetails(Request $request)
     {
-//        dd($request->all());
-
         $request->validate(
             [
-                'full_name' => 'required|regex:/^[a-zA-Z ]+$/u|max:20',
-                'phone_no' => 'required|regex:/^[0-9\-\(\)\s]+$/|min:14|max:14',
-                'email' => 'required',
+                'full_name' => ['required',new AlphaSpace(),'max:255','min:3'],
+                'phone_no' => ['required',new PhoneNumber(),'min:14','max:14'],
+                'email' => ['required','email'],
                 'linkedin_url' => ['nullable',new ValidUrl()],
-                'location' => 'required',
+                'location' => ['required','max:255',new ValidLocation()],
                 'auth_status' => 'required',
                 'resume' => 'mimes:doc,docx,pdf',
             ]);
 
-        if ($request->resume != '') {
+        if ($request->hasFile('resume')) {
             $chk_resume = candidate_resume::where('candidate_id', session()->get('candidate_id'))->first();
-            if ($chk_resume == '') {
+            if (empty($chk_resume)) {
                 $resume = new candidate_resume();
                 $canidate_resume = $request->file('resume');
                 $curr_date = date('Y_m_d-H-i-s');
@@ -1603,8 +1617,6 @@ class HomeController extends Controller
 
     public function viewPersonalJobDetails()
     {
-//        dd('view personal job details');
-//        dd('title');
         $Education = Education::all();
         $industries = Industry::all();
         $Candidate = NewCandidate::where('id', session()->get('candidate_id'))->first();
@@ -1618,17 +1630,13 @@ class HomeController extends Controller
         $request->validate(
             [
                 'sel_job_type' => 'required',
-                'industry' => 'required',
-//                'location' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
-//                'location' => 'required',
+                'industry' => 'required|exists:industries,id',
                 'job_title' => 'required|max:255',
-//                'job_title' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
                 'sel_experience' => 'required',
             ]);
         $candidate = NewCandidate::where('id', session()->get('candidate_id'))->first();
         $candidate->job_type = $request->sel_job_type;
         $candidate->industry_id = $request->industry;
-//        $candidate->location = $request->location;
         $candidate->job_title = $request->job_title;
         $candidate->experience = $request->sel_experience;
         $candidate->save();
@@ -1646,12 +1654,11 @@ class HomeController extends Controller
 
     public function saveSkillsDetails(Request $request)
     {
-//        dd($request->all());
         $request->validate(
             [
                 'skills' => 'required|max:500',
                 'sel_education' => 'required',
-                'required_certification' => 'required',
+                'required_certification' => 'required|max:500',
             ]);
         $candidate = NewCandidate::where('id', session()->get('candidate_id'))->first();
         $candidate->skills = $request->skills;
@@ -1675,8 +1682,8 @@ class HomeController extends Controller
 //        dd($request->all());
         $request->validate(
             [
-                'package' => 'required|regex:/^[,.?0-9]+$/|min:1|max:20',
-                'package_to' => 'nullable|regex:/^[,.?0-9]+$/|max:20',
+                'package' => ['required','min:1','max:20',new CurrencyValidation()],
+                'package_to' => ['nullable','min:1','max:20',new CurrencyValidation()],
             ]);
         $candidate = NewCandidate::where('id', session()->get('candidate_id'))->first();
         $candidate->salary_sign = $request->hidd_curr_sign;

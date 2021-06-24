@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class ValidLocation implements Rule
+class AlphaSpace implements Rule
 {
     /**
      * Create a new rule instance.
@@ -25,7 +25,7 @@ class ValidLocation implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/^[A-Za-z\p{L}0-9,\/\\\# -]+$/i',$value);
+        return preg_match('/^[a-zA-Z\s]+$/i',$value);
     }
 
     /**
@@ -35,6 +35,6 @@ class ValidLocation implements Rule
      */
     public function message()
     {
-        return 'Please enter valid location server side.';
+        return 'Only letters are allowed in :attribute.';
     }
 }

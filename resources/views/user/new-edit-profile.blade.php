@@ -695,12 +695,12 @@
                 messages: {
                     full_name: {
                         required: "Full name is required.",
-                        lettersonly: "Only letters are allowed in Full Name.",
+                        // lettersonly: "Only letters are allowed in Full Name.",
                         maxlength: "Full Name must be less than 255 characters."
                     },
                     job_title: {
                         required: "Job title is required.",
-                        lettersonly: "Only letters are allowed in Job Title.",
+                        // lettersonly: "Only letters are allowed in Job Title.",
                         maxlength: "Job Title must be less than 255 characters."
                     },
                     phone_no: {

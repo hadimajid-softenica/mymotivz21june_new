@@ -566,7 +566,7 @@
                 },
                 job_title: {
                     required: "Job title is required",
-                    lettersonly: "Only letters are allowed in Job Title",
+                    // lettersonly: "Only letters are allowed in Job Title",
                     minlength: "Job Title must be at least 5 characters long",
                     maxlength: "Job Title must be less than 255 characters",
                 },

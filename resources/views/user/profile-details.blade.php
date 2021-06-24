@@ -189,6 +189,7 @@
                     full_name: {
                         required: true,
                         alpha_space: true,
+                        minlength: 3,
                         maxlength: 255,
                     },
                     phone_no: {

@@ -160,8 +160,8 @@
                                     </div>
                                     <div class="col-md-12">
                                         <br>
-                                        <a href="{{route('candidate.view.personal.details')}}">
-                                            <button type="button" class="form-submit">Back</button>
+                                        <a href="{{route('candidate.view.personal.details')}}" class="form-submit">
+                                            Back
                                         </a>
                                         <button type="submit" class="pull-right form-submit">Next</button>
                                     </div>
@@ -263,13 +263,6 @@
                 }
 
             });
-            jQuery.validator.addMethod("lettersonly", function (value, element) {
-                return this.optional(element) || /^[a-zA-Z,. ]+$/i.test(value);
-            });
-            jQuery.validator.addMethod("locationvalidation", function (value, element) {
-                return this.optional(element) || /^[a-zA-Z, ]+$/i.test(value);
-            });
-
             $(function () {
                 $('#job_title').tagsInput({
                     width: 'auto',

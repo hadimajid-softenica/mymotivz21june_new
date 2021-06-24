@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <br>
-                                        <a href="{{route('candidate.view.personal.job.details')}}"><button type="button" class="form-submit">Back</button></a>
+                                        <a href="{{route('candidate.view.personal.job.details')}}" class="form-submit">Back</a>
                                         <button type="submit" class="pull-right form-submit">Next</button>
                                     </div>
                                 </div>

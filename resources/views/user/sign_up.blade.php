@@ -83,6 +83,21 @@
             }
         </style>
     @endif
+    @if( session()->has('verifyFailed') )
+        <script type="text/javascript">
+
+            sweetAlert({
+                title: "Some Error Has Occurred.",
+                text: "There was some error while creating your account please try again later",
+                icon: "error",
+            })
+        </script>
+        <style>
+            .notifyjs-bootstrap-base span{
+                font-size: 15px;
+            }
+        </style>
+    @endif
     <script>
         $( document ).ready(function() {
 

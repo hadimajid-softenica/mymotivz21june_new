@@ -104,7 +104,7 @@
                     },
                     messages: {
                         interest: {
-                            maxlength: "Interest must be lesss than 255 characters long.",
+                            maxlength: "Interest must be less than 255 characters long.",
                         },
                     },
                     submitHandler: function(form) {

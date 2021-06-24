@@ -70,18 +70,18 @@ Route::get('/account/logout', 'User\RegisterController@logout')->name('user.logo
 
 Route::group(['prefix' => 'candidate', 'middleware' => ['CustomAuth', 'CandidateProfileAuth']], function () {
 //    Route::get('/dashboard', 'User\HomeController@candidateDashboard')->name('new.candidate.dashboard');
-    Route::post('/view/relevant-jobs', 'User\HomeController@viewRelevantJobs')->name('view.relevant.jobs');
+    Route::post('/view/relevant-jobs', [HomeController::class,'viewRelevantJobs'])->name('view.relevant.jobs');
 //    Route::get('/edit-profile', 'User\HomeController@editCandProfile')->name('temp.candidate.dashboard') ;
 //    Route::get('/profile', 'User\HomeController@candidateProfile')->name('candidate.dashboard') ;
-    Route::post('/dashboard/save-profile', 'User\HomeController@saveProfile')->name('candidate.saveProfile');
+    Route::post('/dashboard/save-profile', [HomeController::class,'saveProfile'])->name('candidate.saveProfile');
     Route::post('/dashboard/save/profile-image', 'User\HomeController@saveProfileImage')->name('profile.img.upload');
 //    Route::get('/saved-jobs','User\HomeController@savedJobs')->name('saved.jobs');
     /*Route of Candidate Saved Jobs Interface*/
-    Route::post('/view/saved-jobs', 'User\HomeController@viewSavedJobs')->name('view.saved.jobs');
+    Route::post('/view/saved-jobs', [HomeController::class,'viewSavedJobs'])->name('view.saved.jobs');
     Route::post('/remove/saved-jobs', 'User\HomeController@removeSavedJobs')->name('Ajax.remove.saved.job');
     /*Applied Jobs Routes*/
 //    Route::get('/applied-jobs','User\HomeController@viewAppliedJobs')->name('view.applied.jobs');
-    Route::post('/find/applied-jobs', 'User\HomeController@searchAppliedJobs')->name('ajax.applied.jobs');
+    Route::post('/find/applied-jobs', [HomeController::class,'searchAppliedJobs'])->name('ajax.applied.jobs');
     /*Change Password Routes*/
 //    Route::get('/change-password','User\HomeController@viewChangePassword')->name('view.change.password');
 //    Route::post('/password-changed','User\HomeController@changePassword')->name('candidate.change.password');
@@ -90,25 +90,25 @@ Route::group(['prefix' => 'candidate', 'middleware' => ['CustomAuth', 'Candidate
     Route::post('/delete-resume', 'User\HomeController@delCandidateResume')->name('delete.resume');
 
     Route::post('/career-develop', 'User\HomeController@careerDevelopMail')->name('career.develop.mail');
-    Route::post('/profile/completed', 'User\HomeController@profileCompleted')->name('prof_completed');
+    Route::post('/profile/completed', [HomeController::class,'profileCompleted'])->name('prof_completed');
     Route::get('/delete/account', 'User\HomeController@deleteCandidateAccount')->name('delete.candidate.account');
 
 
     /*Candidate Profile in 5 Stages*/
-    Route::get('/profile-details', 'User\HomeController@viewPersonalDetails')->name('candidate.view.personal.details');
-    Route::post('/save/personal-details', 'User\HomeController@savePersonalDetails')->name('candidate.save.personal.details');
+    Route::get('/profile-details', [HomeController::class,'viewPersonalDetails'])->name('candidate.view.personal.details');
+    Route::post('/save/personal-details', [HomeController::class,'savePersonalDetails'])->name('candidate.save.personal.details');
 
-    Route::get('/profile/job-details', 'User\HomeController@viewPersonalJobDetails')->name('candidate.view.personal.job.details');
-    Route::post('/save/job-details', 'User\HomeController@savePersonalJobDetails')->name('candidate.save.personal.job.details');
+    Route::get('/profile/job-details', [HomeController::class,'viewPersonalJobDetails'])->name('candidate.view.personal.job.details');
+    Route::post('/save/job-details', [HomeController::class,'savePersonalJobDetails'])->name('candidate.save.personal.job.details');
 
-    Route::get('/profile/skills-details', 'User\HomeController@viewSkillsDetails')->name('candidate.view.skills.details');
-    Route::post('/save/skills-details', 'User\HomeController@saveSkillsDetails')->name('candidate.save.skills.details');
+    Route::get('/profile/skills-details', [HomeController::class,'viewSkillsDetails'])->name('candidate.view.skills.details');
+    Route::post('/save/skills-details', [HomeController::class,'saveSkillsDetails'])->name('candidate.save.skills.details');
 
-    Route::get('/profile/salary-details', 'User\HomeController@viewSalaryDetails')->name('candidate.view.salary.details');
-    Route::post('/save/salary-details', 'User\HomeController@saveSalaryDetails')->name('candidate.save.salary.details');
+    Route::get('/profile/salary-details', [HomeController::class,'viewSalaryDetails'])->name('candidate.view.salary.details');
+    Route::post('/save/salary-details', [HomeController::class,'saveSalaryDetails'])->name('candidate.save.salary.details');
 
-    Route::get('/profile/interest-details', 'User\HomeController@viewInterestDetails')->name('candidate.view.interest.details');
-    Route::post('/save/interest-details', 'User\HomeController@saveInterestDetails')->name('candidate.save.interest.details');
+    Route::get('/profile/interest-details', [HomeController::class,'viewInterestDetails'])->name('candidate.view.interest.details');
+    Route::post('/save/interest-details', [HomeController::class,'saveInterestDetails'])->name('candidate.save.interest.details');
 
     /* New pages */
     Route::get('/dashboard', 'User\HomeController@candidateDashboard')->name('new.candidate.dashboard');

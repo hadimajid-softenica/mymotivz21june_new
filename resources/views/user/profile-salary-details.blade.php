@@ -196,43 +196,6 @@
                 }
 
             });
-            jQuery.validator.addMethod("currencyvalidation", function(value, element) {
-                /*return this.optional(element) || /^[,?0-9$€£]+$/i.test(value);*/
-                return this.optional(element) || /^[,.?0-9]+$/i.test(value);
-            });
-
-        jQuery.validator.addMethod("greaterThanPackage",
-            function (value, element, params) {
-
-                if (value === "" || (parseFloat(value) > parseFloat($(params).val()))) {
-                    return true;
-                }
-                return false;
-            });
-
-            // jQuery.validator.addMethod("greaterThan", function (value, element) {
-            //     var salary_to = value;
-            //     var salary_from = $("#package").val();
-            //
-            //     if (value.indexOf(',') > -1){
-            //         salary_to = value.replace(',','');
-            //     }
-            //     if(salary_from.indexOf(',') > -1)
-            //     {
-            //         salary_from = salary_from.replace(',','');
-            //     }
-            //     salary_from = parseInt(salary_from);
-            //     salary_to = parseInt(salary_to);
-            //     if(salary_from >= salary_to)
-            //     {
-            //         return false;
-            //     }
-            //     else
-            //     {
-            //         return true;
-            //     }
-            // });
-
 
     });
 </script>
