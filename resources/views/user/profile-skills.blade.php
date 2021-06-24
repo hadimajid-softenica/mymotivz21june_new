@@ -130,7 +130,7 @@
             });
 
         $("#form_profile").validate({
-            // ignore:[],
+            ignore:[],
             rules: {
                 skills: {
                     required: true,

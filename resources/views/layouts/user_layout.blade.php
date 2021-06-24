@@ -605,6 +605,8 @@
 <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaifbsayz8l_Lfs1ZdE3MywHPzy046cIA&libraries=places"></script>
 
+
+
 @if( session()->has('success_notify') )
     <script type="text/javascript">
         sweetAlert({

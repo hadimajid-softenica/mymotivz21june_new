@@ -1758,7 +1758,7 @@ class HomeController extends Controller
     public function chkVerifyEmailCode(Request $request)
     {
         $candidate = NewCandidate::where('email', $request->email)->first();
-        if ($candidate->random_code == $request->code) {
+        if ($candidate && $candidate->random_code == $request->code) {
             $candidate->random_code = '';
             $candidate->save();
             return response('success');

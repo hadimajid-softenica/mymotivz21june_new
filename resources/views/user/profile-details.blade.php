@@ -75,7 +75,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Enter your location</label>
-                                            <input type="text" name="location" id="location" data-role="tagsinput" class="tags_1 tags form-control" placeholder="Location" value="@if(!empty($Candidate['location'])){{$Candidate->location}}@else{{old('location')}}@endif">
+                                            <input type="text" name="location" id="location" data-role="tagsinput" class="tags_1 tags form-control" placeholder="Enter Location" value="@if(!empty($Candidate['location'])){{$Candidate->location}}@else{{old('location')}}@endif">
                                             <label id="location-error" class="error" for="location" style="display: none"></label>
                                             @error('location')
                                             <label class="error">{{$message}}</label>
@@ -266,6 +266,16 @@
         });
 
     });
+
+    // function initialize() {
+    //     alert('location')
+    //     var input = document.getElementById('location');
+    //     var options = {
+    //         types: ['(regions)'] //this should work !
+    //     };
+    //     var autocomplete = new google.maps.places.Autocomplete(input, options);
+    // }
+
     function resume_del(id) {
         sweetAlert({
             title: "Are you sure?",

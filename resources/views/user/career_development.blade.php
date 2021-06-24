@@ -417,19 +417,29 @@
                     form.submit();
                 }
             });
+            $.validator.addMethod("checkTags", function(value) { //add custom method
+                //Tags input plugin converts input into div having id #YOURINPUTID_tagsinput
+                //now you can count no of tags
+                console.log($("#job_title_tags_tagsinput").find(".tag").length > 0)
+                return ($("#job_title_tags_tagsinput").find(".tag").length > 0);
+            },"test");
+
+
             $("#job_notify_form").validate({
-                ignore: "",
+                ignore: ".ignore",
                 rules: {
 
                     full_name: {
                         required: true,
                         lettersonly: true,
+                        minlength: 3,
                         maxlength: 255,
                     },
-                    job_title: {
-                        required: true,
-                        maxlength: 255,
-                    },
+                    job_title: "checkTags",
+                    // job_title: {
+                    //     required: true,
+                    //     maxlength: 255,
+                    // },
                     phone_no: {
                         required: true,
                         phonevalidation: true,
@@ -483,10 +493,12 @@
                     full_name: {
                         required: "Full name is required.",
                         lettersonly: "Only alphabets are allowed in full name.",
+                        minlength: "Full name must be greater than 3 characters long.",
                         maxlength: "Full name must be less than 255 characters long."
                     },
                     job_title: {
-                        required: "Job title is not required.",
+
+                        required: "Job title is required.",
                         maxlength: "Job title must be less than 255 characters long."
                     },
                     phone_no: {
@@ -544,7 +556,7 @@
                 }
 
             });
-
+            $("#job_title_tags_tag").rules("add", {required:true});
             $('#submitjobModal').on('hidden.bs.modal', function () {
                 $('#job_notify_form')[0].reset();
                 $("#job_notify_form").validate().resetForm();
@@ -565,6 +577,8 @@
                     return false;
                 }
             });
+
+
 
             // jQuery.validator.addMethod("greaterThanPackage",
             //     function (value, element, params) {
