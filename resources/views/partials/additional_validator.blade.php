@@ -9,7 +9,7 @@
     //     return this.optional(element) ||  /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi.test(value);
     // }, "Please enter valid URL.");
     jQuery.validator.addMethod("validUrl", function (value, element) {
-        return this.optional(element) || /^(http:\/\/www\.|https:\/\/www\.|www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/.test(value);
+        return this.optional(element) || /^(http:\/\/www\.|https:\/\/www\.|www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test(value);
     }, "Please enter valid url.");
     jQuery.validator.addMethod("alpha_space", function (value, element) {
         return this.optional(element) || /^[a-zA-Z\s]+$/i.test(value);
