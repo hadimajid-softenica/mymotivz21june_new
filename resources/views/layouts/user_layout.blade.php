@@ -593,7 +593,7 @@
 <!-- jQuery (necessary for JavaScript plugins) -->
 <script type="text/javascript" src="{{ asset('user/script/jquery.js') }}"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{env("GOOGLE_API")}}&libraries=places" ></script>
-<script src="{{asset('google-map.js')}}"></script>
+<script async src="{{asset('google-map.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script type="text/javascript" src="{{ asset('assets/scripts/jquery.validate.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/scripts/additional-methods.min.js') }}"></script>
