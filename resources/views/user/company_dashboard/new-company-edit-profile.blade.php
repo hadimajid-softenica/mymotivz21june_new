@@ -19,6 +19,11 @@
                     <div class="main-card mb-3 card">
 
                         <div class="card-body">
+{{--                            <ul>--}}
+{{--                                @foreach($errors->all() as $error)--}}
+{{--                                <li>{{$error}}</li>--}}
+{{--                                @endforeach--}}
+{{--                            </ul>--}}
                             <form id="user-company-profile" method="post"
                                   action="{{ route('user.client.profile.submit') }}" enctype="multipart/form-data">
                                 @csrf
@@ -79,6 +84,9 @@
                                             <label>Address</label>
                                             <input name="address" id="address" value="{{$client->address}}" type="text"
                                                    class="form-control" placeholder="">
+                                            @error('address')
+                                            <label class="error">{{$message}}</label>
+                                            @enderror
                                         </div>
                                     </div>
                                     {{--                                    <div class="col-md-4">--}}
@@ -127,6 +135,9 @@
                                                 <input name="complete_address" id="location" type="text"
                                                        class="form-control" placeholder=""
                                                        value="{{$client->complete_address}}">
+                                                @error('complete_address')
+                                                <label class="error">{{$message}}</label>
+                                                @enderror
                                             </div>
                                             {{--                                            @error('state')--}}
                                             {{--                                            <label class="error">{{$message}}</label>--}}
@@ -353,7 +364,7 @@
                     // } ,
                     company_name: {
                         required: true,
-                        alpha_space: true,
+                        alphanumericspace: true,
                         minlength: 1,
                         maxlength: 255
                     },

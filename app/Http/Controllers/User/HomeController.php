@@ -1129,8 +1129,8 @@ class HomeController extends Controller
 //        dd($request->all());
 
         $request->validate([
-            'company_name' => 'required|regex:/^[a-zA-Z ]*$/|min:1|max:255',
-            'name' => 'required|regex:/^[a-zA-Z ]*$/|min:1|max:255',
+            'company_name' => ['required',new AlphaNumericSpace(),'min:1','max:255'],
+            'name' => ['required', new AlphaSpace() ,'min:1', 'max:255'],
             'address' => 'required|max:255',
 //            'country' => 'required',
 //            'city' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
