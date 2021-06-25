@@ -96,8 +96,6 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{env("GOOGLE_API")}}&libraries=places" ></script>
     <script src="{{asset('google-map.js')}}"></script>
     <script type="text/javascript" src="{{asset('new-panel\user-panel/assets\scripts\main.js')}}"></script>
-
-
     <script type="text/javascript" src="{{asset('new-panel\user-panel\assets\scripts\functions.js')}}"></script>
     <script src="{{asset('new-panel\user-panel\assets\scripts\file-input\sortable.js')}}" type="text/javascript"></script>
     <script src="{{asset('new-panel\user-panel\assets\scripts\file-input\fileinput.js')}}" type="text/javascript"></script>

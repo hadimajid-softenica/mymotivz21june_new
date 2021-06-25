@@ -597,7 +597,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script type="text/javascript" src="{{ asset('assets\scripts\jquery.validate.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets\scripts\additional-methods.min.js') }}"></script>
-
 <script type="text/javascript" src="{{ asset('user/script/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('user/script/slick.slider.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('user/script/t-scroll.min.js') }}"></script>

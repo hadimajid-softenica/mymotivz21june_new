@@ -24,6 +24,14 @@
 {{--    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">--}}
 {{--    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">--}}
     @yield('css')
+
+{{--    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>--}}
+    <script type="text/javascript" src="{{ asset('user/script/jquery.js') }}"></script>
+
+    <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_API')}}&libraries=places" ></script>
+    <script src="{{asset('google-map.js')}}"></script>
+    <script type="text/javascript" src="{{asset('new-panel/company-panel/assets/scripts/main.js')}}"></script>
+
 </head>
 
 <body>
@@ -107,34 +115,23 @@
             </div>
         </div>
     </div>
-
-
-
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{{asset('new-panel/company-panel/assets\scripts\main.js ')}}"></script>
-    <script type="text/javascript" src="{{asset('new-panel/company-panel/assets\scripts\functions.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{asset('new-panel/company-panel/assets/scripts/file-input/sortable.js')}}"></script>
     <script type="text/javascript" src="{{asset('new-panel/company-panel/assets/scripts/file-input/fileinput.js')}}"></script>
     <script type="text/javascript" src="{{asset('new-panel/company-panel/assets/scripts/file-input/theme.js')}}"></script>
-    <script type="text/javascript" src="{{asset('new-panel/company-panel/assets\scripts\jquery.tagsinput.min.js')}}"></script>
-
+    <script type="text/javascript" src="{{asset('new-panel/company-panel/assets/scripts/jquery.tagsinput.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets\scripts\jquery.validate.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets\scripts\additional-methods.min.js') }}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 {{--    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>--}}
 
     <script src="{{asset('ckeditor.js')}}"></script>
-{{--    <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>--}}
 
+{{--    <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>--}}
     <!-- include summernote css/js -->
 {{--    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>--}}
-
 {{--    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>--}}
-
-    <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_API')}}&libraries=places" ></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
-    <script src="{{asset('google-map.js')}}"></script>
+    <script type="text/javascript" src="{{asset('new-panel/company-panel/assets/scripts/functions.js')}}"></script>
 
     @include('partials.additional_validator')
 
@@ -153,7 +150,6 @@
 
                 .then((willDelete) => {
                     if (willDelete) {
-
                         window.location.href = "{{ route('delete.company.account')}}";
                     }
 
