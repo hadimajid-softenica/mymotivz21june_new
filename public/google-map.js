@@ -1,4 +1,7 @@
-$(document).ready(function () {
+jQuery(document).ready(function($) {
+
+    'use strict';
+    
     var input = document.getElementById('location');
     var input1 = document.getElementById('search_place');
     var input2 = document.getElementById('desired_location_notify');
