@@ -17,9 +17,9 @@
     <link href="{{asset('new-panel/user-panel/assets/file-input/fileinput.css')}}" media="all" rel="stylesheet" type="text/css"/>
     <link href="{{asset('new-panel/user-panel/assets/file-input/theme.css')}}" media="all" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{env("GOOGLE_API")}}&libraries=places" ></script>
-    <script type="text/javascript" src="{{asset('new-panel\user-panel/assets\scripts\main.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
+    <script type="text/javascript" src="{{asset('new-panel\user-panel/assets\scripts\main.js')}}"></script>
 
 
     @yield('css')
