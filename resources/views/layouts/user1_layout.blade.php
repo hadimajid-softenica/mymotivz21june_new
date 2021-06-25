@@ -98,7 +98,8 @@
     <script type="text/javascript" src="{{asset('new-panel\user-panel\assets\scripts\jquery.tagsinput.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets\scripts\jquery.validate.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets\scripts\additional-methods.min.js') }}"></script>
-    <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaifbsayz8l_Lfs1ZdE3MywHPzy046cIA&libraries=places" ></script>
+{{--    <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaifbsayz8l_Lfs1ZdE3MywHPzy046cIA&libraries=places" ></script>--}}
+    <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{env("GOOGLE_API")}}&libraries=places" ></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{asset('google-map.js')}}"></script>
 @include('partials.additional_validator')
