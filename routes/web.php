@@ -501,4 +501,9 @@ Route::prefix('admin')->group(function () {
 
 });
 
+Route::get('/test', function () {
+    Artisan::call('optimize:clear');
+    return response()->json(['mes' => "clear"]);
+})->name('clear-cache');
+
 //Route::post('post/ckeditor/upload', 'mailController@upload_image_cke')->name('ckeditor.upload');
