@@ -1632,7 +1632,7 @@ class HomeController extends Controller
             [
                 'sel_job_type' => 'required',
                 'industry' => 'required|exists:industries,id',
-                'job_title' =>['required','min:2','max:255', new AlphaNumericSpace()],
+                'job_title' =>['required','min:2','max:255'],
                 'sel_experience' => 'required',
             ]);
         $candidate = NewCandidate::where('id', session()->get('candidate_id'))->first();
