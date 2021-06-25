@@ -94,6 +94,7 @@
     <script type="text/javascript" src="{{asset('new-panel\user-panel/assets\scripts\main.js')}}"></script>
     <script type="text/javascript" src="{{asset('new-panel\user-panel\assets\scripts\functions.js')}}"></script>
     <script src="{{asset('new-panel\user-panel\assets\scripts\file-input\sortable.js')}}" type="text/javascript"></script>
+    <script src="{{asset('new-panel\user-panel\assets\scripts\file-input\fileinput.js')}}" type="text/javascript"></script>
     <script src="{{asset('new-panel\user-panel\assets\scripts\file-input\theme.js')}}" type="text/javascript"></script>
     <script type="text/javascript" src="{{asset('new-panel\user-panel\assets\scripts\jquery.tagsinput.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets\scripts\jquery.validate.js') }}"></script>
