@@ -17,6 +17,9 @@
     <link href="{{asset('new-panel/user-panel/assets/file-input/fileinput.css')}}" media="all" rel="stylesheet" type="text/css"/>
     <link href="{{asset('new-panel/user-panel/assets/file-input/theme.css')}}" media="all" rel="stylesheet" type="text/css"/>
 
+    <script type="text/javascript" src="{{asset('new-panel\user-panel/assets\scripts\main.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
 
 
     @yield('css')
@@ -90,20 +93,18 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="{{ asset('user/script/jquery.js') }}"></script>
+    <!-- <script type="text/javascript" src="{{ asset('user/script/jquery.js') }}"></script> -->
 
-{{--    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>--}}
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{env("GOOGLE_API")}}&libraries=places" ></script>
-    <script async src="{{asset('google-map.js')}}"></script>
-    <script type="text/javascript" src="{{asset('new-panel\user-panel/assets\scripts\main.js')}}"></script>
-    <script type="text/javascript" src="{{asset('new-panel\user-panel\assets\scripts\functions.js')}}"></script>
+    <script async type="text/javascript" src="{{asset('google-map.js')}}"></script>
     <script src="{{asset('new-panel\user-panel\assets\scripts\file-input\sortable.js')}}" type="text/javascript"></script>
     <script src="{{asset('new-panel\user-panel\assets\scripts\file-input\fileinput.js')}}" type="text/javascript"></script>
     <script src="{{asset('new-panel\user-panel\assets\scripts\file-input\theme.js')}}" type="text/javascript"></script>
     <script type="text/javascript" src="{{asset('new-panel\user-panel\assets\scripts\jquery.tagsinput.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets\scripts\jquery.validate.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets\scripts\additional-methods.min.js') }}"></script>
-{{--    <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaifbsayz8l_Lfs1ZdE3MywHPzy046cIA&libraries=places" ></script>--}}
+    <script type="text/javascript" src="{{asset('new-panel\user-panel\assets\scripts\functions.js')}}"></script>
+<!-- <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaifbsayz8l_Lfs1ZdE3MywHPzy046cIA&libraries=places" ></script> -->
 
     <script  src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @include('partials.additional_validator')
