@@ -123,7 +123,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 {{--    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>--}}
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
+    <script src="{{asset('ckeditor.js')}}"></script>
 {{--    <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>--}}
 
     <!-- include summernote css/js -->
@@ -131,7 +131,7 @@
 
 {{--    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>--}}
 
-    <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaifbsayz8l_Lfs1ZdE3MywHPzy046cIA&libraries=places" ></script>
+    <script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_API')}}&libraries=places" ></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
     <script src="{{asset('google-map.js')}}"></script>

@@ -32,7 +32,8 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Your Company Name</label>
-                                            <input type="text" name="company_name" class="form-control" placeholder=""
+                                            <input type="text" name="company_name" class="form-control"
+                                                   placeholder="Ccmpany Name"
                                                    value="{{$client->company_name}}">
                                         </div>
                                         @error('company_name')
@@ -43,7 +44,8 @@
                                         <div class="form-group">
                                             <label>Your Full Name</label>
                                             <input name="name" value="{{$client->name}}" type="text"
-                                                   class="form-control" placeholder="">
+                                                   class="form-control"
+                                                   placeholder="Full Name">
                                         </div>
                                         @error('name')
                                         <label class="error">{{$message}}</label>
@@ -53,7 +55,8 @@
                                         <div class="form-group">
                                             <label>Your Title</label>
                                             <input value="{{$client->job_title}}" name="job_title" type="text"
-                                                   class="form-control" placeholder="">
+                                                   class="form-control"
+                                                   placeholder="Title">
                                         </div>
                                         @error('job_title')
                                         <label class="error">{{$message}}</label>
@@ -63,7 +66,8 @@
                                         <div class="form-group">
                                             <label>Phone Number</label>
                                             <input name="phone" id="phone" value="{{$client->phone}}" type="text"
-                                                   class="form-control" placeholder="">
+                                                   class="form-control"
+                                                   placeholder="Phone Number">
                                         </div>
                                         @error('phone')
                                         <label class="error">{{$message}}</label>
@@ -73,7 +77,8 @@
                                         <div class="form-group">
                                             <label>Email</label>
                                             <input disabled name="email" value="{{$client->email}}" type="text"
-                                                   class="form-control" placeholder="">
+                                                   class="form-control"
+                                                   placeholder="">
                                         </div>
                                         @error('email')
                                         <label class="error">{{$message}}</label>
@@ -83,7 +88,8 @@
                                         <div class="form-group">
                                             <label>Address</label>
                                             <input name="address" id="address" value="{{$client->address}}" type="text"
-                                                   class="form-control" placeholder="">
+                                                   class="form-control"
+                                                   placeholder="Address">
                                             @error('address')
                                             <label class="error">{{$message}}</label>
                                             @enderror
@@ -133,7 +139,8 @@
                                             <div class="form-group">
                                                 <label>Location</label>
                                                 <input name="complete_address" id="location" type="text"
-                                                       class="form-control" placeholder=""
+                                                       class="form-control"
+                                                       placeholder="Location"
                                                        value="{{$client->complete_address}}">
                                                 @error('complete_address')
                                                 <label class="error">{{$message}}</label>
@@ -149,7 +156,7 @@
                                         <div class="form-group">
                                             <label>Zip Code</label>
                                             <input name="zip_code" id="zip_code" type="text" class="form-control"
-                                                   placeholder="" value="{{$client->zip_code}}">
+                                                   placeholder="Zip Code" value="{{$client->zip_code}}">
                                         </div>
                                         @error('zip_code')
                                         <label class="error">{{$message}}</label>
@@ -158,7 +165,8 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Website Address <small>(http://www.example.com)</small></label>
-                                            <input name="web_url" type="text" class="form-control" placeholder=""
+                                            <input name="web_url" type="text" class="form-control"
+                                                   placeholder="Website Address"
                                                    value="{{$client->web_url}}">
                                         </div>
                                         @error('web_url')

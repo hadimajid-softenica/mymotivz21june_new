@@ -231,13 +231,13 @@ class HomeController extends Controller
         $request->validate(
             [
                 'full_name' => 'required|regex:/^[a-zA-Z ]+$/u|max:20',
-                'job_title' => ['required','min:2','max:255', new AlphaNumericSpace()],
-                'phone_no' => ['required','min:14','max:14',new PhoneNumber()],
-                'linkedin_url' => ['nullable',new ValidUrl()],
+                'job_title' => ['required', 'min:2', 'max:255', new AlphaNumericSpace()],
+                'phone_no' => ['required', 'min:14', 'max:14', new PhoneNumber()],
+                'linkedin_url' => ['nullable', new ValidUrl()],
 //               'location' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
                 'location' => 'required',
-                'package' => ['required','min:1','max:20', new CurrencyValidation()],
-                'package_to' => ['nullable','min:1','max:20', new CurrencyValidation()],
+                'package' => ['required', 'min:1', 'max:20', new CurrencyValidation()],
+                'package_to' => ['nullable', 'min:1', 'max:20', new CurrencyValidation()],
                 'skills' => 'nullable|max:500',
                 'interest' => 'nullable|max:255',
                 'sel_experience' => 'required|not_in:0',
@@ -454,28 +454,28 @@ class HomeController extends Controller
         }
 
 
-        $find_saved_jobs=favourite_job::where(function ($query) use ($request){
-                $query->where('candidate_id', session()->get('candidate_id'));
+        $find_saved_jobs = favourite_job::where(function ($query) use ($request) {
+            $query->where('candidate_id', session()->get('candidate_id'));
 
-                    $query->whereHas('job',function ($query) use ($request){
-                        if (!is_null($request->place)) {
-                            $place=$request->place;
-                            $query->where('location','like',"%$place%");
-                        }
-                        if (!is_null($request->job_title)) {
-                            $job_title=$request->job_title;
-                            $query->where('job_title','like',"%$job_title%");
+            $query->whereHas('job', function ($query) use ($request) {
+                if (!is_null($request->place)) {
+                    $place = $request->place;
+                    $query->where('location', 'like', "%$place%");
+                }
+                if (!is_null($request->job_title)) {
+                    $job_title = $request->job_title;
+                    $query->where('job_title', 'like', "%$job_title%");
 
-                        }
-                    });
+                }
+            });
 
-            })
+        })
             ->orderBy('created_at', 'DESC')
             ->offset($start)
             ->limit($request->length)
             ->get();
-        $f=$find_saved_jobs;
-        if($find_saved_jobs) {
+        $f = $find_saved_jobs;
+        if ($find_saved_jobs) {
             $f = $find_saved_jobs->load(['job', 'job.client']);
         }
         $arrayName = array('0' => '', '1' => $f->toArray());
@@ -553,21 +553,21 @@ class HomeController extends Controller
         } else {
             $start = ($request->current - 1) * $request->length;
         }
-        $find_applied_jobs_query=Applied_Jobs::with('Job', 'Job.Client', 'Job.industry')
+        $find_applied_jobs_query = Applied_Jobs::with('Job', 'Job.Client', 'Job.industry')
             ->where('candidate_id', session()->get('candidate_id'))
-            ->where(function ($query) use ($request){
-                            if(!empty($request->job_title)){
-                                $query->whereHas('job',function ($query) use ($request){
-                                    $query->where('job_title', 'LIKE', '%' . $request->job_title . '%');
-                                });
-                            }
-                            if(!empty($request->place)){
-                                $query->whereHas('job',function ($query) use ($request){
-                                    $query->where('location', 'LIKE', '%' . $request->place . '%');
-                                });
-                            }
-        });
-        $find_applied_jobs=$find_applied_jobs_query
+            ->where(function ($query) use ($request) {
+                if (!empty($request->job_title)) {
+                    $query->whereHas('job', function ($query) use ($request) {
+                        $query->where('job_title', 'LIKE', '%' . $request->job_title . '%');
+                    });
+                }
+                if (!empty($request->place)) {
+                    $query->whereHas('job', function ($query) use ($request) {
+                        $query->where('location', 'LIKE', '%' . $request->place . '%');
+                    });
+                }
+            });
+        $find_applied_jobs = $find_applied_jobs_query
             ->orderBy('created_at', 'DESC')
             ->offset($start)
             ->limit($request->length)
@@ -987,13 +987,13 @@ class HomeController extends Controller
         $request->validate(
             [
                 'full_name' => 'required|regex:/^[a-zA-Z ]+$/u|max:255',
-                'job_title' => ['required','min:2','max:255', new AlphaNumericSpace()],
+                'job_title' => ['required', 'min:2', 'max:255', new AlphaNumericSpace()],
                 'phone_no' => 'required|regex:/^[0-9\-\(\)\s]+$/|min:14|max:14',
                 'email' => 'required|email|max:255',
 //                'location' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
                 'location' => 'required',
-                'package' => ['required','min:1','max:20', new CurrencyValidation()],
-                'package_to' => ['nullable','min:1','max:20', new CurrencyValidation()],
+                'package' => ['required', 'min:1', 'max:20', new CurrencyValidation()],
+                'package_to' => ['nullable', 'min:1', 'max:20', new CurrencyValidation()],
                 'sel_education' => 'required|not_in:0',
                 'industry' => 'required',
                 'sel_job_type' => 'required|not_in:0',
@@ -1129,16 +1129,16 @@ class HomeController extends Controller
 //        dd($request->all());
 
         $request->validate([
-            'company_name' => ['required',new AlphaNumericSpace(),'min:1','max:255'],
-            'name' => ['required', new AlphaSpace() ,'min:1', 'max:255'],
+            'company_name' => ['required', new AlphaNumericSpace(), 'min:1', 'max:255'],
+            'name' => ['required', new AlphaSpace(), 'min:1', 'max:255'],
             'address' => 'required|max:255',
 //            'country' => 'required',
 //            'city' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
 //           'state' => 'required',
             'complete_address' => [new ValidLocation()],
             'zip_code' => 'required|regex:/^[0-9]*$/|min:2|max:255',
-            'job_title' => ['required','min:2','max:255', new AlphaNumericSpace()],
-            'phone' => ['required','min:14','max:14',new PhoneNumber()],
+            'job_title' => ['required', 'min:2', 'max:255', new AlphaNumericSpace()],
+            'phone' => ['required', 'min:14', 'max:14', new PhoneNumber()],
             'web_url' => ['required', new ValidUrl()],
             'industry' => 'required',
             'job_discription' => 'max:500',
@@ -1314,14 +1314,14 @@ class HomeController extends Controller
     public function submitRecruitmentService(Request $request)
     {
         $request->validate([
-            'jobtitle' => ['required','min:2','max:255',new AlphaNumericSpace()],
+            'jobtitle' => ['required', 'min:2', 'max:255', new AlphaNumericSpace()],
             'education' => 'required',
 //            'location' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
             'location' => 'required',
 //            'web_url' => 'required|url',
             'web_url' => ['required', new ValidUrl()],
-            'package' => ['required','min:1','max:20', new CurrencyValidation()],
-            'package_to' => ['nullable','min:1','max:20', new CurrencyValidation()],
+            'package' => ['required', 'min:1', 'max:20', new CurrencyValidation()],
+            'package_to' => ['nullable', 'min:1', 'max:20', new CurrencyValidation()],
             'salary_duration' => 'required',
             'industry' => 'required',
             'service' => 'required',
@@ -1516,6 +1516,16 @@ class HomeController extends Controller
 
     public function submitEditJobDetails(JobDetailRequest $request, $id)
     {
+//        $str = explode('<', $request->job_discription);
+//        if(strpos($request->job_discription, 'href') !== false){
+//            echo "Word Found!";
+//        } else{
+//            echo "Word Not Found!";
+//        }
+//
+//        dd($str);
+//        dd($request->job_discription);
+
         $user = NewClient::find(session('c_email.id'));
         $job = $user->user_jobs->find($id);
 
@@ -1573,11 +1583,11 @@ class HomeController extends Controller
     {
         $request->validate(
             [
-                'full_name' => ['required',new AlphaSpace(),'max:255','min:3'],
-                'phone_no' => ['required',new PhoneNumber(),'min:14','max:14'],
-                'email' => ['required','email'],
-                'linkedin_url' => ['nullable',new ValidUrl()],
-                'location' => ['required','max:255',new ValidLocation()],
+                'full_name' => ['required', new AlphaSpace(), 'max:255', 'min:3'],
+                'phone_no' => ['required', new PhoneNumber(), 'min:14', 'max:14'],
+                'email' => ['required', 'email'],
+                'linkedin_url' => ['nullable', new ValidUrl()],
+                'location' => ['required', 'max:255', new ValidLocation()],
                 'auth_status' => 'required',
                 'resume' => 'mimes:doc,docx,pdf',
             ]);
@@ -1632,7 +1642,7 @@ class HomeController extends Controller
             [
                 'sel_job_type' => 'required',
                 'industry' => 'required|exists:industries,id',
-                'job_title' =>['required','min:2','max:255'],
+                'job_title' => ['required', 'min:2', 'max:255'],
                 'sel_experience' => 'required',
             ]);
         $candidate = NewCandidate::where('id', session()->get('candidate_id'))->first();
@@ -1683,8 +1693,8 @@ class HomeController extends Controller
 //        dd($request->all());
         $request->validate(
             [
-                'package' => ['required','min:1','max:20',new CurrencyValidation()],
-                'package_to' => ['nullable','min:1','max:20',new CurrencyValidation()],
+                'package' => ['required', 'min:1', 'max:20', new CurrencyValidation()],
+                'package_to' => ['nullable', 'min:1', 'max:20', new CurrencyValidation()],
             ]);
         $candidate = NewCandidate::where('id', session()->get('candidate_id'))->first();
         $candidate->salary_sign = $request->hidd_curr_sign;

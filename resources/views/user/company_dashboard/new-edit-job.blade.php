@@ -263,22 +263,24 @@
     <script>
         var editor = null;
         ClassicEditor.create(document.querySelector("#job_discription"), {
-            toolbar: [
-                "heading",
-                "fontFamily",
-                "|",
-                "bold",
-                "italic",
-                "link",
-                "bulletedList",
-                "numberedList",
-                "blockQuote",
-                "undo",
-                "redo",
-                "|",
-                "contenteditable",
-                // "tableColumn",
-            ],
+            toolbar: {
+                items:[
+                    "heading",
+                    "fontFamily",
+                    "|",
+                    "bold",
+                    "italic",
+                    "link",
+                    "bulletedList",
+                    "numberedList",
+                    "blockQuote",
+                    "undo",
+                    "redo",
+                    "|",
+                    "contenteditable",
+                    // "tableColumn",
+                ],
+            },
         });
     </script>
     <script>

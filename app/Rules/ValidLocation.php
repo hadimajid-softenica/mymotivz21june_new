@@ -25,7 +25,7 @@ class ValidLocation implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/^[A-Za-z\p{L}0-9,.\/\\\# \-]+$/i',$value);
+        return preg_match('/^[^\~!@#$%\^&*()+{};"\'|<>`]+$/i',$value);
     }
 
     /**
