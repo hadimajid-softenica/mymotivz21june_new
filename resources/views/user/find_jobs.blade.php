@@ -341,6 +341,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script>
+    var formTest;
     $('#form-job-apply').submit(function () {
         if($(document.activeElement).attr('type') == 'submit')
             return true;
@@ -502,7 +503,7 @@
         });
 
         $('#exampleModal').on('hidden.bs.modal', function () {
-            $('#form-job-apply')[0].reset();
+            // $('#form-job-apply')[0].reset();
             $("#form-job-apply").validate().resetForm()
         });
 
@@ -852,6 +853,7 @@
                 var json = JSON.parse(response);
 
                 var job = json[0];
+                console.log(job);
                 var candidate = json[1];
                 var candidate_resumes = json[2];
                 var job_check = json[3];
@@ -1100,6 +1102,10 @@
 
 
             },
+            error: function (response) {
+                $.unblockUI();
+                alert('some error has occurred.')
+            }
         });
     }
 
@@ -1186,6 +1192,13 @@
                         text: "Email sent successfully.",
                         icon: "success",
                     });
+                    }else{
+                        $.unblockUI();
+                        sweetAlert({
+                            title: "Error",
+                            text: "Some error has occurred.",
+                            icon: "error",
+                        });
                     }
                 },
             });
@@ -1193,21 +1206,22 @@
 
     function setPackageType(package){
 
-    	if(package == 'Per Year'){
-    		return 'annually'
-    	}
-    	else if(package == 'Per Day'){
-    		return 'daily'
-    	}
-    	else if(package == 'Per Month'){
-    		return 'monthly'
-    	}
-    	else if(package == 'Per Week'){
-    		return 'weekly'
-    	}
-    	else if(package == 'Per Hour'){
-    		return 'hourly'
-    	}
+        return package;
+    	// if(package == 'Per Year'){
+    	// 	return 'annually'
+    	// }
+    	// else if(package == 'Per Day'){
+    	// 	return 'daily'
+    	// }
+    	// else if(package == 'Per Month'){
+    	// 	return 'monthly'
+    	// }
+    	// else if(package == 'Per Week'){
+    	// 	return 'weekly'
+    	// }
+    	// else if(package == 'Per Hour'){
+    	// 	return 'hourly'
+    	// }
     }
 
 </script>

@@ -3,8 +3,11 @@
 @section('content')
     <div class="app-main__inner">
         @if( session()->has('success') )
-            <div style="text-align: center" class="alert alert-success">
+            <div style="text-align: center" class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session()->get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         @endif
         <div class="card-header-tab card-header">
@@ -251,11 +254,11 @@
                                                     <div class="input-group mb-3 div_package_to">
                                                         <select style="font-size: 12px;" name="salary_duration"
                                                                 id="salary_duration" class="form-control">
-                                                            <option value="Per Hour">hourly</option>
-                                                            <option value="Per Day">daily</option>
-                                                            <option value="Per Week">weekly</option>
-                                                            <option value="Per Month">monthly</option>
-                                                            <option value="Per Year">annually</option>
+                                                            <option value="hourly">hourly</option>
+                                                            <option value="daily">daily</option>
+                                                            <option value="weekly">weekly</option>
+                                                            <option value="monthly">monthly</option>
+                                                            <option value="annually">annually</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -265,7 +268,7 @@
 
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Job Benefits</label>
+                                            <label>Job Benefits (Optional)</label>
                                             <input type="text" name="job_benefits" id="job_benefits"
                                                    class="tags_1 tags form-control"
                                                    placeholder="Use comma or enter to separate benefits"
@@ -280,7 +283,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Required Skills</label>
+                                            <label>Required Skills (Optional)</label>
                                             <input name="required_skills" id="required_skills" type="text"
                                                    class="tags_1 tags form-control"
                                                    placeholder="Use comma or enter to separate skills"
@@ -295,7 +298,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Licensure/Certification</label>
+                                            <label>Licensure/Certification (Optional)</label>
                                             <input type="text" name="required_certification" id="required_certification"
                                                    class="tags_1 tags form-control"
                                                    placeholder="Use comma or enter to separate certification"
@@ -310,7 +313,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Job Description</label>
+                                            <label>Job Description (Optional)</label>
                                             {{--                                            <div id="job_discription"></div>--}}
                                             <textarea name="job_discription" id="job_discription"
                                                       class="form-control tinymce"
@@ -342,6 +345,12 @@
 
         var editor = null;
         ClassicEditor.create(document.querySelector("#job_discription"), {
+            heading: {
+                options: [
+                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    { model: 'heading3', view: 'h3', title: 'Heading', class: 'ck-heading_heading3' },
+                ]
+            },
             toolbar: {
                 items: [
                     "heading",
@@ -803,7 +812,7 @@
                         required: "Select the Number of Hires.",
                     },
                     applied_before: {
-                        required: "Select the Apply Before date.",
+                        required: "Select the apply before date.",
                         date: "Select valid date.",
                         greaterThanToday: "Apply before date should must be a date after today."
                     },

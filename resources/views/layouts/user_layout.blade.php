@@ -19,8 +19,10 @@
     <link href="{{ asset('user/style.css') }}" rel="stylesheet">
     <link href="{{ asset('user/css/responsive.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('/css/bootstrap-tagsinput.css')}}">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+<script type="text/javascript" src="{{ asset('user/script/jquery.js') }}"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{env("GOOGLE_API")}}&libraries=places" ></script>
+<script async src="{{asset('google-map.js')}}"></script>
 
 
 </head>
@@ -591,9 +593,6 @@
 
 
 <!-- jQuery (necessary for JavaScript plugins) -->
-<script type="text/javascript" src="{{ asset('user/script/jquery.js') }}"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{env("GOOGLE_API")}}&libraries=places" ></script>
-<script async src="{{asset('google-map.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script type="text/javascript" src="{{ asset('assets/scripts/jquery.validate.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/scripts/additional-methods.min.js') }}"></script>

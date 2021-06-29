@@ -123,6 +123,7 @@ Route::group(['prefix' => 'candidate', 'middleware' => ['CustomAuth', 'Candidate
 });
 /*Routes for Non loggedin to Apply for Job */
 Route::post('/job/apply/verify-email', 'User\HomeController@jobApplyVerifyEmail')->name('user.job.apply.verify.mail');
+Route::post('/job/apply/resend-code', 'User\HomeController@resendCode')->name('user.job.apply.resend.code');
 Route::post('/job/apply/verify-code', 'User\HomeController@chkVerifyEmailCode')->name('job.apply.verify.mail.code');
 Route::post('/job/apply/non-verify', 'User\HomeController@nonLoggedinJobApply')->name('job.apply.non.verify');
 
@@ -497,13 +498,26 @@ Route::prefix('admin')->group(function () {
 
 
     Route::post('/sub-admin/resume/delete', 'AdminController@sub_admin_resume_delete')->name('sub_admin_resume_delete')->middleware('auth');
-
-
 });
 
 Route::get('/test', function () {
-    Artisan::call('optimize:clear');
-    return response()->json(['mes' => "clear"]);
+
+    \App\NewCandidate::where('salary_type','=','Per Hour')
+        ->update(['salary_type' => 'hourly']);
+    \App\NewCandidate::where('salary_type','=','Per Day')
+        ->update(['salary_type' => 'daily']);
+    \App\NewCandidate::where('salary_type','=','Per Month')
+        ->update(['salary_type' => 'monthly']);
+    \App\NewCandidate::where('salary_type','=','Per Week')
+        ->update(['salary_type' => 'weekly']);
+    \App\NewCandidate::where('salary_type','=','Per Year')
+        ->update(['salary_type' => 'yearly']);
+
+    return 1;
+//    Artisan::call('optimize:clear');
+//    return response()->json(['mes' => "clear"]);
 })->name('clear-cache');
+
+
 
 //Route::post('post/ckeditor/upload', 'mailController@upload_image_cke')->name('ckeditor.upload');

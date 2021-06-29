@@ -8,17 +8,18 @@
 
         <!--// Main Section \\-->
         <div class="motivz-main-section">
-            @if(Session::has('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{Session::get('success')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
+                        @if(Session::has('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{Session::get('success')}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <br>
+                        @endif
                         <div class="contact-heading">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">

@@ -84,11 +84,11 @@
                                                 <div class="col-md-2">
                                                     <div class="input-group mb-3 div_package_to">
                                                         <select style="font-size: 13px;" name="salary_duration" id="salary_duration" class="form-control">
-                                                            <option value="Per Hour" {{ ( $Candidate->salary_type == 'Per Hour') ? 'selected' : '' }}>Per Hour</option>
-                                                            <option value="Per Day" {{ ( $Candidate->salary_type == 'Per Day') ? 'selected' : '' }}>Per Day</option>
-                                                            <option value="Per Week" {{ ( $Candidate->salary_type == 'Per Week') ? 'selected' : '' }}>Per Week</option>
-                                                            <option value="Per Month" {{ ( $Candidate->salary_type == 'Per Month') ? 'selected' : '' }}>Per Month</option>
-                                                            <option value="Per Year" {{ ( $Candidate->salary_type == 'Per Year') ? 'selected' : '' }}>Per Year</option>
+                                                            <option value="hourly" {{ ( $Candidate->salary_type == 'hourly') ? 'selected' : '' }}>hourly</option>
+                                                            <option value="daily" {{ ( $Candidate->salary_type == 'daily') ? 'selected' : '' }}>daily</option>
+                                                            <option value="weekly" {{ ( $Candidate->salary_type == 'weekly') ? 'selected' : '' }}>weekly</option>
+                                                            <option value="monthly" {{ ( $Candidate->salary_type == 'monthly') ? 'selected' : '' }}>monthly</option>
+                                                            <option value="annually" {{ ( $Candidate->salary_type == 'annually') ? 'selected' : '' }}>annually</option>
                                                         </select>
                                                     </div>
                                                 </div>

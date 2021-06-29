@@ -148,10 +148,12 @@
 	.header-btn { width: 100%; background: #f7f7f7; text-align: center; }
 	.mymotivz-nav > .navbar { padding: 12px; }
 	.navbar-nav > li { margin: 0px; }
+	.mm-motivz-jobdetail-content .like-wrap {margin: -5px 140px 0px 0px}
 }
 
 /* Media 420Px Start */
 @media (max-width: 767px) {
+	.mm-motivz-jobdetail-content .like-wrap {margin: -5px 140px 0px 0px}
 	.header-btn { width: 100%; background: #f7f7f7; text-align: center; }
 	.mymotivz-nav > .navbar { padding: 12px; }
 	.navbar-nav > li { margin: 0px; }
@@ -187,7 +189,7 @@
      left: 0;
 	}
 	.motivz-jobdetails-wrapper .like-wrap {position: relative; top: unset; right: unset; margin: 0px 6px 0px 10px; }
-	.mm-motivz-jobdetail-content .apply-btn { float: right; }
+	.mm-motivz-jobdetail-content .apply-btn { position: absolute;top: 10px;right: 10px; }
 	.contact-sidecontent ul li { width: unset !important; float: none; display: inline-block; }
 	.motivz-jobdetails-wrapper .apply-btn { right: 0; top: 0; }
 	.motivz-table-responsives table { width: 1000px !important; }

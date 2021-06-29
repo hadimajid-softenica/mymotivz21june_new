@@ -26,74 +26,6 @@
                                             </li>
                                         </ul>
                                     </div>
-
-{{--                                <div class="job-filters-top">--}}
-{{--                                    <ul>--}}
-{{--                                        <li>--}}
-{{--                                            <select class="form-control">--}}
-{{--                                                <option value="Full-Time">Full-Time</option>--}}
-{{--                                                <option value="Part-Time">Part-Time</option>--}}
-{{--                                                <option value="Contract">Contract</option>--}}
-{{--                                                <option value="Contract to Hire">Contract to Hire</option>--}}
-{{--                                                <option value="Seasonal">Seasonal</option>--}}
-{{--                                                <option value="Internship">Internship</option>--}}
-{{--                                            </select>--}}
-{{--                                        </li>--}}
-{{--                                        <li>--}}
-{{--                                            <select class="form-control date_filter" name="date_filter" id="date_filter">--}}
-{{--                                                <option value="" selected="">Select Date</option>--}}
-{{--                                                <option value="1 hour">Last Hour</option>--}}
-{{--                                                <option value="24 hour">Last 24 hours</option>--}}
-{{--                                                <option value="7 days">Last 7 days</option>--}}
-{{--                                                <option value="14 days">Last 14 days</option>--}}
-{{--                                                <option value="30 days">Last 30 days</option>--}}
-{{--                                                <option value="All">All</option>--}}
-{{--                                            </select>--}}
-{{--                                        </li>--}}
-{{--                                        <li>--}}
-{{--                                            <select class="form-control">--}}
-{{--                                                <option value="1">Aerospace &amp; Defense</option>--}}
-{{--                                                <option value="2">Agriculture </option>--}}
-{{--                                                <option value="3">Arts, Entertainment &amp; Recreation</option>--}}
-{{--                                                <option value="4">Automotive </option>--}}
-{{--                                                <option value="5">Construction &amp; Facilities Services</option>--}}
-{{--                                                <option value="6">Education </option>--}}
-{{--                                                <option value="7">Energy, Mining &amp; Utilities</option>--}}
-{{--                                                <option value="8">Financial Services </option>--}}
-{{--                                                <option value="9">Government &amp; Public Administration </option>--}}
-{{--                                                <option value="10">Health Care </option>--}}
-{{--                                                <option value="11">Hotels &amp; Travel Accommodation</option>--}}
-{{--                                                <option value="12">Human Resources &amp; Staffing</option>--}}
-{{--                                                <option value="13">Information Technology </option>--}}
-{{--                                                <option value="14">Insurance </option>--}}
-{{--                                                <option value="15">Legal</option>--}}
-{{--                                                <option value="16">Management &amp; Consulting</option>--}}
-{{--                                                <option value="17">Manufacturing </option>--}}
-{{--                                                <option value="18">Media &amp; Communication </option>--}}
-{{--                                                <option value="19">Non-Profit &amp; NGO</option>--}}
-{{--                                                <option value="20">Personal Consumer Services </option>--}}
-{{--                                                <option value="21">Pharmaceuticals &amp; Biotechnology</option>--}}
-{{--                                                <option value="22">Real Estate</option>--}}
-{{--                                                <option value="23">Restaurants &amp; Food Service</option>--}}
-{{--                                                <option value="24">Retail &amp; Wholesale</option>--}}
-{{--                                                <option value="25">Telecommunications </option>--}}
-{{--                                                <option value="26">Transportation &amp; Logistics</option>--}}
-{{--                                            </select>--}}
-{{--                                        </li>--}}
-{{--                                        <li>--}}
-{{--                                            <select class="form-control">--}}
-{{--                                                <option value="Intern">Intern</option>--}}
-{{--                                                <option value="Entry Level">Entry Level</option>--}}
-{{--                                                <option value="Intermediate">Intermediate</option>--}}
-{{--                                                <option value="Experienced">Experienced</option>--}}
-{{--                                                <option value="Managerial">Managerial</option>--}}
-{{--                                                <option value="Directorship">Directorship</option>--}}
-{{--                                                <option value="Executive">Executive</option>--}}
-{{--                                                <option value="Senior Executive">Senior Executive</option>--}}
-{{--                                            </select>--}}
-{{--                                        </li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
                             </div>
                         </div>
                     </div>
@@ -106,27 +38,7 @@
                         <div class="card-body">
                             <div class="motivz-job-list">
                                 <ul class="row" id="searched-jobslist">
-{{--                                    <li class="col-md-12">--}}
-{{--                                        <div class="motivz-joblisting-classic-wrap">--}}
-{{--                                            <figure><a href="/job/details/42"><img src="http://www.mymotivz2.development-env.com/user/company_logo/capture-2021_01_11-22-08-35.jpg" alt=""></a></figure>--}}
-{{--                                            <div class="motivz-joblisting-text">--}}
-{{--                                                <div class="motivz-list-option">--}}
-{{--                                                    <h2><a href="/job/details/42">Ipsum Lorem Job</a></h2>--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li><a href="/job/details/42">@ Testing</a></li>--}}
-{{--                                                        <li><i class="fa fa-globe"></i> Harum dolore rerum q</li>--}}
-{{--                                                        <li><i class="fa fa-filter"></i> Manufacturing </li>--}}
-{{--                                                        <li><i class="fa fa-briefcase"></i> Full-Time</li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="motivz-job-userlist">--}}
-{{--                                                    <a href="/job/details/32" class="btn motivz-option-btn">View Details</a>--}}
-{{--                                                    <a href="javascript:void(0)" class="motivz-job-like"><i onclick="save_fav_job(32)" class="fa fa-heart icon_32"></i></a>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="clearfix"></div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </li>--}}
+
                                 </ul>
                                 <div class="pagination-wrap">
                                     <div class="box">
@@ -135,7 +47,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -154,34 +65,8 @@
 
     <script>
         $(document).ready(function () {
-
-            // function initialize() {
-            //     alert('applied jobs')
-            //     var input = document.getElementById('search_place');
-            //     var options = {
-            //         types: ['(regions)'] //this should work !
-            //     };
-            //
-            //     var autocomplete = new google.maps.places.Autocomplete(input, options);
-            //     autocomplete.setComponentRestrictions(
-            //         {'country': ['us']});
-            // }
-            // google.maps.event.addDomListener(window, 'load', initialize);
-
             Fun(10);
         });
-
-        // function initialize() {
-        //     var input = document.getElementById('search_place');
-        //     var options = {
-        //         types: ['(regions)'] //this should work !
-        //     };
-        //
-        //     var autocomplete = new google.maps.places.Autocomplete(input, options);
-        //     autocomplete.setComponentRestrictions(
-        //         {'country': ['us']});
-        // }
-        // google.maps.event.addDomListener(window, 'load', initialize);
 
         function Fun(length) {
             // body...
@@ -227,6 +112,7 @@
                         var savedJobs = json[2]
 
                         var myJSON = json[1];
+                        console.log(myJSON);
                         // alert(myJSON);
                         var totalRe = json[0];
                         // var fav_job = json[2];
@@ -246,8 +132,6 @@
                             {
                                 html+=  '<figure><a href="/job/details/'+myJSON[i]['job_id']+'"><img src="'+window.location.origin+'/user/images/featured-img1.jpg" alt=""></a></figure>'
                             }
-
-
                                 html+='<div class="motivz-joblisting-text">'+
                                 '<div class="motivz-list-option">'+
                                 '<h2><a href="/job/details/'+myJSON[i]['job_id']+'">'+myJSON[i]['job']['job_title']+'</a></h2>'+

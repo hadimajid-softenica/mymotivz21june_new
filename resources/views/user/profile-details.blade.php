@@ -84,7 +84,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <input type="text" name="linkedin_url" class="form-control" placeholder="Add Linkedin Profile (optional)" value="@if(!empty($Candidate['linkedin_url'])){{$Candidate->linkedin_url}}@else{{old('linkedin_url')}}@endif">
+                                            <input type="text" name="linkedin_url" class="form-control" placeholder="Add Linkedin Profile (Optional)" value="@if(!empty($Candidate['linkedin_url'])){{$Candidate->linkedin_url}}@else{{old('linkedin_url')}}@endif">
                                             @error('linkedin_url')
                                             <label class="error">{{$message}}</label>
                                             @enderror
@@ -107,7 +107,7 @@
                                                     </a>--}}
                                                 @endforeach
                                             @else
-                                                <label>Upload your Resume</label>
+                                                <label>Upload your Resume (Optional)</label>
                                                 <div enctype="multipart/form-data">
                                                     <input id="file-upload-demo" name="resume" type="file">
                                                 </div>

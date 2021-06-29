@@ -121,8 +121,6 @@
                                                 @if($Candidate->skills !="")
                                                     @foreach(explode(',', $Candidate->skills) as $skill)
                                                         <span class="tag">{{$skill}}</span>
-                                                        {{--                                                <span class="tag">Lorem Ipsum</span>--}}
-                                                        {{--                                                <span class="tag">Lorem Ipsum</span>--}}
                                                     @endforeach
                                                 @endif
                                             </div>
@@ -132,9 +130,11 @@
                                         <div class="form-group">
                                             <label>Licensure/Certification</label>
                                             <div class="form-control">
-                                                <span class="tag">Lorem Ipsum</span>
-                                                <span class="tag">Lorem Ipsum</span>
-                                                <span class="tag">Lorem Ipsum</span>
+                                                @if($Candidate->certifications !="")
+                                                    @foreach(explode(',', $Candidate->certifications) as $certificate)
+                                                        <span class="tag">{{$certificate}}</span>
+                                                    @endforeach
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

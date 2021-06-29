@@ -1,4 +1,3 @@
-
 {{--{{dd($Candidate)}}--}}
 @extends('layouts.user1_layout')
 
@@ -29,20 +28,26 @@
             </div>
         @endif
         <div class="card-header-tab card-header">
-            <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="pe-7s-user mr-3 text-muted opacity-6" style="font-size: 35px; color: #4d9a10 !important;"> </i>Update your Profile</div>
+            <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i
+                        class="pe-7s-user mr-3 text-muted opacity-6"
+                        style="font-size: 35px; color: #4d9a10 !important;"> </i>Update your Profile
+            </div>
         </div>
         <div class="tabs-animation">
             <div class="row">
                 <div class="col-md-12">
                     <div class="main-card mb-3 card">
                         <div class="card-body">
-                            <form action="{{route('candidate.saveProfile')}}"  id="form_profile" enctype="multipart/form-data" method="POST">
+                            <form action="{{route('candidate.saveProfile')}}" id="form_profile"
+                                  enctype="multipart/form-data" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Full Name</label>
-                                            <input name="full_name" type="text" class="form-control" placeholder="Lorem Ipsum" value="@if(!is_null($Candidate['name'])){{$Candidate->name}}@else{{old('full_name')}}@endif">
+                                            <input name="full_name" type="text" class="form-control"
+                                                   placeholder="Lorem Ipsum"
+                                                   value="@if(!is_null($Candidate['name'])){{$Candidate->name}}@else{{old('full_name')}}@endif">
                                             @error('full_name')
                                             <label class="error">{{$message}}</label>
                                             @enderror
@@ -51,7 +56,9 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Phone Number</label>
-                                            <input type="text" name="phone_no" id="phone_no" class="form-control" placeholder="Lorem Ipsum" value="@if(!is_null($Candidate['phone'])){{$Candidate->phone}}@else{{old('phone_no')}}@endif">
+                                            <input type="text" name="phone_no" id="phone_no" class="form-control"
+                                                   placeholder="Lorem Ipsum"
+                                                   value="@if(!is_null($Candidate['phone'])){{$Candidate->phone}}@else{{old('phone_no')}}@endif">
 
                                             @error('phone_no')
                                             <label class="error">{{$message}}</label>
@@ -61,14 +68,18 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="text" name="email" class="form-control" placeholder="Lorem Ipsum" value="@if(!is_null($Candidate['email'])){{$Candidate->email}}@else{{old('email')}}@endif" readonly>
-
+                                            <input type="text" name="email" class="form-control"
+                                                   placeholder=""
+                                                   value="@if(!is_null($Candidate['email'])){{$Candidate->email}}@else{{old('email')}}@endif"
+                                                   readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Linkedin Profile (Optional)</label>
-                                            <input type="text" name="linkedin_url" class="form-control" placeholder="Lorem Ipsum" value="@if(!is_null($Candidate['linkedin_url'])){{$Candidate->linkedin_url}}@else{{old('linkedin_url')}}@endif">
+                                            <input type="text" name="linkedin_url" class="form-control"
+                                                   placeholder="Lorem Ipsum"
+                                                   value="@if(!is_null($Candidate['linkedin_url'])){{$Candidate->linkedin_url}}@else{{old('linkedin_url')}}@endif">
                                         </div>
                                         @error('linkedin_url')
                                         <label class="error">{{$message}}</label>
@@ -79,14 +90,38 @@
                                             <label>Experience</label>
                                             <select name="sel_experience" id="" class="form-control">
                                                 <option value="" selected disabled>Select Experience</option>
-                                                <option value="Intern" @if($Candidate->experience == 'Intern' )selected @endif>Intern</option>
-                                                <option value="Entry Level" @if($Candidate->experience == 'Entry Level' )selected @endif>Entry Level</option>
-                                                <option value="Intermediate" @if($Candidate->experience == 'Intermediate' )selected @endif>Intermediate</option>
-                                                <option value="Experienced" @if($Candidate->experience == 'Experienced' )selected @endif>Experienced</option>
-                                                <option value="Managerial" @if($Candidate->experience == 'Managerial' )selected @endif>Managerial</option>
-                                                <option value="Directorship" @if($Candidate->experience == 'Directorship' )selected @endif>Directorship</option>
-                                                <option value="Executive" @if($Candidate->experience == 'Executive' )selected @endif>Executive</option>
-                                                <option value="Senior Executive" @if($Candidate->experience == 'Senior Executive' )selected @endif>Senior Executive</option>
+                                                <option value="Intern"
+                                                        @if($Candidate->experience == 'Intern' )selected @endif>
+                                                    Intern
+                                                </option>
+                                                <option value="Entry Level"
+                                                        @if($Candidate->experience == 'Entry Level' )selected @endif>
+                                                    Entry Level
+                                                </option>
+                                                <option value="Intermediate"
+                                                        @if($Candidate->experience == 'Intermediate' )selected @endif>
+                                                    Intermediate
+                                                </option>
+                                                <option value="Experienced"
+                                                        @if($Candidate->experience == 'Experienced' )selected @endif>
+                                                    Experienced
+                                                </option>
+                                                <option value="Managerial"
+                                                        @if($Candidate->experience == 'Managerial' )selected @endif>
+                                                    Managerial
+                                                </option>
+                                                <option value="Directorship"
+                                                        @if($Candidate->experience == 'Directorship' )selected @endif>
+                                                    Directorship
+                                                </option>
+                                                <option value="Executive"
+                                                        @if($Candidate->experience == 'Executive' )selected @endif>
+                                                    Executive
+                                                </option>
+                                                <option value="Senior Executive"
+                                                        @if($Candidate->experience == 'Senior Executive' )selected @endif>
+                                                    Senior Executive
+                                                </option>
                                             </select>
                                             @error('sel_experience')
                                             <label class="error">{{$message}}</label>
@@ -128,50 +163,87 @@
                                                 <div class="col-md-4">
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text currecny_sign" id="inputGroup-sizing-default">{{$Candidate->salary_sign}}</span>
-                                                            <input type="hidden" id="hidd_curr_sign" name="hidd_curr_sign" value="{{$Candidate->salary_sign}}">
+                                                                <span class="input-group-text currecny_sign"
+                                                                      id="inputGroup-sizing-default">{{$Candidate->salary_sign}}</span>
+                                                            <input type="hidden" id="hidd_curr_sign"
+                                                                   name="hidd_curr_sign"
+                                                                   value="{{$Candidate->salary_sign}}">
                                                         </div>
 
-                                                        <input name="package" id="package" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="To" value="{{$Candidate->salary}}" >
+                                                        <input name="package" id="package" type="text"
+                                                               class="form-control" aria-label="Default"
+                                                               aria-describedby="inputGroup-sizing-default"
+                                                               placeholder="To" value="{{$Candidate->salary}}">
                                                     </div>
                                                 </div>
                                                 @error('package_to')
-                                                <label id="package_to-error" class="error" for="package_to">{{$message}}</label>
+                                                <label id="package_to-error" class="error"
+                                                       for="package_to">{{$message}}</label>
                                                 @enderror
                                                 <div class="col-md-4">
                                                     @if(empty($Candidate['salary_to']))
-                                                        <span id="add_range"   style=" text-align: center;margin: 12px 0px 0px;font-size: 17px;font-weight: 600;cursor: pointer;">+ Add Range</span>
+                                                        <span id="add_range"
+                                                              style=" text-align: center;margin: 12px 0px 0px;font-size: 17px;font-weight: 600;cursor: pointer;">+ Add Range</span>
                                                     @endif
-                                                    <div class="input-group mb-3 div_package_to" @if(empty($Candidate['salary_to'])) style="display: none" @endif>
+                                                    <div class="input-group mb-3 div_package_to"
+                                                         @if(empty($Candidate['salary_to'])) style="display: none" @endif>
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text currecny_sign" id="inputGroup-sizing-default">{{$Candidate->salary_sign}}</span>
-                                                            <input type="hidden" id="hidd_curr_sign" name="hidd_curr_sign" value="€">
+                                                                <span class="input-group-text currecny_sign"
+                                                                      id="inputGroup-sizing-default">{{$Candidate->salary_sign}}</span>
+                                                            <input type="hidden" id="hidd_curr_sign"
+                                                                   name="hidd_curr_sign" value="€">
                                                         </div>
-                                                        <input  name="package_to" id="package" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="" value="{{$Candidate->salary_to}}" >
+                                                        <input name="package_to" id="package" type="text"
+                                                               class="form-control" aria-label="Default"
+                                                               aria-describedby="inputGroup-sizing-default"
+                                                               placeholder="" value="{{$Candidate->salary_to}}">
                                                     </div>
                                                 </div>
                                                 @error('package_to')
-                                                <label id="package_to-error" class="error" for="package_to">{{$message}}</label>
+                                                <label id="package_to-error" class="error"
+                                                       for="package_to">{{$message}}</label>
                                                 @enderror
                                                 <div class="col-md-2">
-                                                    <div class="input-group mb-3 div_package_to" >
-                                                        <select style="font-size: 12px;" name="curr_sign" id="curr_sign" class="form-control">
-                                                            <option value="USD" {{ ( $Candidate->salary_sign == '$') ? 'selected' : '' }} >USD</option>
-                                                            <option value="CAD" {{ ( $Candidate->salary_sign == 'C$') ? 'selected' : '' }}>CAD</option>
-                                                            <option value="GBP" {{ ( $Candidate->salary_sign == '£') ? 'selected' : '' }}>GBP</option>
-                                                            <option value="EUR" {{ ( $Candidate->salary_sign == '€') ? 'selected' : '' }}>EUR</option>
-                                                            <option value="AUD" {{ ( $Candidate->salary_sign == 'A$') ? 'selected' : '' }}>AUD</option>
+                                                    <div class="input-group mb-3 div_package_to">
+                                                        <select style="font-size: 12px;" name="curr_sign"
+                                                                id="curr_sign" class="form-control">
+                                                            <option value="USD" {{ ( $Candidate->salary_sign == '$') ? 'selected' : '' }} >
+                                                                USD
+                                                            </option>
+                                                            <option value="CAD" {{ ( $Candidate->salary_sign == 'C$') ? 'selected' : '' }}>
+                                                                CAD
+                                                            </option>
+                                                            <option value="GBP" {{ ( $Candidate->salary_sign == '£') ? 'selected' : '' }}>
+                                                                GBP
+                                                            </option>
+                                                            <option value="EUR" {{ ( $Candidate->salary_sign == '€') ? 'selected' : '' }}>
+                                                                EUR
+                                                            </option>
+                                                            <option value="AUD" {{ ( $Candidate->salary_sign == 'A$') ? 'selected' : '' }}>
+                                                                AUD
+                                                            </option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="input-group mb-3 div_package_to">
-                                                        <select style="font-size: 12px;" name="salary_duration" id="salary_duration" class="form-control">
-                                                            <option value="Per Hour" {{ ( $Candidate->salary_type == 'Per Hour') ? 'selected' : '' }}>Per Hour</option>
-                                                            <option value="Per Day" {{ ( $Candidate->salary_type == 'Per Day') ? 'selected' : '' }}>Per Day</option>
-                                                            <option value="Per Week" {{ ( $Candidate->salary_type == 'Per Week') ? 'selected' : '' }}>Per Week</option>
-                                                            <option value="Per Month" {{ ( $Candidate->salary_type == 'Per Month') ? 'selected' : '' }}>Per Month</option>
-                                                            <option value="Per Year" {{ ( $Candidate->salary_type == 'Per Year') ? 'selected' : '' }}>Per Year</option>
+                                                        <select style="font-size: 12px;" name="salary_duration"
+                                                                id="salary_duration" class="form-control">
+                                                            <option value="hourly" {{ ( $Candidate->salary_type == 'hourly') ? 'selected' : '' }}>
+                                                                hourly
+                                                            </option>
+                                                            <option value="daily" {{ ( $Candidate->salary_type == 'daily') ? 'selected' : '' }}>
+                                                                daily
+                                                            </option>
+                                                            <option value="weekly" {{ ( $Candidate->salary_type == 'weekly') ? 'selected' : '' }}>
+                                                                weekly
+                                                            </option>
+                                                            <option value="monthly" {{ ( $Candidate->salary_type == 'monthly') ? 'selected' : '' }}>
+                                                                monthly
+                                                            </option>
+                                                            <option value="annually" {{ ( $Candidate->salary_type == 'annually') ? 'selected' : '' }}>
+                                                                annually
+                                                            </option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -183,12 +255,24 @@
                                             <label>Job Type</label>
                                             <select name="sel_job_type" id="" class="form-control">
                                                 <option value="" selected disabled>Select Job Type</option>
-                                                <option value="Full-time"  {{ $Candidate->job_type == 'Full-time' ? 'selected' : '' }}>Full-time</option>
-                                                <option value="Part-time"  {{ $Candidate->job_type == 'Part-time' ? 'selected' : '' }}>Part-time</option>
-                                                <option value="Contract"   {{ $Candidate->job_type == 'Contract' ? 'selected' : '' }}>Contract</option>
-                                                <option value="Contract to Hire"   {{ $Candidate->job_type == 'Contract to Hire' ? 'selected' : '' }}>Contract to Hire</option>
-                                                <option value="Seasonal" {{ $Candidate->job_type == 'Seasonal' ? 'selected' : '' }}>Seasonal</option>
-                                                <option value="Internship" {{ $Candidate->job_type == 'Internship' ? 'selected' : '' }}>Internship</option>
+                                                <option value="Full-time" {{ $Candidate->job_type == 'Full-time' ? 'selected' : '' }}>
+                                                    Full-time
+                                                </option>
+                                                <option value="Part-time" {{ $Candidate->job_type == 'Part-time' ? 'selected' : '' }}>
+                                                    Part-time
+                                                </option>
+                                                <option value="Contract" {{ $Candidate->job_type == 'Contract' ? 'selected' : '' }}>
+                                                    Contract
+                                                </option>
+                                                <option value="Contract to Hire" {{ $Candidate->job_type == 'Contract to Hire' ? 'selected' : '' }}>
+                                                    Contract to Hire
+                                                </option>
+                                                <option value="Seasonal" {{ $Candidate->job_type == 'Seasonal' ? 'selected' : '' }}>
+                                                    Seasonal
+                                                </option>
+                                                <option value="Internship" {{ $Candidate->job_type == 'Internship' ? 'selected' : '' }}>
+                                                    Internship
+                                                </option>
                                             </select>
                                             @error('sel_job_type')
                                             <label class="error">{{$message}}</label>
@@ -199,7 +283,9 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Job Location</label>
-                                            <input type="text" name="location" id="location" class="tags_1 tags form-control" value="@if(!is_null($Candidate['location'])){{$Candidate->location}}@else{{old('location')}}@endif">
+                                            <input type="text" name="location" id="location"
+                                                   class="tags_1 tags form-control"
+                                                   value="@if(!is_null($Candidate['location'])){{$Candidate->location}}@else{{old('location')}}@endif">
                                             @error('location')
                                             <label class="error">{{$message}}</label>
                                             @enderror
@@ -208,13 +294,17 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Job Title(s)</label>
-                                            <input type="text" name="job_title" id="job_title" class="tags_1 tags form-control" value="@if(!is_null($Candidate['job_title'])){{$Candidate->job_title}}@else{{old('job_title')}}@endif">
+                                            <input type="text" name="job_title" id="job_title"
+                                                   class="tags_1 tags form-control"
+                                                   value="@if(!is_null($Candidate['job_title'])){{$Candidate->job_title}}@else{{old('job_title')}}@endif">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Interest</label>
-                                            <input type="text" name="interest" id="interest" class="tags_1 tags form-control" value="@if(!is_null($Candidate['interest'])){{$Candidate->interest}}@else{{old('interest')}}@endif">
+                                            <input type="text" name="interest" id="interest"
+                                                   class="tags_1 tags form-control"
+                                                   value="@if(!is_null($Candidate['interest'])){{$Candidate->interest}}@else{{old('interest')}}@endif">
                                         </div>
                                         @error('interest')
                                         <label class="error">{{$message}}</label>
@@ -223,7 +313,9 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Skills</label>
-                                            <input type="text" id="skills" name="skills" class="tags_1 tags form-control" value="@if(!is_null($Candidate['skills'])){{$Candidate->skills}}@else{{old('skills')}}@endif">
+                                            <input type="text" id="skills" name="skills"
+                                                   class="tags_1 tags form-control"
+                                                   value="@if(!is_null($Candidate['skills'])){{$Candidate->skills}}@else{{old('skills')}}@endif">
                                         </div>
                                         @error('skills')
                                         <label class="error">{{$message}}</label>
@@ -232,16 +324,20 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Licensure/Certification</label>
-                                            <input type="text" id="required_certification" name="required_certification" class="tags_1 tags form-control" value="@if(!is_null($Candidate['certifications'])){{$Candidate->certifications}}@else{{old('required_certification')}}@endif">
+                                            <input type="text" id="required_certification"
+                                                   name="required_certification" class="tags_1 tags form-control"
+                                                   value="@if(!is_null($Candidate['certifications'])){{$Candidate->certifications}}@else{{old('required_certification')}}@endif">
                                         </div>
                                         @error('required_certification')
-                                        <label id="required_certification-error" class="error" for="required_certification">{{$message}}</label>
+                                        <label id="required_certification-error" class="error"
+                                               for="required_certification">{{$message}}</label>
                                         @enderror
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Professional Summary</label>
-                                            <textarea class="form-control" name="prof_summary">@if(!is_null($Candidate['prof_summary'])){{$Candidate->prof_summary}}@else{{old('prof_summary')}}@endif</textarea>
+                                            <textarea class="form-control"
+                                                      name="prof_summary">@if(!is_null($Candidate['prof_summary'])){{$Candidate->prof_summary}}@else{{old('prof_summary')}}@endif</textarea>
                                         </div>
                                         @error('prof_summary')
                                         <label class="error">{{$message}}</label>
@@ -251,9 +347,16 @@
                                         <div class="form-group">
                                             <label>What is your work authorization status?</label>
                                             <br>
-                                            <label class="status-radio"><input type="radio" name="auth_status" {{ $Candidate->auth_status == 'I am authorized to work in the U.S for any employer' ? 'checked' : '' }} value="I am authorized to work in the U.S for any employer"> I am authorized to work in the U.S for any employer</label>
-                                            <label class="status-radio"><input type="radio" name="auth_status" {{ $Candidate->auth_status == 'I am authorized to work in the U.S for my present employer only' ? 'checked' : '' }} value=" I am authorized to work in the U.S for my present employer only"> I am authorized to work in the U.S for my present employer only</label>
-                                            <label class="status-radio"><input type="radio" name="auth_status" {{ $Candidate->auth_status == 'I require sponsorship to work in the U.S' ? 'checked' : '' }} value="I require sponsorship to work in the U.S"> I require sponsorship to work in the U.S</label>
+                                            <label class="status-radio"><input type="radio" name="auth_status"
+                                                                               {{ $Candidate->auth_status == 'I am authorized to work in the U.S for any employer' ? 'checked' : '' }} value="I am authorized to work in the U.S for any employer">
+                                                I am authorized to work in the U.S for any employer</label>
+                                            <label class="status-radio"><input type="radio" name="auth_status"
+                                                                               {{ $Candidate->auth_status == 'I am authorized to work in the U.S for my present employer only' ? 'checked' : '' }} value=" I am authorized to work in the U.S for my present employer only">
+                                                I am authorized to work in the U.S for my present employer
+                                                only</label>
+                                            <label class="status-radio"><input type="radio" name="auth_status"
+                                                                               {{ $Candidate->auth_status == 'I require sponsorship to work in the U.S' ? 'checked' : '' }} value="I require sponsorship to work in the U.S">
+                                                I require sponsorship to work in the U.S</label>
 
 
                                         </div>
@@ -271,11 +374,14 @@
                                                             @php $class= 'fa fa-file-word-o'; @endphp
                                                         @else  @php $class= 'fa fa-file-pdf-o'; @endphp
                                                         @endif
-                                                        <a href="/files/{{$cand_resume->resume}}"  download class="resume_{{$cand_resume->id}}">
+                                                        <a href="/files/{{$cand_resume->resume}}" download
+                                                           class="resume_{{$cand_resume->id}}">
                                                             <i class="{{$class}}" style="font-size: 38px;"></i>
                                                         </a>
-                                                        <a href="javascript:void(0)" onclick="resume_del({{$cand_resume->id}})" class="icon_{{$cand_resume->id}}">
-                                                            <i  class="fa fa-trash" style="font-size: 17px"></i>
+                                                        <a href="javascript:void(0)"
+                                                           onclick="resume_del({{$cand_resume->id}})"
+                                                           class="icon_{{$cand_resume->id}}">
+                                                            <i class="fa fa-trash" style="font-size: 17px"></i>
                                                         </a>
                                                     @endforeach
                                                 @endif
@@ -284,7 +390,9 @@
                                             <label class="error">{{$message}}</label>
                                             @enderror
                                         </div>
-                                        <label id="file-upload-demo-error" disabled="" style="display: none;" class="error" for="file-upload-demo">Only docx and pdf files are allowed for resume.</label>
+                                        <label id="file-upload-demo-error" disabled="" style="display: none;"
+                                               class="error" for="file-upload-demo">Only docx and pdf files are
+                                            allowed for resume.</label>
                                     </div>
 
 
@@ -296,11 +404,16 @@
 
                                                 @if(Session::has('cand_prof_img') && $Candidate->prof_image != '')
                                                     <br>
-                                                    <a href="/uploads/Candidate_Profile_Images/{{Session('cand_prof_img')}}"  download class="prof_icon_{{$Candidate->id}}">
-                                                        <img style="width: 100px ; height: 100px" src="/uploads/Candidate_Profile_Images/{{Session('cand_prof_img')}}" class="icon_{{$Candidate->prof_img}}">
+                                                    <a href="/uploads/Candidate_Profile_Images/{{Session('cand_prof_img')}}"
+                                                       download class="prof_icon_{{$Candidate->id}}">
+                                                        <img style="width: 100px ; height: 100px"
+                                                             src="/uploads/Candidate_Profile_Images/{{Session('cand_prof_img')}}"
+                                                             class="icon_{{$Candidate->prof_img}}">
                                                     </a>
-                                                    <a href="javascript:void(0)" onclick="img_del({{$Candidate->id}})" class="img_{{$Candidate->id}}">
-                                                        <i  class="fa fa-trash" style="font-size: 17px"></i>
+                                                    <a href="javascript:void(0)"
+                                                       onclick="img_del({{$Candidate->id}})"
+                                                       class="img_{{$Candidate->id}}">
+                                                        <i class="fa fa-trash" style="font-size: 17px"></i>
                                                     </a>
                                                 @endif
                                             </div>
@@ -308,7 +421,9 @@
                                             <label class="error">{{$message}}</label>
                                             @enderror
                                         </div>
-                                        <label id="file-upload-demo1-error" style="display: none;" class="error" for="file-upload-demo1">Only docx and pdf files are allowed for resume.</label>
+                                        <label id="file-upload-demo1-error" style="display: none;" class="error"
+                                               for="file-upload-demo1">Only docx and pdf files are allowed for
+                                            resume.</label>
                                     </div>
                                     {{--                                    <div class="col-md-6">--}}
                                     {{--                                        <div class="form-group">--}}
@@ -341,13 +456,13 @@
     <script src="{{asset('user/script/file-input/theme.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets/scripts/notify.min.js')}}"></script>
     <script>
-        $("#file-upload-demo-error").on("click" , function (event){
+        $("#file-upload-demo-error").on("click", function (event) {
             console.log('click')
             event.preventDefault()
             return
 
         })
-        $("#file-upload-demo1-error").on("click" , function (event){
+        $("#file-upload-demo1-error").on("click", function (event) {
             console.log('click')
             event.preventDefault()
             return
@@ -387,31 +502,22 @@
             //     // autocomplete.setComponentRestrictions({'country': ['us']});
             // }
             // google.maps.event.addDomListener(window, 'load', initialize);
-            $("#curr_sign").change(function(){
+            $("#curr_sign").change(function () {
                 console.log('change call')
-                console.log('this value'+$(this).val())
-                if($(this).val() == "USD")
-                {
+                console.log('this value' + $(this).val())
+                if ($(this).val() == "USD") {
                     $(".currecny_sign").text('$');
                     $("#hidd_curr_sign").val('$');
-                }
-                else if($(this).val() == "CAD")
-                {
+                } else if ($(this).val() == "CAD") {
                     $(".currecny_sign").text('C$');
                     $("#hidd_curr_sign").val('C$');
-                }
-                else if($(this).val() == "GBP")
-                {
+                } else if ($(this).val() == "GBP") {
                     $(".currecny_sign").text('£');
                     $("#hidd_curr_sign").val('£');
-                }
-                else if($(this).val() == "AUD")
-                {
+                } else if ($(this).val() == "AUD") {
                     $(".currecny_sign").text('A$');
                     $("#hidd_curr_sign").val('A$');
-                }
-                else
-                {
+                } else {
                     $(".currecny_sign").text('€');
                     $("#hidd_curr_sign").val('€');
                 }
@@ -423,14 +529,13 @@
         });
 
 
-
-        $("#phone_no").each(function(){
+        $("#phone_no").each(function () {
             $(this).on("change keyup paste", function (e) {
                 var output,
                     $this = $(this),
                     input = $this.val();
 
-                if(e.keyCode != 8) {
+                if (e.keyCode != 8) {
                     input = input.replace(/[^0-9]/g, '');
                     var area = input.substr(0, 3);
                     var pre = input.substr(3, 3);
@@ -460,26 +565,23 @@
                 overwriteInitial: false,
             });
             /*Bcz in textarea space did'nt working */
-            $('#prof_summary').keypress(function(e) {
+            $('#prof_summary').keypress(function (e) {
                 if (e.keyCode == 13) {
                     e.preventDefault();
                     this.value = this.value.substring(0, this.selectionStart) + "" + "\n" + this.value.substring(this.selectionEnd, this.value.length);
                 }
             });
-            var invalid= 0;
-            $.each($("input,select,textarea","#form_profile"),function () {
+            var invalid = 0;
+            $.each($("input,select,textarea", "#form_profile"), function () {
 
-                if(!$(this).val())
-                {
+                if (!$(this).val()) {
                     invalid++;
                 }
 
             });
-            if(invalid > 3){
+            if (invalid > 3) {
                 $("#connect_popup").html('The profile must be completed prior to connecting with a career developer.');
-            }
-            else
-            {
+            } else {
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -487,10 +589,10 @@
                 });
                 $.ajax({
                     url: "{{ route('prof_completed') }}",
-                    type:"POST",
-                    async : false,
-                    data:{},
-                    success:function(response){
+                    type: "POST",
+                    async: false,
+                    data: {},
+                    success: function (response) {
                         $("#connect_popup").html('Thank You for submitting your profile. One of our Career Developers will be reaching out to you shortly');
 
                     },
@@ -499,8 +601,8 @@
             }
 
 
-
         });
+
         function resume_del(id) {
             sweetAlert({
                 title: "Are you sure?",
@@ -519,15 +621,14 @@
                         });
                         $.ajax({
                             url: "/candidate/delete-resume",
-                            type:"POST",
-                            async : false,
-                            data:{ id : id , "_token": "{{ csrf_token() }}"},
-                            success:function(response){
-                                if(response == 'deleted')
-                                {
-                                    $(".resume_"+id).hide();
-                                    $(".icon_"+id).hide();
-                                    $.notify("Resume Deleted Successfully",{
+                            type: "POST",
+                            async: false,
+                            data: {id: id, "_token": "{{ csrf_token() }}"},
+                            success: function (response) {
+                                if (response == 'deleted') {
+                                    $(".resume_" + id).hide();
+                                    $(".icon_" + id).hide();
+                                    $.notify("Resume Deleted Successfully", {
                                         clickToHide: true,
                                         autoHide: true,
                                         autoHideDelay: 2000,
@@ -571,16 +672,15 @@
                         });
                         $.ajax({
                             url: "/candidate/delete-img",
-                            type:"POST",
-                            async : false,
-                            data:{ id : id , "_token": "{{ csrf_token() }}"},
-                            success:function(response){
-                                if(response == 'deleted')
-                                {
-                                    $(".img_"+id).hide();
-                                    $(".prof_icon_"+id).hide();
-                                    $('#img_logo').attr('src' , '{{ asset('/user/images/avatar1.png') }}')
-                                    $.notify("Profile Picture Deleted Successfully",{
+                            type: "POST",
+                            async: false,
+                            data: {id: id, "_token": "{{ csrf_token() }}"},
+                            success: function (response) {
+                                if (response == 'deleted') {
+                                    $(".img_" + id).hide();
+                                    $(".prof_icon_" + id).hide();
+                                    $('#img_logo').attr('src', '{{ asset('/user/images/avatar1.png') }}')
+                                    $.notify("Profile Picture Deleted Successfully", {
                                         clickToHide: true,
                                         autoHide: true,
                                         autoHideDelay: 2000,
@@ -610,7 +710,7 @@
 
 
             $("#form_profile").validate({
-                ignore:[],
+                ignore: [],
                 rules: {
 
                     full_name: {
@@ -624,34 +724,34 @@
                     },
                     phone_no: {
                         required: true,
-                        phonenumber:true,
+                        phonenumber: true,
                         minlength: 14,
                         maxlength: 14,
                     },
-                    location:{
+                    location: {
                         required: true,
                         locationvalidation: true,
                         // minlength: 2,
-                        maxlength:255
-                    } ,
+                        maxlength: 255
+                    },
                     linkedin_url: {
                         validUrl: true
                     },
-                    package:{
+                    package: {
                         required: true,
                         currencyvalidation: true,
                         minlength: 1,
                         maxlength: 20
                         // positivedigit:true,
-                    } ,
-                    package_to:{
+                    },
+                    package_to: {
                         currencyvalidation: true,
                         // greaterThan:true,
                         greaterThanPackage: '#package',
                         maxlength: 20
                         // positivedigit:true,
-                    } ,
-                    salary_duration:{
+                    },
+                    salary_duration: {
                         required: true,
                     },
                     skills: {
@@ -679,10 +779,10 @@
                         required: true,
                     },
                     resume: {
-                        extension : 'doc|docx|pdf',
+                        extension: 'doc|docx|pdf',
                     },
                     pro_img: {
-                        extension : 'png|jpg|jpeg',
+                        extension: 'png|jpg|jpeg',
                     },
                     prof_summary: {
                         maxlength: 500
@@ -709,30 +809,30 @@
                         minlength: "Phone number must be equal to 14 characters.",
                         maxlength: "Phone number must be equal to 14 characters.",
                     },
-                    location:{
+                    location: {
                         required: "Job location is required.",
                         locationvalidation: "Job location must be in valid format.",
                         minlength: "Job location must be at least 2 characters long.",
                         maxlength: "Job location must be less than 255 characters long."
-                    } ,
-                    linkedin_url:{
+                    },
+                    linkedin_url: {
                         url: "LinkedIn url is invalid."
                     },
-                    package:{
+                    package: {
                         required: "Salary is required.",
                         currencyvalidation: "Salary should be in valid format.",
                         minlength: "Salary must be at least 1 characters long.",
                         maxlength: "Salary must be less than 20 characters long."
                         // positivedigit:"Salary must be positive.",
-                    } ,
-                    package_to:{
+                    },
+                    package_to: {
                         currencyvalidation: "Salary should be in valid format.",
                         greaterThanPackage: "Maximum salary range must be greater than minimum salary.",
                         // greaterThan: "Maximum salary range must be greater than minimum salary.",
                         maxlength: "Salary must be less than 20 characters long."
                         // positivedigit:"Salary must be positive.",
-                    } ,
-                    salary_duration:{
+                    },
+                    salary_duration: {
                         required: "Salary duration is required",
                     },
                     skills: {
@@ -773,15 +873,11 @@
                     }
                 },
 
-                submitHandler: function(form) {
+                submitHandler: function (form) {
                     form.submit();
                 }
 
             });
-
-
-
-
 
 
             // jQuery.validator.addMethod("greaterThan", function (value, element) {
@@ -808,7 +904,7 @@
             // });
         });
 
-        $('#form_profile').on('keyup keypress', function(e) {
+        $('#form_profile').on('keyup keypress', function (e) {
             var keyCode = e.keyCode || e.which;
             if (keyCode === 13) {
                 e.preventDefault();

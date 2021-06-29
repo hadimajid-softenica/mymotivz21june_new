@@ -181,7 +181,7 @@ address { font-style: italic; }
 	width: 100%;
 	position: relative;
 }
-.motivz-main-content 	    { padding: 100px 0px 70px 0px; }
+.motivz-main-content 	    { padding: 0px 0px 70px 0px; }
 .motivz-main-wrapper,.motivz-main-content,#motivz-footer {
     float: left;
     position: relative;
@@ -3264,8 +3264,8 @@ span.tag a {
     width: 80px;
     margin: 0px;
     height: 39px;
-    font-family: helvetica;
-    font-size: 13px;
+    font-family: Lato, sans-serif;
+    font-size: 1rem;
     border: 1px solid transparent;
     padding: 3px;
     background: transparent;
@@ -4119,7 +4119,10 @@ blockquote {
 }
 .mm-motivz-description a:hover{ color: #4d9a10; }
 .sidedis blockquote { display: none; }
-
+.mm-motivz-jobdetail-content .like-wrap {
+    float: right;
+    margin: -21px 130px 0px 0px;
+}
 
 
 

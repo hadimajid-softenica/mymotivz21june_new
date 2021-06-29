@@ -43,12 +43,12 @@
                                     <div class="col-md-12">
                                         <div class="form-title-wrap">
                                             <h2>CAREER PURSUIT</h2>
-                                            <h3>Please identify your next big move?</h3>
+                                            <h3>Please identify your next big move</h3>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Enter desired job title(s)</label>
+                                            <label>Enter desired job title (s)</label>
                                             <input type="text" name="job_title" id="job_title_tags"
                                                    data-role="tagsinput"
                                                    class="tags_1 tags form-control" placeholder=""

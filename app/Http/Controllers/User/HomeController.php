@@ -167,7 +167,7 @@ class HomeController extends Controller
         /*softenicauser@gmail.com*/
         $from_email = "usama.softenica@gmail.com";
         Mail::to($from_email)->send($email);
-        return back()->with('success', 'Your Request submitted successfully.');
+        return back()->with('success', 'Your have successfully submitted.');
 
 
     }
@@ -198,6 +198,7 @@ class HomeController extends Controller
 //        return view('user.candidate_dashboard')->with(compact('Candidate'));
 //        dd($Candidate->applied_job);
         session(['candidate_name' => $Candidate->name]);
+//        dd($applied_jobs);
         return view('user.user_new_dashboard')->with(compact('Candidate', 'applied_jobs', 'favourite_job'));
     }
 
@@ -206,9 +207,6 @@ class HomeController extends Controller
         $Education = Education::all();
         $Candidate = NewCandidate::with('industry', 'education')->where('id', session()->get('candidate_id'))->first();
         $candidate_resume = candidate_resume::where('candidate_id', session()->get('candidate_id'))->get();
-//        dd($Education);
-//        return view('user.profile')->with(compact('Education', 'Candidate', 'candidate_resume'));
-//        dd($Candidate);
         return view('user.new-profile')->with(compact('Education', 'Candidate', 'candidate_resume'));
     }
 
@@ -219,6 +217,7 @@ class HomeController extends Controller
         $industries = Industry::all();
         $Candidate = NewCandidate::where('id', session()->get('candidate_id'))->first();
         $candidate_resume = candidate_resume::where('candidate_id', session()->get('candidate_id'))->get();
+
 //        return view('user.profile-settings')->with(compact('Education', 'Candidate', 'candidate_resume','industries'));
 //        dd($Candidate->auth_status);
 
@@ -227,11 +226,11 @@ class HomeController extends Controller
 
     public function saveProfile(Request $request)
     {
-
+//        dd($request->all());
         $request->validate(
             [
                 'full_name' => 'required|regex:/^[a-zA-Z ]+$/u|max:20',
-                'job_title' => ['required', 'min:2', 'max:255', new AlphaNumericSpace()],
+                'job_title' => ['required', 'min:2', 'max:255'],
                 'phone_no' => ['required', 'min:14', 'max:14', new PhoneNumber()],
                 'linkedin_url' => ['nullable', new ValidUrl()],
 //               'location' => 'required|regex:/^[a-zA-Z,.\s]*$/|min:2|max:255',
@@ -254,7 +253,7 @@ class HomeController extends Controller
                 'full_name.regex' => 'FullName only contain alphabets',
                 'full_name.max' => 'FullName must be less than 20 characters',
                 'job_title.required' => 'Job title is required',
-                'job_title.regex' => 'Job Title only contain alphabets',
+//                'job_title.regex' => 'Job Title only contain alphabets',
                 'job_title.max' => 'Job title must be less than 255 characters long',
                 'phone_no.required' => 'Phone No is required',
                 'phone_no.regex' => 'Phone number must be in digits form',
@@ -452,8 +451,6 @@ class HomeController extends Controller
         } else {
             $start = ($request->current - 1) * $request->length;
         }
-
-
         $find_saved_jobs = favourite_job::where(function ($query) use ($request) {
             $query->where('candidate_id', session()->get('candidate_id'));
 
@@ -827,11 +824,13 @@ class HomeController extends Controller
             $candidate_fav_job = favourite_job::where('candidate_id', session()->get('candidate_id'))->get();
         }
         $arrayName = array('0' => $job, '1' => $candidate, '2' => $candidate_resumes, '3' => $job_check, '4' => $candidate_fav_job);
+
         return json_encode($arrayName);
     }
 
     public function jobDetails($id)
     {
+//        dd($id);
         $job = user_job::with('Client', 'industry', 'education')->where('id', $id)->first();
         $candidate = '';;
         $candidate_resumes = '';
@@ -1095,23 +1094,20 @@ class HomeController extends Controller
 
     public function companyDashboard()
     {
-        $client = NewClient::with('industry', 'country', 'state')->where('id', session('c_email.id'))->first();
-//        return view('user.company_dashboard.company_dashboard', compact('client'));
-        $active_jobs = user_job::where('client_id', $client->id)->where('job_approved', 1)->whereDate('applied_before', '>', Carbon::now())->count();
-        $new_applicants = 0;
-        $active_jobs1 = user_job::where('client_id', $client->id)->where('job_approved', 1)->whereDate('applied_before', '>', Carbon::now())->get();
+            $client = NewClient::with('industry', 'country', 'state')->where('id', session('c_email.id'))->first();
+            $active_jobs = user_job::where('client_id', $client->id)->where('job_approved', 1)->whereDate('applied_before', '>', Carbon::now())->count();
+            $new_applicants = 0;
+            $active_jobs1 = user_job::where('client_id', $client->id)->where('job_approved', 1)->whereDate('applied_before', '>', Carbon::now())->get();
 
-        foreach ($active_jobs1 as $active_job) {
+            foreach ($active_jobs1 as $active_job) {
+                $new_applicants += Applied_Jobs::where(['job_id' => $active_job->id, 'is_new' => 1])->count();
+            }
 
-            $new_applicants += Applied_Jobs::where(['job_id' => $active_job->id, 'is_new' => 1])->count();
-        }
-
-
-        $expired = user_job::where('client_id', $client->id)->whereDate('applied_before', '<=', Carbon::now())->count();
-        $recruit = recruitment_service::with('industry')->where('client_id', $client->id)->count();
-        //        dd($active_jobs);
-        session(['company_name' => $client->company_name]);
-        return view('user.company_dashboard.company-new-dashboard', compact('client', 'active_jobs', 'expired', 'recruit', 'new_applicants'));
+            $expired = user_job::where('client_id', $client->id)->whereDate('applied_before', '<=', Carbon::now())->count();
+            $recruit = recruitment_service::with('industry')->where('client_id', $client->id)->count();
+            //        dd($active_jobs);
+            session(['company_name' => $client->company_name]);
+            return view('user.company_dashboard.company-new-dashboard', compact('client', 'active_jobs', 'expired', 'recruit', 'new_applicants'));
     }
 
     public function companyProfile()
@@ -1278,10 +1274,6 @@ class HomeController extends Controller
     public function submitJob(JobDetailRequest $request)
     {
 
-//        $request->validate([
-//            'web_url' => ['required', new ValidUrl()],
-//        ]);
-
         $description = $this->clean($request->job_discription);
 
         $job = user_job::create([
@@ -1304,7 +1296,6 @@ class HomeController extends Controller
             'service' => $request->service,
             'applied_before' => $request->applied_before,
             'job_approved' => 1,
-//            'recruitment_pipeline' => $request->recruitment_pipeline,
             'posted_at' => Carbon::now(),
         ]);
 
@@ -1555,12 +1546,10 @@ class HomeController extends Controller
 
     public function deleteCompanyAccount()
     {
-//        dd('inside fn');
         $user = NewClient::find(session('c_email.id'));
         $user->delete();
         session()->flush();
         return redirect()->route('user.login')->with('account_del', 'Your Account deleted successfully.');
-//        return response()->json(['url'=>url('/account/logout')]);
     }
 //    public function downloadResume($id){
 //        $resume = candidate_resume::where('id',$id)->first();
@@ -1726,6 +1715,25 @@ class HomeController extends Controller
         return redirect()->route('new.candidate.dashboard');
     }
 
+    public function resendCode(Request $request)
+    {
+        $candidate = NewCandidate::where('email', $request->email)->first();
+        if ($candidate) {
+            $code['code'] = Str::random(5);
+            $code['stringRand'] = Str::random(20);
+            $candidate->code = $code['code'];
+            $candidate->random_code = $code['stringRand'];
+            $email = new SendJobApplyEmailVerifyCode($code);
+
+            Mail::to($request->email)->send($email);
+
+            $candidate->save();
+            return json_encode('success');
+        } else {
+            return json_encode('error');
+        }
+
+    }
 
     /*Apply Job Update*/
     public function jobApplyVerifyEmail(Request $request)

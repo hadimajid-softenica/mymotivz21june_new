@@ -3,8 +3,11 @@
 @section('content')
     <div class="app-main__inner">
         @if( session()->has('success') )
-            <div style="text-align: center" class="alert alert-success">
+            <div style="text-align: center" class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session()->get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         @endif
         <div class="card-header-tab card-header">
@@ -190,11 +193,11 @@
                                                 <div class="col-md-2">
                                                     <div class="input-group mb-3 div_package_to">
                                                         <select style="font-size: 12px;" name="salary_duration" id="salary_duration" class="form-control">
-                                                            <option value="Per Hour" {{ ( $job->package_type == 'Per Hour') ? 'selected' : '' }}>hourly</option>
-                                                            <option value="Per Day" {{ ( $job->package_type == 'Per Day') ? 'selected' : '' }}>daily</option>
-                                                            <option value="Per Week" {{ ( $job->package_type == 'Per Week') ? 'selected' : '' }}>weekly</option>
-                                                            <option value="Per Month" {{ ( $job->package_type == 'Per Month') ? 'selected' : '' }}>monthly</option>
-                                                            <option value="Per Year" {{ ( $job->package_type == 'Per Year') ? 'selected' : '' }}>annually</option>
+                                                            <option value="hourly" {{ ( $job->package_type == 'hourly') ? 'selected' : '' }}>hourly</option>
+                                                            <option value="daily" {{ ( $job->package_type == 'daily') ? 'selected' : '' }}>daily</option>
+                                                            <option value="weekly" {{ ( $job->package_type == 'weekly') ? 'selected' : '' }}>weekly</option>
+                                                            <option value="monthly" {{ ( $job->package_type == 'monthly') ? 'selected' : '' }}>monthly</option>
+                                                            <option value="annually" {{ ( $job->package_type == 'annually') ? 'selected' : '' }}>annually</option>
                                                         </select>
                                                     </div>
 
@@ -207,7 +210,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Job Benefits</label>
+                                            <label>Job Benefits (Optional)</label>
                                             <input type="text" name="job_benefits" id="job_benefits" data-role="tagsinput" class="tags_1 form-control" value="{{$job->job_benefits}}">
                                         </div>
                                         <label id="job_benefits-error" class="error" for="job_benefits" style="display: none"></label>
@@ -217,7 +220,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Required Skills</label>
+                                            <label>Required Skills (Optional)</label>
                                             <input type="text" name="required_skills" id="required_skills" class="tags_1 tags form-control" value="{{$job->required_skills}}">
                                         </div>
                                         <label id="required_skills-error" class="error" for="required_skills" style="display: none"></label>
@@ -227,7 +230,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Licensure/Certification</label>
+                                            <label>Licensure/Certification (Optional)</label>
                                             <input name="required_certification" type="text"  id="required_certification" class="tags_1 tags form-control" value="{{$job->certifications}}">
                                         </div>
                                         <label id="required_certification-error" class="error" for="required_certification" style="display: none"></label>
@@ -237,7 +240,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Job Descriptions</label>
+                                            <label>Job Descriptions (Optional)</label>
                                             <textarea name="job_discription" id="job_discription" class="form-control" placeholder="Briefly summarize this position...">{{$job->job_description}}</textarea>
                                         </div>
                                         <label id="job_discription-error" class="error" for="job_discription" style="display: none" ></label>
@@ -263,6 +266,12 @@
     <script>
         var editor = null;
         ClassicEditor.create(document.querySelector("#job_discription"), {
+            heading: {
+                options: [
+                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    { model: 'heading3', view: 'h3', title: 'Heading', class: 'ck-heading_heading3' },
+                ]
+            },
             toolbar: {
                 items:[
                     "heading",

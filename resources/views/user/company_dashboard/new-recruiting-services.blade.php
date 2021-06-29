@@ -3,8 +3,11 @@
 @section('content')
     <div class="app-main__inner">
         @if( session()->has('success') )
-            <div style="text-align: center" class="alert alert-success">
+            <div style="text-align: center" class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session()->get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         @endif
         <div class="card-header-tab card-header">
@@ -137,11 +140,11 @@
                                                 <div class="col-md-2">
                                                     <div class="input-group mb-3 div_package_to">
                                                         <select style="font-size: 12px;" name="salary_duration" id="salary_duration" class="form-control">
-                                                            <option value="Per Hour" >Per Hour</option>
-                                                            <option value="Per Day" >Per Day</option>
-                                                            <option value="Per Week" >Per Week</option>
-                                                            <option value="Per Month" >Per Month</option>
-                                                            <option value="Per Year" >Per Year</option>
+                                                            <option value="hourly" >hourly</option>
+                                                            <option value="daily" >daily</option>
+                                                            <option value="weekly" >weekly</option>
+                                                            <option value="monthly" >monthly</option>
+                                                            <option value="annually" >annually</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -150,7 +153,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Attach File</label>
+                                            <label>Attach File (Optional)</label>
                                             <div enctype="multipart/form-data">
                                                 <input id="file-upload" name="document" type="file">
                                             </div>

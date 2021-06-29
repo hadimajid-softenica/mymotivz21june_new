@@ -210,6 +210,7 @@
                                 @if(!is_null($job_check))
                                     <h3 class="pull-right" style="color: green"><i class="fa fa-star"></i> Already Applied to this Job</h3>
                                 @else
+                                    <a href="javascript:void(0)" class="like-wrap" onclick="save_fav_job({!! $job['id'] !!})"><i style="" class="fa fa-heart icon_{!! $job['id'] !!}"></i></a>
                                     <a data-toggle="modal" href="#exampleModal" class="apply-btn">Apply Now</a>
                                 @endif
                             @else
@@ -330,19 +331,6 @@
                 'uploadUrl': '#',
                 overwriteInitial: false,
             });
-
-            // function initialize() {
-            //     var input = document.getElementById('location');
-            //     var options = {
-            //         types: ['(regions)'] //this should work !
-            //     };
-            //
-            //     var autocomplete = new google.maps.places.Autocomplete(input, options);
-            //     autocomplete.setComponentRestrictions(
-            //         {'country': ['us']});
-            // }
-            //
-            // google.maps.event.addDomListener(window, 'load', initialize);
 
             $("#phone_no").each(function () {
                 $(this).on("change keyup paste", function (e) {
@@ -492,5 +480,73 @@
             //     return this.optional(element) || /^[a-zA-Z, ]+$/i.test(value);
             // });
         });
+
+        function save_fav_job(id) {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{ route('Ajax.save.job') }}",
+                type:"POST",
+                async : false,
+                data:{id : id},
+                success:function(response){
+                    // alert(response);
+                    // console.log(response);
+                    if(response == 'saved')
+                    {
+                        $(".icon_"+id).css('color','tomato');
+                        $.notify("Job Saved Successfully",{
+                            clickToHide: true,
+                            autoHide: true,
+                            autoHideDelay: 2000,
+                            arrowShow: true,
+                            arrowSize: 5,
+                            breakNewLines: true,
+                            elementPosition: "bottom",
+                            globalPosition: "top center",
+                            style: "bootstrap",
+                            className: "success",
+                            show: "slideDown",
+                            showDuration: 200,
+                            hideAnimation: "slideUp",
+                            hideDuration: 200,
+                            gap: 5,
+                        });
+
+                    }
+                    else if(response=='deleted')
+                    {
+                        $(".icon_"+id).css('color','');
+                        $.notify("Removed from Saved Job Successfully",{
+                            clickToHide: true,
+                            autoHide: true,
+                            autoHideDelay: 2000,
+                            arrowShow: true,
+                            arrowSize: 5,
+                            breakNewLines: true,
+                            elementPosition: "bottom",
+                            globalPosition: "top center",
+                            style: "bootstrap",
+                            className: "success",
+                            show: "slideDown",
+                            showDuration: 200,
+                            hideAnimation: "slideUp",
+                            hideDuration: 200,
+                            gap: 5,
+                        });
+
+                    }
+                    else if(response=='notloggedin')
+                    {
+                        window.location.href = "{{route('user.login')}}";
+                    }
+
+                },
+            });
+        }
     </script>
 @endsection
